@@ -4,7 +4,12 @@ import NewsFeed from '../Components/NewsFeed/NewsFeed'
 function Home() {
   return (
     <>
-        <NavBar></NavBar>
+        <NavBar clicked={{
+          home:"rgb(0, 130, 109)",
+          freinds:"rgb(152, 200, 192)",
+          chat:"rgb(152, 200, 192)",
+          add:"rgb(152, 200, 192)",
+          }}></NavBar>
         <NewsFeed></NewsFeed>
     </>
   )

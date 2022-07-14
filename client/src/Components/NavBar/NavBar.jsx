@@ -3,7 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAdd, faCirclePlus, faClose, faHome, faMessage, faPersonRifle, faSearch, faSearchPlus, faUser, faUserFriends, faXmark} from '@fortawesome/free-solid-svg-icons'
 import './NavBar.css'
 import ProfileImage from '../../images/profile_user.jpg'
-function NavBar() {
+import {Link} from 'react-router-dom'
+function NavBar(props) {
+    const {home, chat, friends, add}=props.clicked
     const [status, setStatus]=useState({
         searchBar:"0px",
         statusbar:"500px"
@@ -14,16 +16,29 @@ function NavBar() {
         <div className="nav-header">
             <h3>Sociam</h3>
         </div>
+        <div className="status-bar-back">
         <div className="nav-status-bar" >
             <div className='nav-items' style={{width:`${status.statusbar}`}}>
-                <FontAwesomeIcon icon={faHome} className="nav-icons"/></div>
+               <Link to="/">
+                <FontAwesomeIcon icon={faHome} className="nav-icons" style={{ color:`${home}`}}/>
+               </Link>
+                </div>
             <div className='nav-items' style={{width:`${status.statusbar}`}}>
-                <FontAwesomeIcon icon={faUserFriends} className="nav-icons" /></div>
+            <Link to="/friends">
+                <FontAwesomeIcon icon={faUserFriends} className="nav-icons"  style={{ color:`${friends}`}} />
+                </Link>
+                </div>
             <div className='nav-items' style={{width:`${status.statusbar}`}}>
-                <FontAwesomeIcon icon={faCirclePlus} className="nav-icons"/></div>
+            <Link to="/add-post">
+                <FontAwesomeIcon icon={faCirclePlus} className="nav-icons"  style={{ color:`${add}`}}/>
+                </Link>
+                </div>
             <div className='nav-items' style={{width:`${status.statusbar}`}}>
-                <FontAwesomeIcon icon={faMessage} className="nav-icons"/></div>
-            <div className='nav-items' style={{width:`${status.statusbar}`}}>
+            <Link to="/chat">
+                <FontAwesomeIcon icon={faMessage} className="nav-icons"  style={{ color:`${chat}`}}/>
+                </Link>
+                </div>
+            <div className='nav-items search' style={{width:`${status.statusbar}`}}>
                 <FontAwesomeIcon icon={faSearch} className="nav-icons"
                 onClick={()=>{setStatus({statusbar:"0px", searchBar:"500px"})}}
                 />
@@ -40,8 +55,9 @@ function NavBar() {
                 onClick={()=>{setStatus({statusbar:"500px", searchBar:"0px"})}}
                 />
                 </div>
-
             </div>
+        </div>
+
         </div>
         <div className="nav-profile">
             <img src={ProfileImage} alt="image" />
