@@ -24,6 +24,10 @@
     border-radius: 20px;
     justify-content: space-around;
     align-items: center;
+    overflow: hidden;
+}
+.nav-status-bar div{
+    overflow: hidden;
 }
 .nav-icons{
     font-size:1.3rem;
@@ -33,10 +37,70 @@
     animation: anime .5s;
     font-size: 1.4rem;
 }
+.nav-icons:active{
+    color: var(--navIconsClicked);
+}
 .nav-profile img{
     width: 60px;
     height: 60px;
+    border-radius: 30px;
+}
+.nav-status-bar .nav-items{
+    position: relative;
+    left: 40px;
+}
+.nav-search-bar{
+    display: flex;  
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(228, 229, 229, 0.557);
     border-radius: 25px;
+    transition: .3s;
+    padding-right: 5px;
+}
+
+.nav-search-input{
+    display: flex;
+    justify-content: center;
+    
+}
+.nav-search-input input{
+    height: 55px;
+    width: 90%;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+}
+.nav-search-input input::placeholder{
+    color: rgb(138, 126, 126);
+}
+.nav-search-icon{
+    background-color: var(--navIcons);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav-search-icon .nav-icons{
+    color: white;
+}
+.nav-search-bar{
+    overflow: hidden;
+}
+.search-icons{
+    display: flex;
+    align-items: center;
+    width: 90px;
+    justify-content: space-around;
+}
+.search-icons .x-icon{
+    font-size: 1.3rem;
 }
 @keyframes anime {
     0%{
