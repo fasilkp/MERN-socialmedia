@@ -1,0 +1,51 @@
+.Navbar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: var(--white);
+    height: 80px;
+
+}
+.nav-body{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+.nav-header h3{
+    color:var(--navHeader) ;
+    font-size: 1.7rem;
+}
+.nav-status-bar{
+    background-color: var(--lightblue);
+    display: flex;
+    height: 85%;
+    width: 500px;
+    border-radius: 20px;
+    justify-content: space-around;
+    align-items: center;
+}
+.nav-icons{
+    font-size:1.3rem;
+    color: var(--navIcons);
+}
+.nav-icons:hover{
+    animation: anime .5s;
+    font-size: 1.4rem;
+}
+.nav-profile img{
+    width: 60px;
+    height: 60px;
+    border-radius: 25px;
+}
+@keyframes anime {
+    0%{
+        transform: rotate(-10deg);
+    }
+    50%{
+        transform: rotate(10deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}
