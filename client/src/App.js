@@ -4,6 +4,7 @@ import Friends from './Pages/Friends';
 import './App.css';
 import AddPost from './Pages/AddPost';
 import Chat from './Pages/Chat';
+import Register from './Pages/Register';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
               <Route path="/friends" element={<Friends />} />
               <Route path="/add-post" element={<AddPost />} />
               <Route path="/chat" element={<Chat />} />
+              <Route path="/register" element={<Register />} />
           </Routes>
         </div>
     </BrowserRouter>
