@@ -1,7 +1,7 @@
 .RegisterComp{
     display: flex;
     background-color: #ffffff;
-    flex-direction: col;
+    min-height: 100vh;
 }
 .reg-illustration{
     width: 100%;
@@ -45,16 +45,22 @@
     color: #9B9B9B;
 }
 .reg-input:focus{
-    box-shadow: 0px 0px 8px 2px #00DFC0 ;
-    border: 1px solid #00DFC0;
+    box-shadow: 0px 0px 2px 2px #b0f5ec ;
+    border: 2px solid #5ff8e3;
 }
 .reg-btn{
     background-color: #00dfc0;
     color: white;
-    font-weight: 550;
-    font-size: 1.2rem;
+    font-weight: 500;
+    font-size: 1.1rem;
     margin-top: 75px;
     border-radius: 30px;
+    transition: .25s;
+}
+.reg-btn:hover{
+    background-color: #fff;
+    color: #00dfc0;
+    border: 2px solid #00dfc0;
 }
 .another-link{
     font-size: .9rem;
@@ -98,6 +104,14 @@
     }
     .register-box{
         align-items: center;
+    }
+    .reg-input{
+        width: 95%;
+    }
+    .reg-body{
+        display: flex;
+        align-items: center;
+
     }
     .reg-btn{
         margin-top: 50px;

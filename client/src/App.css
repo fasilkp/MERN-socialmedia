@@ -23,6 +23,9 @@ body{
 .main{
   margin-top: 90px;
 }
+.links{
+  text-decoration: none;
+}
 @media only screen and (max-width: 600px) {
   .main{
     margin-top:55px;

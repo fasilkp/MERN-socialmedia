@@ -6,6 +6,7 @@ import AddPost from './Pages/AddPost';
 import Chat from './Pages/Chat';
 import Register from './Pages/Register';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Login from './Pages/Login';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
               <Route path="/add-post" element={<AddPost />} />
               <Route path="/chat" element={<Chat />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
           </Routes>
         </div>
     </BrowserRouter>
