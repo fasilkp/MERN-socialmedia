@@ -121,15 +121,16 @@
         bottom: 0px;
         left: 0px;
         background-color: #fff;
-        height: 75px;
+        height: 65px;
         width:100%;
         display: flex;
         justify-content: center;
         align-items: center;
     }
     .nav-status-bar{
-        width: 95%;
-        height: 60px;
+        width: 97%;
+        border-radius: 10PX;
+        height: 55px;
     }
     .nav-items.search{
         display: none;
@@ -141,15 +142,15 @@
         padding: 0px 20px;
     }
     .Navbar{
-        height: 60px;
+        height: 50px;
     }
     .nav-header h3{
         color:var(--navHeader) ;
         font-size: 1.2rem;
     }
     .nav-profile img{
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
     }
 
 }

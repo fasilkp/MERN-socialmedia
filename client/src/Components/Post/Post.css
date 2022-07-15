@@ -1,18 +1,8 @@
-.news-feed, .posts{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-.posts{
-    height: 84vh;
-    overflow-y: scroll;
-
-}
-/* .post{
+.post{
     background-color: white;
-    width: 600px;
+    width: 550px;
     margin-bottom: 10px;
+    border-radius: 10px;
 }
 .post-header{
     display: flex;
@@ -20,10 +10,17 @@
     padding: 10px;
 }
 .post-header img{
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 30px;
     margin-right: 10px;
+}
+.post-header span{
+    font-size: .9rem;
+    font-weight: 450;
+}
+.post-body{
+    padding: 5px;
 }
 .post-body img{
     width: 100%;
@@ -33,6 +30,12 @@
 }
 .reaction-section div{
     margin: 10px;
+}
+.reaction-icons, .liked-icon{
+    font-size: 1.3rem;
+}
+.liked-icon{
+    color: red;
 }
 .total-likes, .post-description{
     padding: 0px 10px;
@@ -60,6 +63,15 @@
     .post{
         background-color: white;
         width: 100%;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
-} */
+    .post-description{
+        font-size: .9rem;
+    }
+    .post-body{
+        padding: 0px;
+    }
+    .total-likes{
+        font-size: .9rem;
+    }
+}
