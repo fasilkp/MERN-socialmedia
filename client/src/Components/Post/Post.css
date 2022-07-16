@@ -3,6 +3,10 @@
     width: 550px;
     margin-bottom: 10px;
     border-radius: 10px;
+    transition: .3s;
+}
+.post:hover{
+    box-shadow: 0px 0px 10px 2px rgb(218, 216, 216);
 }
 .post-header{
     display: flex;
@@ -27,12 +31,23 @@
 }
 .reaction-section{
     display: flex;
+    width: 100%;
+    justify-content: space-around;
+    border-bottom: 2px solid rgb(236, 232, 232);
+    margin-bottom: 10px;
 }
 .reaction-section div{
     margin: 10px;
+    width: 100%;
+    border-right: 2px solid grey;
+    justify-content: center;
+    display: flex;
+}
+.reaction-section div:last-child{
+    border-right: 0px solid grey;
 }
 .reaction-icons, .liked-icon{
-    font-size: 1.3rem;
+    font-size: 1.25rem;
 }
 .liked-icon{
     color: red;

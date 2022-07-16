@@ -15,8 +15,8 @@ function LoginComp() {
           <span>Login into your Account</span>
         </div>
         <div className="reg-body">
-            <input type="text" placeholder="Enter Email" className="reg-input" />
-            <input type="text" placeholder="Enter Password" className="reg-input" />
+            <input type="text" placeholder="Email" className="reg-input" />
+            <input type="text" placeholder="Password" className="reg-input" />
             <button className="reg-btn">Login</button>
         </div>
         <Link className="links" to="/register"><div className="another-link"> Don't Have an Acoount? Create One!</div></Link>

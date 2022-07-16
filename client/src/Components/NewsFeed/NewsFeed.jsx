@@ -5,6 +5,7 @@ import image2 from "../../images/2.jpg";
 import image4 from "../../images/4.jpg";
 import profile from "../../images/profile_user.jpg";
 import Post from "../Post/Post";
+import { FiArrowRight } from "react-icons/fi";
 function NewsFeed() {
   const desc =
     "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem ipsa excepturi, soluta voluptates molestiae nulla suscipit nisi numquam neque dolorum iure quos in praesentium at, nam deleniti quo, aut cum.";
@@ -12,6 +13,9 @@ function NewsFeed() {
   return (
     <div className="news-feed main">
       <div className="posts">
+        <div className="feed-header">
+          <h2>Discover <FiArrowRight className="feed-header-icon" /> </h2>
+        </div>
         <Post
           profileImg={profile}
           userId="fasil_k.p"

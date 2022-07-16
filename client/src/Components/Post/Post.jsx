@@ -37,7 +37,7 @@ function Post(props) {
             </span>
           </div>
           <div className="show-all-comments">
-            <button className="show-comments-btn">show all comments</button>
+            <button className="show-comments-btn">show all 423 comments</button>
           </div>
         </div>
   )

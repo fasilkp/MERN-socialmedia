@@ -9,6 +9,19 @@
     overflow-y: scroll;
 
 }
+.feed-header{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px 0px ;
+    padding-left: 10px;
+    width: 550px;
+}
+.feed-header-icon{
+    position: relative;
+    top: 3px;
+    font-size: 1.3rem;
+}
 /* .post{
     background-color: white;
     width: 600px;
@@ -55,11 +68,9 @@
     font-weight: 600;
     color: var(--navIconsClicked);
 }
-
+ */
 @media only screen and (max-width: 600px) {
-    .post{
-        background-color: white;
+    .feed-header{
         width: 100%;
-        margin-bottom: 10px;
     }
-} */
+}

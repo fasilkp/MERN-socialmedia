@@ -40,6 +40,7 @@
     background-color: #E4F4F0;
     color: black;
     outline: none;
+    transition: .3s;
 }
 .reg-input::placeholder{
     color: #9B9B9B;

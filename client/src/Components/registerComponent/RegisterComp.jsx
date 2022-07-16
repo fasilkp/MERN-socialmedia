@@ -14,9 +14,10 @@ function RegisterComp() {
           <span>Register Your Account</span>
         </div>
         <div className="reg-body">
-            <input type="text" placeholder="Enter Name" className="reg-input" />
-            <input type="text" placeholder="Enter Email" className="reg-input" />
-            <input type="text" placeholder="Enter Password" className="reg-input" />
+            <input type="text" placeholder="Name" className="reg-input" />
+            <input type="text" placeholder="Username (note: should be unique)" className="reg-input" />
+            <input type="email" placeholder="Email" className="reg-input" />
+            <input type="password" placeholder="Password" className="reg-input" />
             <button className="reg-btn">Register</button>
         </div>
         <Link className="links" to="/login"><div className="another-link">Already Have an Acoount? Please Login!</div></Link>
