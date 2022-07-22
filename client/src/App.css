@@ -4,6 +4,7 @@
   --navIcons:rgb(152, 200, 192);
   --navIconsClicked:rgb(0, 130, 109);
   --navHeader: rgb(8, 202, 166);
+  --mainColor: rgb(8, 202, 166);
 }
 *{
   margin: 0px;

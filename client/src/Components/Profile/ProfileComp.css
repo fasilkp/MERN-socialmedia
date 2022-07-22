@@ -1,0 +1,114 @@
+.profile-comp{
+    background-color: white;
+    margin-top: -10px;
+    padding-top: 100px;
+}
+.profile{
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.profile-wrapper{
+    display: flex;
+    width: 85%;
+    overflow: hidden;
+    justify-content: center;
+}
+.profile-section{
+    display: flex;
+    background-color: var(--lightblue);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 30px;
+    height: 85vh;
+    width: 100%;
+    flex: 35%;
+}
+.profile-section div{
+    display: flex;
+}
+.profile-image img{
+    width: 250px;
+    height: 250px;
+    border-radius: 120px;
+    margin-bottom: 30px;
+}
+.profile-name{
+    font-size: 1.5rem;
+}
+.profile-id{
+    margin-bottom: 30px;
+}
+.profile-id h3{
+    font-weight: 400;
+    color: grey;
+}
+.profile-details{
+    margin-bottom: 30px;
+    width: 100%;
+    justify-content: space-around;
+}
+.profile-details .prof-det-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.3rem;
+}
+.profile-description{
+    color: grey;
+    margin-bottom: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.profile-description p{
+    width: 80%;
+}
+.profile-btns button{
+    width: 220px;
+    height: 50px;
+    margin: 10px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    background-color: #fff;
+    border-radius: 13px;
+    color: var(--mainColor);
+}
+.profile-btns button:last-child{
+    background-color: var(--mainColor);
+    color: #fff;
+}
+
+.profile-post-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 80vh;
+    padding-left: 20px;
+    flex: 65%;
+
+}
+.pf-post-header h3{
+    font-weight: 400;
+    margin-bottom: 20px;
+    padding-left: 5px;
+
+}
+.pf-posts-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+.pf-post{
+    flex: 25%;
+    min-width: 200px;
+    max-width: 200px;
+    min-height: 200px;
+    max-height: 200px;
+    margin: 5px;
+    background-size: cover;
+    background-repeat: no-repeat ;
+}

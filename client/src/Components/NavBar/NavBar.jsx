@@ -60,7 +60,7 @@ function NavBar(props) {
 
         </div>
         <div className="nav-profile">
-            <img src={ProfileImage} alt="image" />
+           <Link to="/profile"><img src={ProfileImage} alt="image" /></Link> 
         </div>
         </div>
     </div>
