@@ -43,6 +43,11 @@
 .nav-icons:active{
     color: var(--navIconsClicked);
 }
+
+.nav-profile #dropdown-basic{
+    all: unset;
+}
+
 .nav-profile img{
     width: 60px;
     height: 60px;
@@ -103,6 +108,11 @@
 }
 .search-icons .x-icon{
     font-size: 1.3rem;
+}
+#hover-danger:hover{
+    background-color: red;
+    color: white; 
+    transition: .1s;
 }
 @keyframes anime {
     0%{

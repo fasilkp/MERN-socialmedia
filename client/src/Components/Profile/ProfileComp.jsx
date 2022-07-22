@@ -41,24 +41,76 @@ function ProfileComp() {
           </div>
         </div>
 
-        
         <div className="profile-post-section">
-            <div className="pf-post-header">
-                <h3>posts -&gt;</h3>
-            </div>
-            <div className="pf-posts-list">
-                <div className="pf-post" style={{backgroundImage: `url("/images/profile_user.jpg")`}}></div>
-                <div className="pf-post" style={{backgroundImage: `url("/images/1.jpg")`}}></div>
-                <div className="pf-post" style={{backgroundImage: `url("/images/2.jpg")`}}></div>
-                <div className="pf-post" style={{backgroundImage: `url("/images/3.jpg")`}}></div>
-                <div className="pf-post" style={{backgroundImage: `url("/images/4.jpg")`}}></div>
-                <div className="pf-post" style={{backgroundImage: `url("/images/3.jpg")`}}></div>
-                <div className="pf-post" style={{backgroundImage: `url("/images/profile_user.jpg")`}}></div>
-                <div className="pf-post" style={{backgroundImage: `url("/images/1.jpg")`}}></div>
-                <div className="pf-post" style={{backgroundImage: `url("/images/2.jpg")`}}></div>
-                <div className="pf-post" style={{backgroundImage: `url("/images/4.jpg")`}}></div>
-                
-            </div>
+          <div className="pf-post-header">
+            <h3>posts -&gt;</h3>
+          </div>
+          <div className="pf-posts-list">
+            <div
+              className="pf-post"
+              style={{ backgroundImage: `url("/images/profile_user.jpg")` }}
+            ></div>
+            <div
+              className="pf-post"
+              style={{ backgroundImage: `url("/images/1.jpg")` }}
+            ></div>
+            <div
+              className="pf-post"
+              style={{ backgroundImage: `url("/images/2.jpg")` }}
+            ></div>
+            <div
+              className="pf-post"
+              style={{ backgroundImage: `url("/images/3.jpg")` }}
+            ></div>
+            <div
+              className="pf-post"
+              style={{ backgroundImage: `url("/images/4.jpg")` }}
+            ></div>
+            <div
+              className="pf-post"
+              style={{ backgroundImage: `url("/images/3.jpg")` }}
+            ></div>
+            <div
+              className="pf-post"
+              style={{ backgroundImage: `url("/images/profile_user.jpg")` }}
+            ></div>
+            <div
+              className="pf-post"
+              style={{ backgroundImage: `url("/images/1.jpg")` }}
+            ></div>
+            <div
+              className="pf-post"
+              style={{ backgroundImage: `url("/images/2.jpg")` }}
+            ></div>
+            <div
+              className="pf-post"
+              style={{ backgroundImage: `url("/images/4.jpg")` }}
+            ></div>
+            <div
+              className="pf-post"
+              style={{ backgroundImage: `url("/images/4.jpg")` }}
+            ></div>
+            <div
+              className="pf-post"
+              style={{ backgroundImage: `url("/images/profile_user.jpg")` }}
+            ></div>
+            <div
+              className="pf-post"
+              style={{ backgroundImage: `url("/images/1.jpg")` }}
+            ></div>
+            <div
+              className="pf-post"
+              style={{ backgroundImage: `url("/images/2.jpg")` }}
+            ></div>
+            <div
+              className="pf-post"
+              style={{ backgroundImage: `url("/images/3.jpg")` }}
+            ></div>
+            <div
+              className="pf-post"
+              style={{ backgroundImage: `url("/images/4.jpg")` }}
+            ></div>
+          </div>
         </div>
       </div>
     </div>
