@@ -98,9 +98,6 @@
     align-items:center;
     height: 60px;
     box-shadow: -4px 7px 4px -8px grey;
-    position: sticky;
-    top: 0px;
-    
     background-color: #fff;
 }
 .post-comments-list{
@@ -187,12 +184,14 @@
         height: 100vh;
         position: absolute;
         left: 0px;
-        top:50px;
+        top:0px;
     }
     .post-comments-list{
         max-height: 75vh;
     }
     .post-comments-header{
         z-index: 110;
+        position: relative;
+        top: 0px;
     }
 }

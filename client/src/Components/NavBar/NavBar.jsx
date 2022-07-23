@@ -62,12 +62,12 @@ function NavBar(props) {
         </div>
         <div className="nav-profile">
            
-           <Dropdown>
+           <Dropdown className="nav-profile-dropdown">
               <Dropdown.Toggle variant="success" id="dropdown-basic" className="profile-toggle">
               <img src={ProfileImage} alt="image" />
               </Dropdown.Toggle>
 
-              <Dropdown.Menu>
+              <Dropdown.Menu >
              <Dropdown.Item href="#">
              <Link to="/profile" className='links'><FontAwesomeIcon icon={faUser}/> &nbsp;&nbsp; Profile</Link>
              </Dropdown.Item>
