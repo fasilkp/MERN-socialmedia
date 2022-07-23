@@ -1,6 +1,7 @@
 import React from "react";
 import "./ProfileComp.css";
 import profileImage from "../../images/profile_user.jpg";
+import { Link } from "react-router-dom";
 function ProfileComp() {
   return (
     <div className="profile">
@@ -46,10 +47,13 @@ function ProfileComp() {
             <h3>posts -&gt;</h3>
           </div>
           <div className="pf-posts-list">
-            <div
+            <Link to="/viewpost/profile_user.jpg/markjoe/MarkJoe/profile_user.jpg"
+            state={{ profileImage:profileImage, userId:"markjoe", userName:"Mark Joe", postImage:"/images/profile_user.jpg"  }} 
+            className="links">
+              <div
               className="pf-post"
               style={{ backgroundImage: `url("/images/profile_user.jpg")` }}
-            ></div>
+            ></div></Link>
             <div
               className="pf-post"
               style={{ backgroundImage: `url("/images/1.jpg")` }}

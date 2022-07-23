@@ -17,21 +17,24 @@ function NewsFeed() {
           <h2>Discover <FiArrowRight className="feed-header-icon" /> </h2>
         </div>
         <Post
-          profileImg={profile}
+          profileImg={"profile_user.jpg"}
           userId="fasil_k.p"
-          post={image1}
+          postImage={"1.jpg"}
+          viewpost={false}
           description={desc}
         ></Post>
         <Post
-          profileImg={profile}
+          profileImg={"profile_user.jpg"}
           userId="fasil_k.p"
-          post={image2}
+          postImage={"2.jpg"}
+          viewpost={false}
           description={desc}
         ></Post>
         <Post
-          profileImg={profile}
+          profileImg={"profile_user.jpg"}
           userId="fasil_k.p"
-          post={image4}
+          postImage={"4.jpg"}
+          viewpost={false}
           description={desc}
         ></Post>
 

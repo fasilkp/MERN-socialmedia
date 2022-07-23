@@ -12,6 +12,9 @@
   scroll-behavior: smooth;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+html{
+  background-color: var(--lightblue);
+}
 body{
   background-color: var(--lightblue);
 }
@@ -21,6 +24,7 @@ body{
 .App{
   display: flex;
   flex-direction: column;
+  background-color: var(--lightblue);
 }
 .main{
   margin-top: 90px;

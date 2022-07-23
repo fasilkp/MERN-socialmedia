@@ -4,16 +4,16 @@ import { FiHeart,FiMessageCircle,FiShare2 } from 'react-icons/fi';
 import { FaHeart} from 'react-icons/fa';
 
 function Post(props) {
-    const {profileImg, description, post, userId}=props
+    const {profileImg, description, postImage, userId, viewpost}=props
     const [liked, setLiked]=useState(false)
   return (
-    <div className="post">
+    <div className={viewpost ? "post post-large" : "post"}>
           <div className="post-header">
-            <img src={profileImg} alt="profile" />
+            <img src={`/images/${profileImg}`} alt="profile" />
             <span>{userId}</span>
           </div>
           <div className="post-body">
-            <img src={post} alt="post-body" onDoubleClick={()=>setLiked(!liked)} />
+            <img src={"/images/"+postImage} alt="post-body" onDoubleClick={()=>setLiked(!liked)} />
           </div>
           <div className="reaction-section">
             <div className="reaction-like" onClick={()=>setLiked(!liked)}>
@@ -31,7 +31,7 @@ function Post(props) {
           </div>
           <div className="total-likes"><b>2,34,135</b> likes</div>
           <div className="post-description">
-            <b>fasil.kp</b>
+            <b>{userId}</b>
             <span>
               {" "+description}
             </span>

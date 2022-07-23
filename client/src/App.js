@@ -8,7 +8,9 @@ import Register from './Pages/Register';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Login from './Pages/Login';
 import Profile from './Pages/Profile';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ViewPost from './Pages/ViewPost';
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/viewpost/:profileImage/:userId/:userName/:postImage" element={<ViewPost />} />
           </Routes>
         </div>
     </BrowserRouter>
