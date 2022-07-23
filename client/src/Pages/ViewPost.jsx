@@ -19,7 +19,7 @@ function ViewPost() {
           add: "rgb(152, 200, 192)",
         }}>
       </NavBar>
-      <div style={{height:"100px"}}></div>
+      <div className="extra-height"></div>
       <CenterWrapper>
         <Post
           profileImg={profileImage}
@@ -29,6 +29,7 @@ function ViewPost() {
           description={desc} >
         </Post>
       </CenterWrapper>
+      <div className="extra-height"></div>
     </div>
   );
 }

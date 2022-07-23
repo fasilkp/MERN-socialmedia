@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import './Post.css'
-import { FiHeart,FiMessageCircle,FiShare2 } from 'react-icons/fi';
 import { FaHeart} from 'react-icons/fa';
+import { FiHeart,FiMessageCircle,FiShare2,FiThumbsDown,FiThumbsUp, FiArrowLeft, FiSend } from 'react-icons/fi';
 
 function Post(props) {
     const {profileImg, description, postImage, userId, viewpost}=props
     const [liked, setLiked]=useState(false)
+    const [commentsHide, setCommentsHide]=useState(true)
   return (
-    <div className={viewpost ? "post post-large" : "post"}>
+    <div className="post-details">
+
+    <div className={viewpost ? "post post-large" : "post" } >
           <div className="post-header">
             <img src={`/images/${profileImg}`} alt="profile" />
             <span>{userId}</span>
@@ -19,7 +22,6 @@ function Post(props) {
             <div className="reaction-like" onClick={()=>setLiked(!liked)}>
               {!liked ? <FiHeart className="reaction-icons"/> :
               <FaHeart className="liked-icon"/>}
-
 
             </div>
             <div className="comment">
@@ -37,9 +39,167 @@ function Post(props) {
             </span>
           </div>
           <div className="show-all-comments">
-            <button className="show-comments-btn">show all 423 comments</button>
+            <button className="show-comments-btn"
+            onClick={()=>setCommentsHide(!commentsHide)}>
+              {commentsHide ? "show all 423 comments" : "Hide all Comments"}
+              </button>
           </div>
         </div>
+        <div className={commentsHide ? "post-comments post-comments-hide" : "post-comments"}>
+          <div className="post-comments-header">
+            <FiArrowLeft onClick={()=>setCommentsHide(!commentsHide)}></FiArrowLeft> &nbsp; comments
+          </div>
+          <div className="add-comment">
+            <input type="text" placeholder='enter a comment..' />
+            <div className="comment-send">
+                <FiSend />
+            </div>
+          </div>
+          <div className="post-comments-list">
+            <div className="post-single-comment">
+              <div className="post-comment-profile">
+                <img src={`/images/${profileImg}`} alt="" />
+                <b>fasil_kp</b>
+                <span>3 hours ago </span>
+              </div>
+              <div className="post-comment-description">
+                <span>jefnebf berf erk fer b,fgfgh er,gysrfhg,bhdjst vdj</span>
+              </div>
+              <div className="comment-like-section">
+                  <FiThumbsUp className='like-icons'/> like
+                  <FiThumbsDown className='like-icons'/> dislike
+              </div>
+            </div>
+            <div className="post-single-comment">
+              <div className="post-comment-profile">
+                <img src={`/images/${profileImg}`} alt="" />
+                <b>fasil_kp</b>
+                <span>3 hours ago </span>
+              </div>
+              <div className="post-comment-description">
+                <span>jefnebf berf erk fer b,fgfgh er,gysrfhg,bhdjst vdj</span>
+              </div>
+              <div className="comment-like-section">
+                  <FiThumbsUp className='like-icons'/> like
+                  <FiThumbsDown className='like-icons'/> dislike
+              </div>
+            </div>
+            <div className="post-single-comment">
+              <div className="post-comment-profile">
+                <img src={`/images/${profileImg}`} alt="" />
+                <b>fasil_kp</b>
+                <span>3 hours ago </span>
+              </div>
+              <div className="post-comment-description">
+                <span>jefnebf berf erk fer b,fgfgh er,gysrfhg,bhdjst vdj</span>
+              </div>
+              <div className="comment-like-section">
+                  <FiThumbsUp className='like-icons'/> like
+                  <FiThumbsDown className='like-icons'/> dislike
+              </div>
+            </div>
+            <div className="post-single-comment">
+              <div className="post-comment-profile">
+                <img src={`/images/${profileImg}`} alt="" />
+                <b>fasil_kp</b>
+                <span>3 hours ago </span>
+              </div>
+              <div className="post-comment-description">
+                <span>jefnebf berf erk fer b,fgfgh er,gysrfhg,bhdjst vdj</span>
+              </div>
+              <div className="comment-like-section">
+                  <FiThumbsUp className='like-icons'/> like
+                  <FiThumbsDown className='like-icons'/> dislike
+              </div>
+            </div>
+            <div className="post-single-comment">
+              <div className="post-comment-profile">
+                <img src={`/images/${profileImg}`} alt="" />
+                <b>fasil_kp</b>
+                <span>3 hours ago </span>
+              </div>
+              <div className="post-comment-description">
+                <span>jefnebf berf erk fer b,fgfgh er,gysrfhg,bhdjst vdj</span>
+              </div>
+              <div className="comment-like-section">
+                  <FiThumbsUp className='like-icons'/> like
+                  <FiThumbsDown className='like-icons'/> dislike
+              </div>
+            </div>
+            <div className="post-single-comment">
+              <div className="post-comment-profile">
+                <img src={`/images/${profileImg}`} alt="" />
+                <b>fasil_kp</b>
+                <span>3 hours ago </span>
+              </div>
+              <div className="post-comment-description">
+                <span>jefnebf berf erk fer b,fgfgh er,gysrfhg,bhdjst vdj</span>
+              </div>
+              <div className="comment-like-section">
+                  <FiThumbsUp className='like-icons'/> like
+                  <FiThumbsDown className='like-icons'/> dislike
+              </div>
+            </div>
+            <div className="post-single-comment">
+              <div className="post-comment-profile">
+                <img src={`/images/${profileImg}`} alt="" />
+                <b>fasil_kp</b>
+                <span>3 hours ago </span>
+              </div>
+              <div className="post-comment-description">
+                <span>jefnebf berf erk fer b,fgfgh er,gysrfhg,bhdjst vdj</span>
+              </div>
+              <div className="comment-like-section">
+                  <FiThumbsUp className='like-icons'/> like
+                  <FiThumbsDown className='like-icons'/> dislike
+              </div>
+            </div>
+            <div className="post-single-comment">
+              <div className="post-comment-profile">
+                <img src={`/images/${profileImg}`} alt="" />
+                <b>fasil_kp</b>
+                <span>3 hours ago </span>
+              </div>
+              <div className="post-comment-description">
+                <span>jefnebf berf erk fer b,fgfgh er,gysrfhg,bhdjst vdj</span>
+              </div>
+              <div className="comment-like-section">
+                  <FiThumbsUp className='like-icons'/> like
+                  <FiThumbsDown className='like-icons'/> dislike
+              </div>
+            </div>
+            <div className="post-single-comment">
+              <div className="post-comment-profile">
+                <img src={`/images/${profileImg}`} alt="" />
+                <b>fasil_kp</b>
+                <span>3 hours ago </span>
+              </div>
+              <div className="post-comment-description">
+                <span>jefnebf berf erk fer b,fgfgh er,gysrfhg,bhdjst vdj</span>
+              </div>
+              <div className="comment-like-section">
+                  <FiThumbsUp className='like-icons'/> like
+                  <FiThumbsDown className='like-icons'/> dislike
+              </div>
+            </div>
+            <div className="post-single-comment">
+              <div className="post-comment-profile">
+                <img src={`/images/${profileImg}`} alt="" />
+                <b>fasil_kp</b>
+                <span>3 hours ago </span>
+              </div>
+              <div className="post-comment-description">
+                <span>jefnebf berf erk fer b,fgfgh er,gysrfhg,bhdjst vdj</span>
+              </div>
+              <div className="comment-like-section">
+                  <FiThumbsUp className='like-icons'/> like
+                  <FiThumbsDown className='like-icons'/> dislike
+              </div>
+            </div>
+          </div>
+          
+        </div>
+    </div>
   )
 }
 

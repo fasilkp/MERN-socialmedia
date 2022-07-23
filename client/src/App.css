@@ -33,8 +33,14 @@ body{
   text-decoration: none;
   color: black;
 }
+.extra-height{
+  height: 100px;
+}
 @media only screen and (max-width: 600px) {
   .main{
     margin-top:55px;
+  }
+  .extra-height{
+    height: 0px;
   }
 }
