@@ -2,6 +2,7 @@ import React from "react";
 import "./ProfileComp.css";
 import profileImage from "../../images/profile_user.jpg";
 import { Link } from "react-router-dom";
+import {FiArrowRight} from 'react-icons/fi'
 function ProfileComp() {
   return (
     <div className="profile">
@@ -44,7 +45,7 @@ function ProfileComp() {
 
         <div className="profile-post-section">
           <div className="pf-post-header">
-            <h3>posts -&gt;</h3>
+            <h3>posts <FiArrowRight></FiArrowRight> </h3>
           </div>
           <div className="pf-posts-list">
             <Link to="/viewpost/profile_user.jpg/markjoe/MarkJoe/profile_user.jpg"

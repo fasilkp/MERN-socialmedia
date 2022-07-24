@@ -1,5 +1,6 @@
 import React from 'react'
 import NavBar from '../Components/NavBar/NavBar'
+import UploadPost from '../Components/UploadPost/UploadPost'
 function AddPost() {
   return (
     <div className='main'>
@@ -9,7 +10,7 @@ function AddPost() {
           chat:"rgb(152, 200, 192)",
           add:"rgb(0, 130, 109)",
           }}></NavBar>
-          <h1>coming soon...</h1>
+          <UploadPost></UploadPost>
     </div>
   )
 }
