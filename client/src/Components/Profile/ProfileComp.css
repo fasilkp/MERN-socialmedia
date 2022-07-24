@@ -114,3 +114,85 @@
     background-size: cover;
     background-repeat: no-repeat ;
 }
+@media only screen and (max-width: 600px) {
+    .profile-wrapper   {
+        flex-direction: column;
+        width: 100%;
+    }
+    .profile-comp{
+        padding-top: 0px;
+    }
+    .profile-section{
+        min-height: 10vh;
+        max-height: 55vh;
+        margin-top: 50px;
+        width: 100%;
+        flex: 50%;
+        overflow: scroll;    
+    }
+
+    .profile-image img{
+        width: 100px;
+        height: 100px;
+        margin-bottom: 5px;
+    }
+    .profile-name h2{
+        font-size: 1.3rem;
+    }
+    .profile-id{
+        margin-bottom: 0px;
+        margin-top: -10px;
+    }
+    .profile-id h3{
+        font-size: 1rem;
+    }
+    .profile-details{
+        margin-bottom: 10px;
+    }
+    .profile-details .prof-det-item{
+        font-size: .9rem;
+    }
+    .prof-det-item h3{
+        font-size: 1.2rem;
+    }
+    .prof-det-item span{
+        margin-top: -10px;
+    }
+    .profile-description{
+        margin-bottom: 0px;
+        width: 100%;
+    }
+    .profile-description p{
+        width: 88%;
+    }
+    .profile-btns button{
+        width: 150px;
+        height: 40px;
+        margin: 5px;
+        font-size: .8rem;
+    }
+    
+    .profile-post-section{
+        min-height: 50vh;
+        padding-left: 0px;
+        flex: 50%;
+        margin-bottom: 200px;
+    }
+    .pf-post-header h3{
+        margin-bottom: 0px;
+        font-size: 0rem;
+    }
+    .pf-posts-list{
+        justify-content: center;
+    }
+    .pf-post{
+        flex: 25%;
+        min-width: 125px;
+        max-width: 125px;
+        min-height: 125px;
+        max-height: 125px;
+        margin: 1.1px;
+        background-size: cover;
+        background-repeat: no-repeat ;
+    }
+}

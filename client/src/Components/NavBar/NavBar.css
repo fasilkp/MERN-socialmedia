@@ -115,6 +115,11 @@
     color: white; 
     transition: .1s;
 }
+.nav-dropdown-item:active{
+    background-color: var(--mainColor);
+    color: white;
+}
+
 @keyframes anime {
     0%{
         transform: rotate(-8deg);

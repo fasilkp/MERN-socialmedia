@@ -33,6 +33,10 @@ body{
   text-decoration: none;
   color: black;
 }
+.links:active{
+  color: white;
+  background-color: var(--mainColor);
+}
 .extra-height{
   height: 100px;
 }

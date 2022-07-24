@@ -33,7 +33,7 @@ function ProfileComp() {
           <div className="profile-description">
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consequatur repellat doloremque quos at dignissimos repudiandae
+              Consequatur
             </p>
           </div>
           <div className="profile-btns">
@@ -109,6 +109,14 @@ function ProfileComp() {
             <div
               className="pf-post"
               style={{ backgroundImage: `url("/images/3.jpg")` }}
+            ></div>
+            <div
+              className="pf-post"
+              style={{ backgroundImage: `url("/images/4.jpg")` }}
+            ></div>
+            <div
+              className="pf-post"
+              style={{ backgroundImage: `url("/images/4.jpg")` }}
             ></div>
             <div
               className="pf-post"

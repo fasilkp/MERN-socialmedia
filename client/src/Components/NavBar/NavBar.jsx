@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCirclePlus, faHome, faMessage,  faSearch, faUserFriends, faXmark, faUser, faGear, faRightFromBracket} from '@fortawesome/free-solid-svg-icons'
+import { faCirclePlus, faHome, faMessage,  faSearch, faUserFriends, faXmark, faUser, faGear, faRightFromBracket, faEdit} from '@fortawesome/free-solid-svg-icons'
 import './NavBar.css'
 import ProfileImage from '../../images/profile_user.jpg'
 import {Link} from 'react-router-dom'
@@ -68,13 +68,16 @@ function NavBar(props) {
               </Dropdown.Toggle>
 
               <Dropdown.Menu >
-             <Dropdown.Item href="#">
-             <Link to="/profile" className='links'><FontAwesomeIcon icon={faUser}/> &nbsp;&nbsp; Profile</Link>
-             </Dropdown.Item>
-                <Dropdown.Item href="#">
+              <Link to="/profile" className='links'><Dropdown.Item href="/profile" className="nav-dropdown-item">
+             <FontAwesomeIcon icon={faUser}/> &nbsp;&nbsp; Profile
+             </Dropdown.Item></Link>
+             <Link to="/profile" className='links'><Dropdown.Item href="/profile" className="nav-dropdown-item">
+             <FontAwesomeIcon icon={faEdit}/> &nbsp;&nbsp; Edit Profile
+             </Dropdown.Item></Link>
+                <Dropdown.Item>
                 <FontAwesomeIcon icon={faGear}/> &nbsp;&nbsp; Settings</Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item href="#" id="hover-danger">
+                <Dropdown.Item id="hover-danger">
                 <FontAwesomeIcon icon={faRightFromBracket}/> &nbsp;&nbsp; Logout</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
