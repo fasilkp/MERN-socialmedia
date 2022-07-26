@@ -19,6 +19,7 @@
 .nav-header h3{
     color:var(--navHeader) ;
     font-size: 1.7rem;
+    font-family: 'Pacifico', cursive;
 }
 .nav-status-bar{
     background-color: var(--lightblue);

@@ -27,7 +27,7 @@ function NavBar(props) {
     <div className="Navbar">
       <div className="container nav-body">
         <div className="nav-header">
-          <h3>Sociam</h3>
+          <h3>Crowdly</h3>
         </div>
         <div className="status-bar-back">
           <div className="nav-status-bar">

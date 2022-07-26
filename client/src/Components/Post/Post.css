@@ -171,7 +171,7 @@
     font-size: 0px;
     position: relative;
     left: 50%;
-    top: -250px;
+    top: -150px;
     transform: translate(-50%, -50%);
     color: red;
     animation: mymove .5s; 
