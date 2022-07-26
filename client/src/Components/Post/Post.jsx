@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import './Post.css'
 import { FaHeart} from 'react-icons/fa';
-import { FiHeart,FiMessageCircle,FiShare2,FiThumbsDown,FiThumbsUp, FiArrowLeft, FiSend } from 'react-icons/fi';
+import { MdSend} from 'react-icons/md';
+import { FiHeart,FiMessageCircle,FiShare2,FiThumbsDown,FiThumbsUp, FiArrowLeft } from 'react-icons/fi';
 
 function Post(props) {
     const {profileImg, description, postImage, userId, viewpost}=props
@@ -17,6 +18,9 @@ function Post(props) {
           </div>
           <div className="post-body">
             <img src={"/images/"+postImage} alt="post-body" onDoubleClick={()=>setLiked(!liked)} />
+            <div className="center-like-icon-body" style={{height:"0px"}}>
+              {liked && <FaHeart className='center-like-icon'></FaHeart>}
+              </div>
           </div>
           <div className="reaction-section">
             <div className="reaction-like" onClick={()=>setLiked(!liked)}>
@@ -52,7 +56,7 @@ function Post(props) {
           <div className="add-comment">
             <input type="text" placeholder='enter a comment..' />
             <div className="comment-send">
-                <FiSend />
+                <MdSend/>
             </div>
           </div>
           <div className="post-comments-list">
