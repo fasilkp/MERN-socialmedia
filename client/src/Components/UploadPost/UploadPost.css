@@ -93,6 +93,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: .5s;
 }
 .crop-aspect-1{
     width: 30px;
@@ -106,7 +107,7 @@
     width: 40px;
     height: 30px;
 }
-.aspect-ratio-selected{
+.ar-selected{
     background-color: var(--mainColorDark);
     color: white;
 }
@@ -129,7 +130,7 @@
     color: black;
     font-size: 1rem;
     border-bottom: 1px solid grey;
-    padding-left: 10px;
+    padding-left: 5px;
     
 }
 .post-input-row input:focus{

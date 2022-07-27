@@ -10,6 +10,16 @@ function UploadPost() {
     saveAs(imageUrl, "image.jpg"); // Put your image url here.
   };
   const [aspectRatio, setAspectRatio] = useState(1);
+  const[selectedAspectRatio, setSelectedAspectRatio] = useState({
+    ar1:"ar-selected",
+    ar2:"",
+    ar3:""
+  }) // "ar" means aspectRatio
+  const arObj={
+    ar1:"",
+    ar2:"",
+    ar3:""
+  }
   useEffect(() => {
     setImage(newImage);
   }, [aspectRatio]);
@@ -78,14 +88,29 @@ function UploadPost() {
           <div className="cropper-options-row">
             <div className="cropper-options">
               <span className="aspect-ratio-title">Aspect Ratio</span>
-              <span className="crop-aspect crop-aspect-1 aspect-ratio-selected">1:1</span>
-              <span className="crop-aspect crop-aspect-2">4:5</span>
-              <span className="crop-aspect crop-aspect-3">16:9</span>
+              <span className={'crop-aspect crop-aspect-1 '+ selectedAspectRatio.ar1}
+              onClick={()=>{
+                aspectRatio!=(1) && setImage(null)
+                setSelectedAspectRatio({...arObj, ar1:"ar-selected"})
+                setAspectRatio(1/1)}}
+              >1:1</span>
+              <span className={'crop-aspect crop-aspect-2 '+ selectedAspectRatio.ar2}
+              onClick={()=>{
+                aspectRatio!=(4/5) && setImage(null)
+                setSelectedAspectRatio({...arObj, ar2:"ar-selected"})
+                setAspectRatio(4/5)}}
+              >4:5</span>
+              <span className={'crop-aspect crop-aspect-3 '+ selectedAspectRatio.ar3}
+              onClick={()=>{
+                aspectRatio!=(16/9) && setImage(null)
+                setSelectedAspectRatio({...arObj, ar3:"ar-selected"})
+                setAspectRatio(16/9)}}
+              >16:9</span>
             </div>
           </div>
           <div className="post-input-row">
-            <input type="text" placeholder="enter something" />
-            <button onClick={getCropData}>click</button>
+            <input type="text" placeholder="enter something..." />
+            <button onClick={getCropData}>Post</button>
           </div>
         </div>
       )}
