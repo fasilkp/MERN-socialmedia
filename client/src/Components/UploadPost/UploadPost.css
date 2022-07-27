@@ -88,7 +88,7 @@
     border-radius: 5px;
     font-size: .7rem;
     font-weight: 500;
-    color: var(--mainColor);
+    color: var(--mainColorDark);
     border: 1.5px solid var(--mainColorDark);
     display: flex;
     justify-content: center;
@@ -136,7 +136,7 @@
 .post-input-row input:focus{
     border-bottom: 2px solid var(--mainColor);
 }
-.post-input-row button{
+.post-input-row button, .cropper-options-row button{
     all: unset;
     color: white;
     width: 80px;
@@ -147,6 +147,10 @@
     font-weight: 500;
     border-radius: 5px;
     
+}
+.cropper-options-row button{
+    width: 300px;
+    background-color: var(--mainColorDark);
 }
 @media only screen and (max-width: 600px) {
     .upload-post{
@@ -167,5 +171,41 @@
     }
     .upload-btn input::file-selector-button{
         font-size: 1rem;
+    }
+    .cropper-container{
+        max-width: 100%;
+    }
+    .crop-box{
+        max-width: 100%;
+        min-height: 300px;
+        max-height: 300px;
+    }
+    .crop-aspect{
+        margin-left: 8px;
+        border-radius: 3px;
+        font-size: .55rem;
+    }
+    .crop-aspect-1{
+        width: 25px;
+        height: 25px;
+    }
+    .crop-aspect-2{
+        width: 18px;
+        height: 25px;
+    }
+    .crop-aspect-3{
+        width: 33px;
+        height: 25px;
+    }
+    .aspect-ratio-title{
+        font-size: .8rem;
+    }
+    .cropper-options-row button{
+        width: 300px;
+        font-size: .8rem;
+        height: 30px;
+    }
+    .post-input-row input{
+        font-size: .9rem;
     }
 }

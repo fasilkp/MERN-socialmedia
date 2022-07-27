@@ -67,7 +67,7 @@ function UploadPost() {
             <Cropper
               className="crop-box"
               // style={{ height: 400, width: "50%" }}
-              zoomTo={0.5}
+              zoomTo={0}
               aspectRatio={aspectRatio}
               initialAspectRatio={aspectRatio}
               preview=".img-preview"
@@ -107,9 +107,10 @@ function UploadPost() {
                 setAspectRatio(16/9)}}
               >16:9</span>
             </div>
+            <button onClick={()=>setImage(null)}>Choose another photo</button>
           </div>
           <div className="post-input-row">
-            <input type="text" placeholder="enter something..." />
+            <input type="text" placeholder="Write a Caption..." />
             <button onClick={getCropData}>Post</button>
           </div>
         </div>
