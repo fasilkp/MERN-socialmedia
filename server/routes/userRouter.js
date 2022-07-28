@@ -1,9 +1,7 @@
 import express from 'express'
 const router=express.Router()
-
-router.get("/", async (req, res) => {
-	res.json({status:"ok"})
-});
+import {postDetails} from '../controllers/postController.js'
+router.get("/", postDetails);
 
 
 export default router;
