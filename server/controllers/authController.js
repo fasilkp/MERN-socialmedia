@@ -15,3 +15,14 @@ export const registerUser = (req, res) => {
     res.json({ register: false, message: err });
   }
 };
+export const loginUser = async (req, res) => {
+
+    const user = await UserModel.findOne({ email: req.body.email, password: req.body.password });
+    if(user){
+        return res.json({login:true, message:"logged in successfully", user})
+    }
+    else{
+        return res.json({login:false, message:"logged in failed", err:"invalid email or password"})
+    }
+
+};
