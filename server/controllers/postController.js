@@ -1,3 +1,3 @@
 export const postDetails=(req, res)=>{
-    res.json({status: "ok"})
+    res.send("post controller created")
 }
