@@ -1,4 +1,4 @@
-import PostModel from "../models/postModel.js"
+import PostModel from "../models/PostModel.js"
 
 export const postDetails=(req, res)=>{
     res.send("post controller created")
