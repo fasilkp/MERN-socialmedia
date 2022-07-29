@@ -2,10 +2,11 @@ import 'dotenv/config'
 import express from 'express';
 import cors from 'cors';
 import userRoutes from './routes/userRouter.js'
+import connectDB from './dbConfig.js';
 
 const app = express();
 // database connection
-
+connectDB();
 
 // middlewares
 app.use(express.json());
