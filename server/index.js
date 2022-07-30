@@ -4,6 +4,7 @@ import cors from 'cors';
 import connectDB from './dbConfig.js';
 import postRoutes from './routes/postRoutes.js'
 import authRoutes from './routes/authRoutes.js'
+import cookieParser from 'cookie-parser';
 
 const app = express();
 // database connection
@@ -11,7 +12,15 @@ connectDB();
 
 // middlewares
 app.use(express.json());
-app.use(cors());
+app.use(cookieParser());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+    ],
+    credentials: true,
+  })
+);
 
 // routes
 app.use("/api/posts", postRoutes);
