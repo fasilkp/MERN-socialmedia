@@ -66,3 +66,12 @@ export const loginUser = async (req, res) => {
     })
     .json({ login: true, message: "logged in successfully", user: user._id });
 };
+
+export const logoutUser=(req, res)=>{
+  res.cookie("token", "", {
+    httpOnly: true,
+    expires: new Date(0),
+    secure: true,
+    sameSite: "none",
+  }).json({"message":"logged out"});
+}
