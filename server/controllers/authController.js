@@ -75,3 +75,16 @@ export const logoutUser=(req, res)=>{
     sameSite: "none",
   }).json({"message":"logged out"});
 }
+
+export const checkLoggedIn=async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    if (!token) 
+      return res.json({loggedIn:false, error:"no token"});
+      
+    const verifiedJWT = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    return res.json({name:verifiedJWT.name, loggedIn: true});
+  } catch (err) {
+    res.json({loggedIn:false, error:err});
+  }
+}
