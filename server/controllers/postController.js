@@ -1,4 +1,3 @@
-import { request } from "express"
 import PostModel from "../models/PostModel.js"
 
 export const postDetails=(req, res)=>{
@@ -33,7 +32,18 @@ export const uploadPost=async(req, res)=>{
         if (err) return res.json({success: false, message:"post upload failed", error: err})
     });
     return res.json({success: true, message:"post upload successfull", post:newPost})
+}
+export const editPost=async(req, res)=>{
+    const {id, description}=req.body;
+    try{
+        const updatedPost=await PostModel.findOneAndUpdate({ _id: id }, { $set: { description: description } });
+        return res.json({success: true, message:"post update successfull"})
+    }
+    catch(error){
+        res.json({success: false, error});
+    }
 
-
+    
+   
 }
 
