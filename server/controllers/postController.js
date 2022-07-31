@@ -1,4 +1,5 @@
 import PostModel from "../models/PostModel.js"
+import UserModel from "../models/UserModel.js"
 
 export const postDetails=(req, res)=>{
     res.send("post controller created")
@@ -43,8 +44,8 @@ export const editPost=async(req, res)=>{
         res.status(500).json({success: false, error});
     }
 }
-const {id}=req.body;
 export const deletePost = async(req, res)=>{
+    const {id}=req.body;
     try{
         PostModel.remove(({ _id:id  }), function (err) {
             if (err) return res.json({success: false, error:err, message:"mongoose err"});
@@ -66,4 +67,13 @@ export const viewPost=async(req, res)=>{
         res.status(500).json({success: false, error, message:"server error"});
     }
 }
-
+export const editProfilePicture=async(req, res)=>{
+    const {src, id}=req.body;
+    try{
+        const updatedUser=await UserModel.findOneAndUpdate({_id:id}, { $set: { image: src } }, {upsert: true });
+        return res.status(201).json({success: true, message:"profile picture updated successfully"})
+    }
+    catch(error){
+        res.status(500).json({success: false, error});
+    }
+}

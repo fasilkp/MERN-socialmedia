@@ -6,13 +6,14 @@ var salt = bcrypt.genSaltSync(10);
 
 export const registerUser = (req, res) => {
   try {
-    const { userName, name, email, password } = req.body;
+    const { userName, name, email, password} = req.body;
     const hashPassword = bcrypt.hashSync(password, salt);
     const user = new UserModel({
       userName,
       name,
       email,
       password: hashPassword,
+      image:"defaultImage.jpg",
     });
     user.save((err) => {
       if (err) {

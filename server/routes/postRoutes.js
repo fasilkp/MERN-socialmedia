@@ -1,6 +1,6 @@
 import express from 'express'
 const router=express.Router()
-import {postDetails, uploadFileResponse, uploadPost, editPost, deletePost, viewPost} from '../controllers/postController.js'
+import {postDetails, uploadFileResponse, uploadPost, editPost, deletePost, viewPost, editProfilePicture} from '../controllers/postController.js'
 import uploadFile from '../middlewares/uploadFile.js'
 import verifyLogin from '../middlewares/verifyLogin.js'
 
@@ -12,5 +12,7 @@ router.post("/upload-post",verifyLogin, uploadPost);
 router.put("/edit-post",verifyLogin, editPost);
 router.delete("/delete-post",verifyLogin, deletePost);
 router.get("/view-post",verifyLogin, viewPost)
+router.put("/edit-profile-picture",verifyLogin, editProfilePicture);
+
 
 export default router;
