@@ -7,11 +7,11 @@ export const postDetails=(req, res)=>{
 export const uploadFileResponse=(req, res)=>{
     console.log(req)
     if(!req.file){
-       return res.json({
+       return res.status(500).json({
         success:false,
     })
     }
-    return res.json({
+    return res.status(201).json({
         success:true, 
         fileName:req.file.filename,
     })
@@ -29,22 +29,22 @@ export const uploadPost=async(req, res)=>{
         comments:[]
     })
     newPost.save((err)=> {
-        if (err) return res.json({success: false, message:"post upload failed", error: err})
+        if (err) return res.status(500).json({success: false, message:"post upload failed", error: err})
     });
-    return res.json({success: true, message:"post upload successfull", post:newPost})
+    return res.status(201).json({success: true, message:"post upload successfull", post:newPost})
 }
 export const editPost=async(req, res)=>{
     const {id, description}=req.body;
     try{
-        const updatedPost=await PostModel.findOneAndUpdate({ _id: id }, { $set: { description: description } });
-        return res.json({success: true, message:"post update successfull"})
+        const updatedPost=await PostModel.findByIdAndUpdate(id, { $set: { description: description } });
+        return res.status(201).json({success: true, message:"post update successfull"})
     }
     catch(error){
-        res.json({success: false, error});
+        res.status(500).json({success: false, error});
     }
 }
+const {id}=req.body;
 export const deletePost = async(req, res)=>{
-    const {id}=req.body;
     try{
         PostModel.remove(({ _id:id  }), function (err) {
             if (err) return res.json({success: false, error:err, message:"mongoose err"});
@@ -52,7 +52,7 @@ export const deletePost = async(req, res)=>{
          });
     }
     catch(error){
-        res.json({success: false, error, message:"server error"});
+        res.status(500).json({success: false, error, message:"server error"});
     }
 }  
 
@@ -60,10 +60,10 @@ export const viewPost=async(req, res)=>{
     try{
         const allPosts=await PostModel.find({})
         console.log(req.user)
-        return res.json({success:true, allPosts})
+        return res.status(200).json({success:true, allPosts})
     }
     catch(error){
-        res.json({success: false, error, message:"server error"});
+        res.status(500).json({success: false, error, message:"server error"});
     }
 }
 

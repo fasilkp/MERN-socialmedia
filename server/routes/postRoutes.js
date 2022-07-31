@@ -9,8 +9,8 @@ const upload=uploadFile()
 router.get("/", postDetails);
 router.post("/upload-file",verifyLogin, upload.single('image'), uploadFileResponse);
 router.post("/upload-post",verifyLogin, uploadPost);
-router.post("/edit-post",verifyLogin, editPost);
-router.post("/delete-post",verifyLogin, deletePost);
+router.put("/edit-post",verifyLogin, editPost);
+router.delete("/delete-post",verifyLogin, deletePost);
 router.get("/view-post",verifyLogin, viewPost)
 
 export default router;
