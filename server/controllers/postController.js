@@ -17,4 +17,23 @@ export const uploadFileResponse=(req, res)=>{
         fileName:req.file.filename,
     })
 }
+export const uploadPost=async(req, res)=>{
+    const {postSrc,description,userId, userName, name}=req.body;
+    const newPost = new PostModel({
+        name,
+        postSrc,
+        description,
+        userId,
+        userName,
+        name,
+        likes:0,
+        comments:[]
+    })
+    newPost.save((err)=> {
+        if (err) return res.json({success: false, message:"post upload failed", error: err})
+    });
+    return res.json({success: true, message:"post upload successfull", post:newPost})
+
+
+}
 
