@@ -1,11 +1,13 @@
 import express from 'express'
 const router=express.Router()
-import {postDetails, addPost, viewImage} from '../controllers/postController.js'
+import {postDetails, uploadFileResponse} from '../controllers/postController.js'
+import uploadFile from '../middlewares/uploadFile.js'
 import verifyLogin from '../middlewares/verifyLogin.js'
 
+const upload=uploadFile()
+
 router.get("/", postDetails);
-router.post("/add-post",verifyLogin, addPost);
-router.get("/image", viewImage);
+router.post("/upload-file",verifyLogin, upload.single('image'), uploadFileResponse);
 
 
 export default router;

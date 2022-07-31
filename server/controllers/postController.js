@@ -1,14 +1,20 @@
+import { request } from "express"
 import PostModel from "../models/PostModel.js"
 
 export const postDetails=(req, res)=>{
     res.send("post controller created")
 }
 
-export const addPost=(req, res)=>{
-    const post = new PostModel(req.body);
-    post.save().then(() =>res.json({message:"post uploaded"}));
+export const uploadFileResponse=(req, res)=>{
+    console.log(req)
+    if(!req.file){
+       return res.json({
+        success:false,
+    })
+    }
+    return res.json({
+        success:true, 
+        fileName:req.file.filename,
+    })
 }
 
-export const viewImage=(req, res)=>{
-    res.send("../postImages/image.png")
-}

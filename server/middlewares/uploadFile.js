@@ -1,6 +1,6 @@
 import multer from "multer";
 
-export default function uploadPost(){
+export default function uploadFile(req, res, next) {
     const storage=multer.diskStorage({
         destination:(req,file,cb)=>{
            cb(null,"./images/postImages");

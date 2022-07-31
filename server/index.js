@@ -5,7 +5,7 @@ import connectDB from './dbConfig.js';
 import postRoutes from './routes/postRoutes.js'
 import authRoutes from './routes/authRoutes.js'
 import cookieParser from 'cookie-parser';
-import uploadPost from './middlewares/uploadPost.js';
+import uploadPost from './middlewares/uploadFile.js';
 
 const app = express();
 // database connection
@@ -24,13 +24,6 @@ app.use(
   })
 );
 
-const upload=uploadPost()
-
-app.post("/single",upload.single("image"),(req,res)=>{
-    console.log(req.file)
-    res.send("Single FIle upload success")
-  }
-);
 // routes
 app.use("/api/posts", postRoutes);
 app.use("/api/auth", authRoutes);
