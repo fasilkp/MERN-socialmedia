@@ -42,8 +42,17 @@ export const editPost=async(req, res)=>{
     catch(error){
         res.json({success: false, error});
     }
-
-    
-   
+}
+export const deletePost=async(req, res)=>{
+    const {id}=req.body;
+    try{
+        PostModel.remove(({ _id:id  }), function (err) {
+            if (err) return res.json({success: false, error:err, message:"mongoose err"});
+            return res.json({success: true, message:"post deleted successfull"})
+         });
+    }
+    catch(error){
+        res.json({success: false, error, message:"server error"});
+    }
 }
 
