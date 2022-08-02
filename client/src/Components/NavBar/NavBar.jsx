@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCirclePlus,
@@ -16,8 +16,11 @@ import "./NavBar.css";
 import ProfileImage from "../../images/profile_user.jpg";
 import { Link } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
+import AuthContext from "../../context/AuthContext";
+
 
 function NavBar(props) {
+  const {}=useContext(AuthContext); 
   const { home, chat, friends, add } = props.clicked;
   const [status, setStatus] = useState({
     searchBar: "0px",

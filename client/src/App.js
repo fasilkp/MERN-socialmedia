@@ -11,23 +11,30 @@ import Profile from './Pages/Profile';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ViewPost from './Pages/ViewPost';
+import axios from 'axios'
+import {AuthContextProvider} from './context/AuthContext'
+
+axios.defaults.withCredentials = true;
+
 
 function App() {
   return (
-    <BrowserRouter>
-        <div className="App">
-          <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/friends" element={<Friends />} />
-              <Route path="/add-post" element={<AddPost />} />
-              <Route path="/chat" element={<Chat />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/viewpost/:profileImage/:userId/:userName/:postImage" element={<ViewPost />} />
-          </Routes>
-        </div>
-    </BrowserRouter>
+    <AuthContextProvider>
+      <BrowserRouter>
+          <div className="App">
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/friends" element={<Friends />} />
+                <Route path="/add-post" element={<AddPost />} />
+                <Route path="/chat" element={<Chat />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/viewpost/:profileImage/:userId/:userName/:postImage" element={<ViewPost />} />
+            </Routes>
+          </div>
+      </BrowserRouter>
+    </AuthContextProvider>
   );
 }
 
