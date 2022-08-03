@@ -4,10 +4,12 @@ import jwt from "jsonwebtoken";
 
 var salt = bcrypt.genSaltSync(10);
 
-export const registerUser = (req, res) => {
+export const registerUser = async(req, res) => {
   try {
     const { userName, name, email, password} = req.body;
     const hashPassword = bcrypt.hashSync(password, salt);
+    const userExist = await UserModel.findOne({userName});
+    if(userExist) return res.json({ register: false, message: "userName Already Taken" });
     const user = new UserModel({
       userName,
       name,
