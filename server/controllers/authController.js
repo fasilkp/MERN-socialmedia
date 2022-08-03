@@ -18,17 +18,15 @@ export const registerUser = async(req, res) => {
       image:"defaultImage.jpg",
     });
     user.save((err) => {
-      if (err) {
-        return res.json({ register: false, message: err });
-      } else {
-        return res.json({
+      if (err) return res.json({ register: false, message: "save error " });
+      
+      return res.json({
           register: true,
           message: "registration successfull",
         });
-      }
     });
   } catch (err) {
-    res.json({ register: false, message: err });
+    res.json({ register: false, message: "catch err" });
   }
 };
 export const loginUser = async (req, res) => {

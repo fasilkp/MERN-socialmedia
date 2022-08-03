@@ -15,6 +15,7 @@ import axios from 'axios'
 import {AuthContextProvider} from './context/AuthContext'
 
 axios.defaults.withCredentials = true;
+axios.defaults.baseURL = 'http://localhost:8080/api';
 
 
 function App() {

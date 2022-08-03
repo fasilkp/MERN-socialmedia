@@ -9,7 +9,7 @@ function AuthContextProvider(props) {
 
   async function getLoggedIn() {
     try{
-      const loggedInRes = await axios.post("http://localhost:8080/api/auth/check-logged-in");
+      const loggedInRes = await axios.post("/auth/check-logged-in");
       setUser({loggedIn:loggedInRes.data.loggedIn, name:loggedInRes.data.name});
       return loggedInRes.data;
     }catch(err){
