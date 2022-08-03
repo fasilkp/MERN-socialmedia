@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./ProfileComp.css";
 import profileImage from "../../images/profile_user.jpg";
 import { Link } from "react-router-dom";
 import {FiArrowRight} from 'react-icons/fi'
+import AuthContext from "../../context/AuthContext";
 function ProfileComp() {
+  const {user}= useContext(AuthContext)
   return (
     <div className="profile">
       <div className="profile-wrapper">
@@ -12,10 +14,10 @@ function ProfileComp() {
             <img src={profileImage} alt="" />
           </div>
           <div className="profile-name">
-            <h2>Mark Joe</h2>
+            <h2>{user.name}</h2>
           </div>
           <div className="profile-name profile-id">
-            <h3>@markjoe</h3>
+            <h3>@{user.userName}</h3>
           </div>
           <div className="profile-details">
             <div className="prof-det-item">

@@ -4,18 +4,18 @@ import React, { createContext, useEffect, useState } from "react";
 const AuthContext = createContext();
 
 function AuthContextProvider(props) {
-  const [user, setUser] = useState({loggedIn:undefined, name:""});
+  const [user, setUser] = useState({});
   const [loggedIn, setLoggedIn]=useState(null)
 
   async function updateLogin() {
     try{
       const loggedInRes = await axios.get("/auth/check-logged-in");
-      setUser({loggedIn:loggedInRes.data.loggedIn, name:loggedInRes.data.name});
+      setUser(loggedInRes.data.user);
       setLoggedIn(loggedInRes.data.loggedIn);
       return loggedInRes.data;
     }catch(err){
       console.log("Error: " + err.message);
-      setUser({loggedIn:false, error:err});
+      setUser(null);
       setLoggedIn(false)
     }
   }

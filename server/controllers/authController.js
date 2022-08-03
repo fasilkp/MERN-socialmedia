@@ -84,7 +84,8 @@ export const checkLoggedIn=async (req, res) => {
       return res.json({loggedIn:false, error:"no token"});
       
     const verifiedJWT = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    return res.json({name:verifiedJWT.name, loggedIn: true});
+    const user = await UserModel.findOne({_id:verifiedJWT.id}, {name:1, userName:1, _id:0})
+    return res.json({loggedIn: true, user});
   } catch (err) {
     res.json({loggedIn:false, error:err});
   }
