@@ -20,7 +20,8 @@ import AuthContext from "../../context/AuthContext";
 
 
 function NavBar(props) {
-  const {}=useContext(AuthContext); 
+  const {user}=useContext(AuthContext); 
+  console.log(user);
   const { home, chat, friends, add } = props.clicked;
   const [status, setStatus] = useState({
     searchBar: "0px",

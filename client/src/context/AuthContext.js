@@ -5,16 +5,18 @@ const AuthContext = createContext();
 
 function AuthContextProvider(props) {
   const [user, setUser] = useState({loggedIn:undefined, name:""});
-  const [test, setTest]=useState("hello")
+  const [loggedIn, setLoggedIn]=useState(null)
 
   async function getLoggedIn() {
     try{
-      const loggedInRes = await axios.post("/auth/check-logged-in");
+      const loggedInRes = await axios.get("/auth/check-logged-in");
       setUser({loggedIn:loggedInRes.data.loggedIn, name:loggedInRes.data.name});
+      setLoggedIn(loggedInRes.data.loggedIn);
       return loggedInRes.data;
     }catch(err){
       console.log("Error: " + err.message);
       setUser({loggedIn:false, error:err});
+      setLoggedIn(false)
     }
   }
 
@@ -23,7 +25,7 @@ function AuthContextProvider(props) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, getLoggedIn }}>
+    <AuthContext.Provider value={{ user, getLoggedIn, loggedIn }}>
       {props.children}
     </AuthContext.Provider>
   );

@@ -1,9 +1,11 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import '../registerComponent/RegisterComp.css'
 import loginImg from '../../images/login.jpg'
 import {Link, useNavigate} from 'react-router-dom'
 import Axios from "axios";
+import AuthContext from "../../context/AuthContext";
 function LoginComp() {
+  const {getLoggedIn}=useContext(AuthContext)
   const [password, setPassword]=useState("");
   const [email, setEmail]=useState("");
   const navigate=useNavigate()
@@ -15,6 +17,7 @@ function LoginComp() {
     const user = await Axios.post("/auth/login", {email, password});
     console.log(user.data.message);
     if(user.data.login){
+      getLoggedIn();
       alert("login successfull");
       navigate('/')
     }
@@ -24,8 +27,7 @@ function LoginComp() {
   }
   return (
     <div className="RegisterComp">
-      <div className="reg-illustration"
-      >
+      <div className="reg-illustration">
         <img src={loginImg} alt="" />
       </div>
       <div className="register-box">
