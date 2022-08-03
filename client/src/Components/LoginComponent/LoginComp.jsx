@@ -1,8 +1,27 @@
-import React from "react";
+import React, {useState} from "react";
 import '../registerComponent/RegisterComp.css'
 import loginImg from '../../images/login.jpg'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
+import Axios from "axios";
 function LoginComp() {
+  const [password, setPassword]=useState("");
+  const [email, setEmail]=useState("");
+  const navigate=useNavigate()
+  const handleChange=(e, setState)=>{
+    eval(setState+"(e.target.value)")
+  }
+  const handleSubmit=async e=>{
+    e.preventDefault();
+    const user = await Axios.post("/auth/login", {email, password});
+    console.log(user.data.message);
+    if(user.data.login){
+      alert("login successfull");
+      navigate('/')
+    }
+    else{  
+      alert(user.data.message);
+    }
+  }
   return (
     <div className="RegisterComp">
       <div className="reg-illustration"
@@ -15,9 +34,11 @@ function LoginComp() {
           <span>Login into your Account</span>
         </div>
         <div className="reg-body">
-            <input type="text" placeholder="Email" className="reg-input" />
-            <input type="text" placeholder="Password" className="reg-input" />
-            <button className="reg-btn">Login</button>
+            <input type="email" placeholder="Email" className="reg-input"
+             value={email} onChange={e=>handleChange(e, 'setEmail')} />
+            <input type="password" placeholder="Password" className="reg-input"
+             value={password} onChange={e=>handleChange(e, 'setPassword')} />
+            <button onClick={handleSubmit} className="reg-btn">Login</button>
         </div>
         <Link className="links" to="/register"><div className="another-link"> Don't Have an Acoount? Create One!</div></Link>
       </div>

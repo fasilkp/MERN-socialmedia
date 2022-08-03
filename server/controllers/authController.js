@@ -37,16 +37,16 @@ export const loginUser = async (req, res) => {
   if (!user) {
     return res.json({
       login: false,
-      message: "logged in failed",
-      err: "no user found",
+      message: "no user found",
+      err: "login failed",
     });
   }
   const validPassword = bcrypt.compareSync(password, user.password);
   if (!validPassword) {
     return res.json({
       login: false,
-      message: "log in failed",
-      err: "invalid email or password",
+      message: "invalid email or password",
+      err: "login failed",
     });
   }
   const token = jwt.sign(
