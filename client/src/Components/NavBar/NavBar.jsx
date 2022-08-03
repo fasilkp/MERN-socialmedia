@@ -17,16 +17,21 @@ import ProfileImage from "../../images/profile_user.jpg";
 import { Link } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import AuthContext from "../../context/AuthContext";
+import axios from "axios";
 
 
 function NavBar(props) {
-  const {user}=useContext(AuthContext); 
-  console.log(user);
+  const {updateLogin}=useContext(AuthContext); 
   const { home, chat, friends, add } = props.clicked;
   const [status, setStatus] = useState({
     searchBar: "0px",
     statusbar: "500px",
   });
+  const handleLogout=async ()=>{
+    await axios.post('/auth/logout');
+    alert("logged Out Successfully");
+    updateLogin();
+  }
   return (
     <div className="Navbar">
       <div className="container nav-body">
@@ -130,7 +135,7 @@ function NavBar(props) {
                 <FontAwesomeIcon icon={faGear} /> &nbsp;&nbsp; Settings
               </Dropdown.Item>
               <Dropdown.Divider />
-              <Dropdown.Item id="hover-danger">
+              <Dropdown.Item id="hover-danger" onClick={handleLogout}>
                 <FontAwesomeIcon icon={faRightFromBracket} /> &nbsp;&nbsp;
                 Logout
               </Dropdown.Item>

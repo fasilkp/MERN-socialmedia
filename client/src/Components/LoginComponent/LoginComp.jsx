@@ -5,7 +5,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import Axios from "axios";
 import AuthContext from "../../context/AuthContext";
 function LoginComp() {
-  const {getLoggedIn}=useContext(AuthContext)
+  const {updateLogin}=useContext(AuthContext)
   const [password, setPassword]=useState("");
   const [email, setEmail]=useState("");
   const navigate=useNavigate()
@@ -17,7 +17,7 @@ function LoginComp() {
     const user = await Axios.post("/auth/login", {email, password});
     console.log(user.data.message);
     if(user.data.login){
-      getLoggedIn();
+      updateLogin();
       alert("login successfull");
       navigate('/')
     }

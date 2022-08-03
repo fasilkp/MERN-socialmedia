@@ -18,9 +18,9 @@ axios.defaults.withCredentials = true;
 axios.defaults.baseURL = 'http://localhost:8080/api';
 
 function App() {
-  const {loggedIn, getLoggedIn}=useContext(AuthContext);
+  const {loggedIn, updateLogin}=useContext(AuthContext);
   useEffect(()=>{
-    getLoggedIn();
+    updateLogin();
   },[])
   return (
     
