@@ -26,6 +26,7 @@ export const uploadPost=async(req, res)=>{
         userId,
         userName,
         name,
+        uploadedAt: new Date(),
         likes:0,
         comments:[]
     })
