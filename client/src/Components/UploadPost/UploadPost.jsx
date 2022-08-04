@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./UploadPost.css";
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import { ImUpload2, } from "react-icons/im";
 import dataURItoBlob from "../../actions/dataURItoBlob";
 import axios from "axios";
+import AuthContext from "../../context/AuthContext";
+import {useNavigate} from 'react-router-dom'
+
 function UploadPost() {
+  const {user} = useContext(AuthContext);
+  const navigate=useNavigate()
   const [aspectRatio, setAspectRatio] = useState(1);
   const[selectedAspectRatio, setSelectedAspectRatio] = useState({
     ar1:"ar-selected",
@@ -24,6 +29,7 @@ function UploadPost() {
   const [newImage, setNewImage] = useState(null);
   const [cropData, setCropData] = useState("#");
   const [cropper, setCropper] = useState();
+  const [caption, setCaption] = useState("");
   const onChange = (e) => {
     e.preventDefault();
     let files;
@@ -51,8 +57,23 @@ function UploadPost() {
     console.log(blob);
     const data= new FormData();
     data.append('image', blob)
-    axios.post('/posts/upload-file', data ).then(uploadFile=>{
-    console.log(uploadFile.data)
+    await axios.post('/posts/upload-file', data ).then(async uploadFile=>{
+    if(!uploadFile.data.success) alert("something went wrong")
+    if(uploadFile.data.success){
+      await axios.post('/posts/upload-post',{
+        postSrc:uploadFile.data.fileName,
+        description:caption, 
+        userId:user._id,
+        userName:user.userName,
+        name:user.name
+      }).then((result)=>{
+        if(result.data.success) {
+          alert("successfully uploaded")
+          navigate("/")
+        }
+        else alert("upoad failed")
+      })
+    }
     })
    }
   return (
@@ -116,7 +137,8 @@ function UploadPost() {
             <button onClick={()=>setImage(null)}>Choose another photo</button>
           </div>
           <div className="post-input-row">
-            <input type="text" placeholder="Write a Caption..." />
+            <input type="text" placeholder="Write a Caption..."
+             value={caption} onChange={(e)=>setCaption(e.target.value)} />
             <button onClick={submitHandler}>Post</button>
           </div>
         </div>

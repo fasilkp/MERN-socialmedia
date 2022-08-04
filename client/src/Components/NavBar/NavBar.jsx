@@ -36,7 +36,7 @@ function NavBar(props) {
     <div className="Navbar">
       <div className="container nav-body">
         <div className="nav-header">
-          <h3>Crowdly</h3>
+        <Link to="/" className="links"><h3>Crowdly</h3></Link>
         </div>
         <div className="status-bar-back">
           <div className="nav-status-bar">
