@@ -5,7 +5,7 @@ import { MdSend} from 'react-icons/md';
 import { FiHeart,FiMessageCircle,FiShare2,FiThumbsDown,FiThumbsUp, FiArrowLeft } from 'react-icons/fi';
 
 function Post(props) {
-    const {profileImg, description, postImage, userId, viewpost}=props
+    const {profileImg, description, postImage, userId, viewpost, likes, comments}=props
     const [liked, setLiked]=useState(false)
     const [commentsHide, setCommentsHide]=useState(true)
   return (
@@ -17,7 +17,7 @@ function Post(props) {
             <span>{userId}</span>
           </div>
           <div className="post-body">
-            <img src={"/images/"+postImage} alt="post-body" onDoubleClick={()=>setLiked(!liked)} />
+            <img src={postImage} alt="post-body" onDoubleClick={()=>setLiked(!liked)} />
             <div className="center-like-icon-body" style={{height:"0px"}}>
               {liked && <FaHeart className='center-like-icon'></FaHeart>}
               </div>
@@ -35,7 +35,7 @@ function Post(props) {
               <FiShare2 className="reaction-icons" />
             </div>
           </div>
-          <div className="total-likes"><b>2,34,135</b> likes</div>
+          <div className="total-likes"><b>{likes}</b> likes</div>
           <div className="post-description">
             <b>{userId}</b>
             <span>
@@ -45,7 +45,7 @@ function Post(props) {
           <div className="show-all-comments">
             <button className="show-comments-btn"
             onClick={()=>setCommentsHide(!commentsHide)}>
-              {commentsHide ? "show all 423 comments" : "Hide all Comments"}
+              {commentsHide ? `show all ${comments.length} comments` : "Hide all Comments"}
               </button>
           </div>
         </div>
