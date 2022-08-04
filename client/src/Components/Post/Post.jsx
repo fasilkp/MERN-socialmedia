@@ -3,6 +3,7 @@ import './Post.css'
 import { FaHeart} from 'react-icons/fa';
 import { MdSend} from 'react-icons/md';
 import { FiHeart,FiMessageCircle,FiShare2,FiThumbsDown,FiThumbsUp, FiArrowLeft } from 'react-icons/fi';
+import { useEffect } from 'react';
 
 function Post(props) {
     const {profileImg, description, postImage, userId, viewpost, likes, comments}=props
@@ -13,7 +14,7 @@ function Post(props) {
 
     <div className={viewpost ? "post post-large" : "post" } >
           <div className="post-header">
-            <img src={`/images/${profileImg}`} alt="profile" />
+            <img src={profileImg} alt="profile" />
             <span>{userId}</span>
           </div>
           <div className="post-body">
@@ -43,10 +44,17 @@ function Post(props) {
             </span>
           </div>
           <div className="show-all-comments">
-            <button className="show-comments-btn"
+            {
+              comments.length===0 ?
+              <button className="show-comments-btn">No Comments</button>
+              :
+              <button className="show-comments-btn"
             onClick={()=>setCommentsHide(!commentsHide)}>
               {commentsHide ? `show all ${comments.length} comments` : "Hide all Comments"}
               </button>
+
+            }
+            
           </div>
         </div>
         <div className={commentsHide ? "post-comments post-comments-hide" : "post-comments"}>

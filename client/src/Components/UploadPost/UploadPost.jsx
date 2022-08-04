@@ -2,13 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./UploadPost.css";
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
-import { saveAs } from "file-saver";
 import { ImUpload2, } from "react-icons/im";
-import { BsAspectRatio, BsAspectRatioFill } from 'react-icons/bs'
+import dataURItoBlob from "../../actions/dataURItoBlob";
+import axios from "axios";
 function UploadPost() {
-  const downloadImage = (imageUrl) => {
-    saveAs(imageUrl, "image.jpg"); // Put your image url here.
-  };
   const [aspectRatio, setAspectRatio] = useState(1);
   const[selectedAspectRatio, setSelectedAspectRatio] = useState({
     ar1:"ar-selected",
@@ -34,6 +31,7 @@ function UploadPost() {
       files = e.dataTransfer.files;
     } else if (e.target) {
       files = e.target.files;
+      console.log(e.target.files[0]);
     }
     const reader = new FileReader();
     reader.onload = () => {
@@ -43,12 +41,20 @@ function UploadPost() {
     reader.readAsDataURL(files[0]);
   };
 
-  const getCropData = () => {
+  const submitHandler = async () => {
+    let imageURI
     if (typeof cropper !== "undefined") {
       setCropData(cropper.getCroppedCanvas().toDataURL());
-      downloadImage(cropper.getCroppedCanvas().toDataURL());
+          imageURI= cropper.getCroppedCanvas().toDataURL('image/jpg',1)
     }
-  };
+    const blob= dataURItoBlob(imageURI);
+    console.log(blob);
+    const data= new FormData();
+    data.append('image', blob)
+    axios.post('/posts/upload-file', data ).then(uploadFile=>{
+    console.log(uploadFile.data)
+    })
+   }
   return (
     <div className="upload-post ">
       {!image ? (
@@ -111,7 +117,7 @@ function UploadPost() {
           </div>
           <div className="post-input-row">
             <input type="text" placeholder="Write a Caption..." />
-            <button onClick={getCropData}>Post</button>
+            <button onClick={submitHandler}>Post</button>
           </div>
         </div>
       )}

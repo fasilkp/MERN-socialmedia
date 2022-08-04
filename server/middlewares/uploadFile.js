@@ -6,10 +6,11 @@ export default function uploadFile(req, res, next) {
            cb(null,"./images/postImages");
         },
         filename:(req,file,cb)=>{
-           cb(null,Date.now()+file.originalname);
+           cb(null,Date.now()+file.originalname+".jpg");
         }
        });
       
     return multer({ storage });
+    next();
       
 }
