@@ -66,6 +66,10 @@
 .post-description{
     margin-top: 10px;
 }
+.post-description span:last-child{
+    font-size: .8rem;
+    color: grey;
+}
 .show-all-comments{
     width: 100%;
     display: flex;

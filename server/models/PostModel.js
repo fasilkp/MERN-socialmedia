@@ -26,6 +26,7 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required:true
     },
+    uploadedAt: { type: Date, default: Date.now },
 })
 
 const PostModel=mongoose.model("Posts", PostSchema)

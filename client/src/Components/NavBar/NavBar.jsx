@@ -21,7 +21,7 @@ import axios from "axios";
 
 
 function NavBar(props) {
-  const {updateLogin}=useContext(AuthContext); 
+  const {updateLogin, user}=useContext(AuthContext); 
   const { home, chat, friends, add } = props.clicked;
   const [status, setStatus] = useState({
     searchBar: "0px",
@@ -121,7 +121,7 @@ function NavBar(props) {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Link to="/profile" className="links">
+              <Link to={"/user/"+user.userName} className="links">
                 <Dropdown.Item href="/profile" className="nav-dropdown-item">
                   <FontAwesomeIcon icon={faUser} /> &nbsp;&nbsp; Profile
                 </Dropdown.Item>

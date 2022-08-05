@@ -26,7 +26,6 @@ export const uploadPost=async(req, res)=>{
         userId,
         userName,
         name,
-        uploadedAt: new Date(),
         likes:0,
         comments:[]
     })
@@ -60,7 +59,7 @@ export const deletePost = async(req, res)=>{
 
 export const viewPost=async(req, res)=>{
     try{
-        const allPosts=await PostModel.find({})
+        const allPosts=await PostModel.find({}).sort({uploadedAt:"desc"})
         console.log(req.user)
         return res.status(200).json({success:true, allPosts})
     }

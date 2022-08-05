@@ -44,6 +44,7 @@ function NewsFeed() {
                     viewpost={false}
                     likes={post.likes}
                     comments={post.comments}
+                    date={new Date(post.uploadedAt)}
                     description={post.description}>
                     </Post>
           })
