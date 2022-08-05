@@ -23,6 +23,7 @@ import axios from "axios";
 function NavBar(props) {
   const {updateLogin, user}=useContext(AuthContext); 
   const { home, chat, friends, add } = props.clicked;
+  const basePrfURL="http://localhost:8080/images/profile-images/"
   const [status, setStatus] = useState({
     searchBar: "0px",
     statusbar: "500px",
@@ -117,7 +118,7 @@ function NavBar(props) {
               id="dropdown-basic"
               className="profile-toggle"
             >
-              <img src={ProfileImage} alt="image" />
+              <img src={basePrfURL+user.image} alt="image" />
             </Dropdown.Toggle>
 
             <Dropdown.Menu>

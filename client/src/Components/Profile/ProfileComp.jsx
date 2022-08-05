@@ -18,12 +18,13 @@ function ProfileComp({userName}) {
     fetchData();
   },[])
   const {user}= useContext(AuthContext)
+  const basePrfURL="http://localhost:8080/images/profile-images/"
   return (
     <div className="profile">
       <div className="profile-wrapper">
         <div className="profile-section">
           <div className="profile-image">
-            <img src={profileImage} alt="" />
+            <img src={basePrfURL+user.image} alt="" />
           </div>
           <div className="profile-name">
             <h2>{user.name}</h2>
@@ -52,8 +53,19 @@ function ProfileComp({userName}) {
             </p>
           </div>
           <div className="profile-btns">
-            <button className="profile-btn">Message</button>
-            <button className="profile-btn">Follow</button>
+            {
+              user.userName===userName ?
+              <button className="profile-btn-full">Edit Profile</button>
+              :
+              <>
+              <button className="profile-btn">Message</button>
+              <button className="profile-btn">Follow</button>
+              </>
+
+
+            }
+            
+            
           </div>
         </div>
 
@@ -72,6 +84,7 @@ function ProfileComp({userName}) {
             {
               allPosts.map((obj, index)=>{
                 return  <div
+                key={index}
                 className="pf-post"
                 style={{ backgroundImage: `url("${baseImgUrl+obj.postSrc}")` }}
               ></div>

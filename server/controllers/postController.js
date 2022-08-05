@@ -6,7 +6,6 @@ export const postDetails=(req, res)=>{
 }
 
 export const uploadFileResponse=(req, res)=>{
-    console.log(req)
     if(!req.file){
        return res.status(500).json({
         success:false,
@@ -60,7 +59,6 @@ export const deletePost = async(req, res)=>{
 export const viewPost=async(req, res)=>{
     try{
         const allPosts=await PostModel.find({}).sort({uploadedAt:"desc"})
-        console.log(req.user)
         return res.status(200).json({success:true, allPosts})
     }
     catch(error){

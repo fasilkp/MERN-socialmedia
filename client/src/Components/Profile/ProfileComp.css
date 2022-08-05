@@ -69,7 +69,6 @@
     width: 80%;
 }
 .profile-btns button{
-    width: 220px;
     height: 50px;
     margin: 10px;
     font-size: 1.1rem;
@@ -79,6 +78,13 @@
     background-color: #fff;
     border-radius: 13px;
     color: var(--mainColor);
+
+}
+.profile-btn{
+    width: 220px;
+}
+.profile-btn-full{
+    width: 500px;
 }
 .profile-btns button:last-child{
     background-color: var(--mainColor);
@@ -166,10 +172,15 @@
         width: 88%;
     }
     .profile-btns button{
-        width: 150px;
         height: 40px;
         margin: 5px;
         font-size: .8rem;
+    }
+    .profile-btn{
+        width: 150px;
+    }
+    .profile-btn-full{
+        width: 300px;
     }
     
     .profile-post-section{
