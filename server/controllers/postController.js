@@ -79,7 +79,7 @@ export const editProfilePicture=async(req, res)=>{
     }
 }
 export const profilePosts =async(req, res)=>{
-    const {userName}=req.body;
+    const {userName}=req.query;
     try{
         const allPosts=await PostModel.find({userName:userName})
         res.status(200).json(allPosts)

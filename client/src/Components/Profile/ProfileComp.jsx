@@ -1,11 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./ProfileComp.css";
 import profileImage from "../../images/profile_user.jpg";
 import { Link } from "react-router-dom";
 import {FiArrowRight} from 'react-icons/fi'
 import AuthContext from "../../context/AuthContext";
+import { useEffect } from "react";
+import axios from "axios";
 function ProfileComp({userName}) {
-  console.log(userName)
+  const [allPosts, setAllPosts]= useState([])
+  const baseImgUrl="http://localhost:8080/images/postImages/"
+  useEffect(()=>{
+    async function fetchData(){
+      await axios.get('/posts/profile-posts', { params: { userName } }).then((response)=>{
+          setAllPosts(response.data)
+      })
+    }
+    fetchData();
+  },[])
   const {user}= useContext(AuthContext)
   return (
     <div className="profile">
@@ -51,81 +62,21 @@ function ProfileComp({userName}) {
             <h3>posts <FiArrowRight></FiArrowRight> </h3>
           </div>
           <div className="pf-posts-list">
-            <Link to="/viewpost/profile_user.jpg/markjoe/MarkJoe/profile_user.jpg"
+            {/* <Link to="/viewpost/profile_user.jpg/markjoe/MarkJoe/profile_user.jpg"
             state={{ profileImage:profileImage, userId:"markjoe", userName:"Mark Joe", postImage:"/images/profile_user.jpg"  }} 
             className="links">
               <div
               className="pf-post"
               style={{ backgroundImage: `url("/images/profile_user.jpg")` }}
-            ></div></Link>
-            <div
-              className="pf-post"
-              style={{ backgroundImage: `url("/images/1.jpg")` }}
-            ></div>
-            <div
-              className="pf-post"
-              style={{ backgroundImage: `url("/images/2.jpg")` }}
-            ></div>
-            <div
-              className="pf-post"
-              style={{ backgroundImage: `url("/images/3.jpg")` }}
-            ></div>
-            <div
-              className="pf-post"
-              style={{ backgroundImage: `url("/images/4.jpg")` }}
-            ></div>
-            <div
-              className="pf-post"
-              style={{ backgroundImage: `url("/images/3.jpg")` }}
-            ></div>
-            <div
-              className="pf-post"
-              style={{ backgroundImage: `url("/images/profile_user.jpg")` }}
-            ></div>
-            <div
-              className="pf-post"
-              style={{ backgroundImage: `url("/images/1.jpg")` }}
-            ></div>
-            <div
-              className="pf-post"
-              style={{ backgroundImage: `url("/images/2.jpg")` }}
-            ></div>
-            <div
-              className="pf-post"
-              style={{ backgroundImage: `url("/images/4.jpg")` }}
-            ></div>
-            <div
-              className="pf-post"
-              style={{ backgroundImage: `url("/images/4.jpg")` }}
-            ></div>
-            <div
-              className="pf-post"
-              style={{ backgroundImage: `url("/images/profile_user.jpg")` }}
-            ></div>
-            <div
-              className="pf-post"
-              style={{ backgroundImage: `url("/images/1.jpg")` }}
-            ></div>
-            <div
-              className="pf-post"
-              style={{ backgroundImage: `url("/images/2.jpg")` }}
-            ></div>
-            <div
-              className="pf-post"
-              style={{ backgroundImage: `url("/images/3.jpg")` }}
-            ></div>
-            <div
-              className="pf-post"
-              style={{ backgroundImage: `url("/images/4.jpg")` }}
-            ></div>
-            <div
-              className="pf-post"
-              style={{ backgroundImage: `url("/images/4.jpg")` }}
-            ></div>
-            <div
-              className="pf-post"
-              style={{ backgroundImage: `url("/images/4.jpg")` }}
-            ></div>
+            ></div></Link> */}
+            {
+              allPosts.map((obj, index)=>{
+                return  <div
+                className="pf-post"
+                style={{ backgroundImage: `url("${baseImgUrl+obj.postSrc}")` }}
+              ></div>
+              })
+            }
           </div>
         </div>
       </div>
