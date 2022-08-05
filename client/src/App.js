@@ -35,6 +35,7 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/user/:userName" element={<Profile />} />
                 <Route path="/viewpost/:profileImage/:userId/:userName/:postImage" element={<ViewPost />} />
                 <Route path="*" element={<NotFound/>} />
             </Routes>

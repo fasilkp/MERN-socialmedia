@@ -4,7 +4,8 @@ import profileImage from "../../images/profile_user.jpg";
 import { Link } from "react-router-dom";
 import {FiArrowRight} from 'react-icons/fi'
 import AuthContext from "../../context/AuthContext";
-function ProfileComp() {
+function ProfileComp({userName}) {
+  console.log(userName)
   const {user}= useContext(AuthContext)
   return (
     <div className="profile">

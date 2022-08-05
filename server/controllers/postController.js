@@ -78,3 +78,13 @@ export const editProfilePicture=async(req, res)=>{
         res.status(500).json({success: false, error});
     }
 }
+export const profilePosts =async(req, res)=>{
+    const {userName}=req.body;
+    try{
+        const allPosts=await PostModel.find({userName:userName})
+        res.status(200).json(allPosts)
+    }
+    catch(error){
+        res.status(500).json({err:true, body:error, message:"catch block error"});
+    }
+}
