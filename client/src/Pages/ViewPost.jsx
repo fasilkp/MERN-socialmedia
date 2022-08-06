@@ -4,35 +4,48 @@ import Post from "../Components/Post/Post";
 import image1 from "../images/1.jpg";
 import CenterWrapper from "../Components/CenterWrapper/CenterWrapper";
 import { useLocation, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 function ViewPost() {
-  const {postId}=useParams();
- useEffect(()=>{
-  const fetchData =async () => {  
-    await axios.get('/posts/view-post', {params: {postId:postId}});
-  }
-  fetchData()
- },[])
+  const { postId } = useParams();
+  const [post, setPost]=useState({})
+  const baseImageURL="http://localhost:8080/images/postImages/"
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios.get("/posts/post", { params: { postId: postId } }).then(result=>{
+        if(result.err) alert("somthing went wrong");
+        else{
+          setPost(result.data)
+          console.log(result.data)
+        }
+      })
+    };
+    fetchData();
+  }, []);
   return (
-    <div> 
+    <div>
       <NavBar
         clicked={{
           home: "rgb(152, 200, 192)",
           freinds: "rgb(152, 200, 192)",
           chat: "rgb(152, 200, 192)",
           add: "rgb(152, 200, 192)",
-        }}>
-      </NavBar>
+        }}
+      ></NavBar>
       <div className="extra-height"></div>
       <CenterWrapper>
+      {
+        post.userId && 
         <Post
-          profileImg={postId}
-          userId={postId}
-          postImage={postId}
-          viewpost={true}
-          description={postId} >
-        </Post>
+                    profileImg={"http://localhost:8080/images/profile-images/defaultImage.jpg"}
+                    userId={post.userName}
+                    postImage={baseImageURL+post.postSrc}
+                    viewpost={false}
+                    likes={post.likes}
+                    comments={post.comments}
+                    date={new Date(post.uploadedAt)}
+                    description={post.description}>
+                    </Post>}
       </CenterWrapper>
       <div className="extra-height"></div>
     </div>

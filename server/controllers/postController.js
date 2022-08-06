@@ -88,7 +88,7 @@ export const profilePosts =async(req, res)=>{
 export const viewPost =async(req, res)=>{
     const {postId}=req.query;
     try{
-        const post=await PostModel.find({_id:postId})
+        const post=await PostModel.findOne({_id:postId})
         res.status(200).json(post)
     }
     catch(error){

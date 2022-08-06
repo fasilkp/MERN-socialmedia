@@ -72,7 +72,7 @@ function Post(props) {
           </span>
         </div>
         <div className="show-all-comments">
-          {comments.length === 0 ? (
+          {comments?.length === 0 ? (
             <button className="show-comments-btn">No Comments</button>
           ) : (
             <button

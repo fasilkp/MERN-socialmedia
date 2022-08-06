@@ -10,6 +10,7 @@ import {useNavigate} from 'react-router-dom'
 
 function UploadPost() {
   const {user} = useContext(AuthContext);
+  const [uploadPostBtn, setUploadPostBtn]=useState(false)
   const navigate=useNavigate()
   const [aspectRatio, setAspectRatio] = useState(1);
   const[selectedAspectRatio, setSelectedAspectRatio] = useState({
@@ -71,7 +72,8 @@ function UploadPost() {
           alert("successfully uploaded")
           navigate("/")
         }
-        else alert("upoad failed")
+        else alert("upoad failed");
+        
       })
     }
     })
@@ -139,7 +141,10 @@ function UploadPost() {
           <div className="post-input-row">
             <input type="text" placeholder="Write a Caption..."
              value={caption} onChange={(e)=>setCaption(e.target.value)} />
-            <button onClick={submitHandler}>Post</button>
+            <button onClick={()=>{
+              setUploadPostBtn(false);
+              submitHandler();
+            }} disabled={uploadPostBtn}>Post</button>
           </div>
         </div>
       )}

@@ -221,4 +221,7 @@
         position: relative;
         top: 0px;
     }
+    .post-details{
+        width: 100%;
+    }
 }
