@@ -4,11 +4,16 @@ import Post from "../Components/Post/Post";
 import image1 from "../images/1.jpg";
 import CenterWrapper from "../Components/CenterWrapper/CenterWrapper";
 import { useLocation, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
 function ViewPost() {
-  const desc =
-    " lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonumy eirmod tempor incididunt ut labore et dolore magna aliqu  ";
-    const location = useLocation();
-    const {profileImage, postImage, userId, userName}=useParams();
+  const {postId}=useParams();
+ useEffect(()=>{
+  const fetchData =async () => {  
+    await axios.get('/posts/view-post', {params: {postId:postId}});
+  }
+  fetchData()
+ },[])
   return (
     <div> 
       <NavBar
@@ -22,11 +27,11 @@ function ViewPost() {
       <div className="extra-height"></div>
       <CenterWrapper>
         <Post
-          profileImg={profileImage}
-          userId={userId}
-          postImage={postImage}
+          profileImg={postId}
+          userId={postId}
+          postImage={postId}
           viewpost={true}
-          description={desc} >
+          description={postId} >
         </Post>
       </CenterWrapper>
       <div className="extra-height"></div>

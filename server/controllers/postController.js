@@ -56,7 +56,7 @@ export const deletePost = async(req, res)=>{
     }
 }  
 
-export const viewPost=async(req, res)=>{
+export const viewPosts=async(req, res)=>{
     try{
         const allPosts=await PostModel.find({}).sort({uploadedAt:"desc"})
         return res.status(200).json({success:true, allPosts})
@@ -80,6 +80,16 @@ export const profilePosts =async(req, res)=>{
     try{
         const allPosts=await PostModel.find({userName:userName})
         res.status(200).json(allPosts)
+    }
+    catch(error){
+        res.status(500).json({err:true, body:error, message:"catch block error"});
+    }
+}
+export const viewPost =async(req, res)=>{
+    const {postId}=req.query;
+    try{
+        const post=await PostModel.find({_id:postId})
+        res.status(200).json(post)
     }
     catch(error){
         res.status(500).json({err:true, body:error, message:"catch block error"});

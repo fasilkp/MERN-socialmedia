@@ -83,11 +83,12 @@ function ProfileComp({userName}) {
             ></div></Link> */}
             {
               allPosts.map((obj, index)=>{
-                return  <div
+                return <Link to={"/post/"+obj._id} className="links"> 
+                <div
                 key={index}
                 className="pf-post"
                 style={{ backgroundImage: `url("${baseImgUrl+obj.postSrc}")` }}
-              ></div>
+              ></div></Link>
               })
             }
           </div>
