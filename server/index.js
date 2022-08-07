@@ -4,8 +4,8 @@ import cors from 'cors';
 import connectDB from './dbConfig.js';
 import postRoutes from './routes/postRoutes.js'
 import authRoutes from './routes/authRoutes.js'
+import userRoutes from './routes/userRoutes.js'
 import cookieParser from 'cookie-parser';
-import uploadPost from './middlewares/uploadFile.js';
 
 const app = express();
 // database connection
@@ -27,6 +27,7 @@ app.use(
 // routes
 app.use("/api/posts", postRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
 
 const port = process.env.PORT || 8080;
 app.listen(port, console.log(`Listening on port ${port}...`));

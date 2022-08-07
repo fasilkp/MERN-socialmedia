@@ -27,10 +27,10 @@ function ProfileComp({userName}) {
             <img src={basePrfURL+user.image} alt="" />
           </div>
           <div className="profile-name">
-            <h2>{user.name}</h2>
+            <h2>{userName}</h2>
           </div>
           <div className="profile-name profile-id">
-            <h3>@{user.userName}</h3>
+            <h3>@{userName}</h3>
           </div>
           <div className="profile-details">
             <div className="prof-det-item">
