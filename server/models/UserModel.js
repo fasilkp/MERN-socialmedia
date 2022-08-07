@@ -19,7 +19,15 @@ const UserSchema = new mongoose.Schema({
     },
     image:{
         type:String,
-    }
+    },
+    followers: { 
+        type: Array, 
+        default: [] 
+    },
+    following: { 
+        type: Array, 
+        default: [] 
+    },
 })
 
 const UserModel=mongoose.model("Users", UserSchema)

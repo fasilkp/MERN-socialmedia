@@ -23,10 +23,7 @@ export const uploadPost=async(req, res)=>{
         postSrc,
         description,
         userId,
-        userName,
-        name,
-        likes:0,
-        comments:[]
+        userName
     })
     newPost.save((err)=> {
         if (err) return res.status(500).json({success: false, message:"post upload failed", error: err})
