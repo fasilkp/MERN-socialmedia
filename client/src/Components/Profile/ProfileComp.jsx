@@ -7,6 +7,7 @@ import AuthContext from "../../context/AuthContext";
 import { useEffect } from "react";
 import axios from "axios";
 function ProfileComp({userName}) {
+  const {user}= useContext(AuthContext)
   const [allPosts, setAllPosts]= useState([])
   const baseImgUrl="http://localhost:8080/images/postImages/"
   useEffect(()=>{
@@ -17,7 +18,16 @@ function ProfileComp({userName}) {
     }
     fetchData();
   },[])
-  const {user}= useContext(AuthContext)
+
+  const followUser=async ()=>{
+    await axios.post('/user/followUser', {followerId:user._id, follwingId:"hello"})
+  }
+  const unFollowUser=async ()=>{
+    await axios.post('/user/unfollowUser', {})
+  }
+
+
+
   const basePrfURL="http://localhost:8080/images/profile-images/"
   return (
     <div className="profile">

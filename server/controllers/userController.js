@@ -1,4 +1,13 @@
 import UserModel from '../models/UserModel.js'
+export const getUser=async(req, res)=>{
+        const {id} = req.body;
+        const user = await UserModel.findOne({_id:id}, {password:0, email:0},{
+            function(err){
+                if(err ) return res.status(500).json({err:true, error:err, message:"request failed"});
+            }
+        })
+        return res.status(200).json({user})
+}
 export const followUser=async(req, res)=>{
         const {followerId, followingId} = req.body;
         await UserModel.findByIdAndUpdate({_id:followingId}, 
