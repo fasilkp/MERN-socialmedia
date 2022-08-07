@@ -9,21 +9,40 @@ import axios from "axios";
 function ProfileComp({userName}) {
   const {user}= useContext(AuthContext)
   const [allPosts, setAllPosts]= useState([])
+  const [profileUser, setProfileUser]=useState({})
   const baseImgUrl="http://localhost:8080/images/postImages/"
   useEffect(()=>{
     async function fetchData(){
       await axios.get('/posts/profile-posts', { params: { userName } }).then((response)=>{
           setAllPosts(response.data)
       })
+      await axios.post('/user/get-user', { userName}).then((response)=>{
+        if(response.data.err) alert("something went")
+        else{
+          setProfileUser(response.data.user);
+        }
+      })
     }
     fetchData();
   },[])
 
   const followUser=async ()=>{
-    await axios.post('/user/followUser', {followerId:user._id, follwingId:"hello"})
+    await axios.post('/user/follow-user', {followerId:user._id, followingId:profileUser._id}).then(response=>{
+      if(response.data.err) alert("something went wrong ");
+      else{
+        alert("followed");
+        window.location.reload();
+      }
+    })
   }
   const unFollowUser=async ()=>{
-    await axios.post('/user/unfollowUser', {})
+    await axios.post('/user/unfollow-user', {followerId:user._id, followingId:profileUser._id}).then(response=>{
+      if(response.data.err) alert("something went wrong ");
+      else{
+        alert("unfollowed");
+        window.location.reload();
+      }
+    })
   }
 
 
@@ -37,10 +56,10 @@ function ProfileComp({userName}) {
             <img src={basePrfURL+user.image} alt="" />
           </div>
           <div className="profile-name">
-            <h2>{userName}</h2>
+            <h2>{profileUser?.name}</h2>
           </div>
           <div className="profile-name profile-id">
-            <h3>@{userName}</h3>
+            <h3>@{profileUser?.userName}</h3>
           </div>
           <div className="profile-details">
             <div className="prof-det-item">
@@ -69,7 +88,12 @@ function ProfileComp({userName}) {
               :
               <>
               <button className="profile-btn">Message</button>
-              <button className="profile-btn">Follow</button>
+              {
+                profileUser?.followers?.indexOf(user._id)===-1 ?
+                <button className="profile-btn" onClick={followUser}>Follow</button>
+                :
+                <button className="profile-btn" onClick={unFollowUser}>UnFollow</button>
+              }
               </>
 
 

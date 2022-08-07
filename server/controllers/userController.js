@@ -1,7 +1,7 @@
 import UserModel from '../models/UserModel.js'
 export const getUser=async(req, res)=>{
-        const {id} = req.body;
-        const user = await UserModel.findOne({_id:id}, {password:0, email:0},{
+        const {userName} = req.body;
+        const user = await UserModel.findOne({userName}, {password:0, email:0},{
             function(err){
                 if(err ) return res.status(500).json({err:true, error:err, message:"request failed"});
             }
@@ -18,7 +18,7 @@ export const followUser=async(req, res)=>{
             },
             {
                 function(err){
-                    if(err) return res.status(500).json({success: false, error:err, message:"followed"});
+                    if(err) return res.status(500).json({err:true, error:err, message:"followed"});
                 }
             })
         return res.status(201).json({success:true})
@@ -33,7 +33,7 @@ export const unFollowUser=async(req, res)=>{
             },
             {
                 function(err){
-                    if(err) return res.status(500).json({success: false, error:err, message:"unfollowed"});
+                    if(err) return res.status(500).json({err:true, error:err, message:"unfollowed"});
                 }
             })
         return res.status(201).json({success:true})
