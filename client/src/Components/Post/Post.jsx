@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Post.css";
+import { Dropdown } from "react-bootstrap";
 import { FaHeart } from "react-icons/fa";
 import { MdSend } from "react-icons/md";
 import {
@@ -9,8 +10,8 @@ import {
   FiThumbsDown,
   FiThumbsUp,
   FiArrowLeft,
+  FiMoreVertical
 } from "react-icons/fi";
-import { useEffect } from "react";
 
 function Post(props) {
   const {
@@ -29,8 +30,27 @@ function Post(props) {
     <div className="post-details">
       <div className={viewpost ? "post post-large" : "post"}>
         <div className="post-header">
-          <img src={profileImg} alt="profile" />
-          <span>{userId}</span>
+          <div className="post-head">
+            <img src={profileImg} alt="profile" />
+            <span>{userId}</span>
+          </div>
+          <div className="post-option">
+          <Dropdown className="post-option-dropdown">
+            <Dropdown.Toggle
+              variant="success"
+              id="dropdown-basic"
+              className="post-toggle"
+            >
+              <FiMoreVertical/>
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+                <Dropdown.Item href="#" >
+                  delete
+                </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+          </div>
         </div>
         <div className="post-body">
           <img
@@ -58,7 +78,7 @@ function Post(props) {
           </div>
         </div>
         <div className="total-likes">
-          <b>{likes}</b> likes
+          <b>{likes?.length}</b> likes
         </div>
         <div className="post-description">
           <b>{userId}</b>
@@ -67,7 +87,7 @@ function Post(props) {
           <span>
             {/* {date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear()+"  ("+date.getHours()+ ":" +date.getMinutes()+")"} */}
             {date.toLocaleString("en-IN", {
-              hour12: true
+              hour12: true,
             })}
           </span>
         </div>

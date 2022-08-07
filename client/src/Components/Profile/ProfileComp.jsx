@@ -9,6 +9,7 @@ import axios from "axios";
 function ProfileComp({userName}) {
   const {user}= useContext(AuthContext)
   const [allPosts, setAllPosts]= useState([])
+  const [reload, setReload] = useState(true)
   const [profileUser, setProfileUser]=useState({})
   const baseImgUrl="http://localhost:8080/images/postImages/"
   useEffect(()=>{
@@ -24,14 +25,14 @@ function ProfileComp({userName}) {
       })
     }
     fetchData();
-  },[userName])
+  },[userName, reload])
 
   const followUser=async ()=>{
     await axios.post('/user/follow-user', {followerId:user._id, followingId:profileUser._id}).then(response=>{
       if(response.data.err) alert("something went wrong ");
       else{
         alert("followed");
-        window.location.reload();
+        setReload(!reload)
       }
     })
   }
@@ -40,7 +41,7 @@ function ProfileComp({userName}) {
       if(response.data.err) alert("something went wrong ");
       else{
         alert("unfollowed");
-        window.location.reload();
+        setReload(!reload)
       }
     })
   }

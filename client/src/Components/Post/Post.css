@@ -18,6 +18,7 @@
 .post-header{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 10px;
 }
 .post-header img{
@@ -179,6 +180,16 @@
     transform: translate(-50%, -50%);
     color: red;
     animation: mymove .5s; 
+}
+.post-option-dropdown .post-toggle,
+.post-option-dropdown .post-toggle:hover, 
+.post-option-dropdown .post-toggle::after, 
+.post-option-dropdown .post-toggle:focus, 
+.post-option-dropdown .post-toggle:active
+{
+    all:unset;
+    transition:5s;
+    border-color: white;
 }
 /* animation: mymove 5s infinite; */
 

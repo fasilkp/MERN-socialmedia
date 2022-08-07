@@ -1,9 +1,5 @@
 import React from "react";
 import "./NewsFeed.css";
-import image1 from "../../images/1.jpg";
-import image2 from "../../images/2.jpg";
-import image4 from "../../images/4.jpg";
-import profile from "../../images/profile_user.jpg";
 import Post from "../Post/Post";
 import { FiArrowRight } from "react-icons/fi";
 import { useEffect, useState } from "react";

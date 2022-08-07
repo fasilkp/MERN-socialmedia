@@ -1,9 +1,8 @@
 import React from "react";
 import NavBar from "../Components/NavBar/NavBar";
 import Post from "../Components/Post/Post";
-import image1 from "../images/1.jpg";
 import CenterWrapper from "../Components/CenterWrapper/CenterWrapper";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 function ViewPost() {
