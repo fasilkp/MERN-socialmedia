@@ -12,6 +12,7 @@ import {
   FiArrowLeft,
   FiMoreVertical
 } from "react-icons/fi";
+import axios from "axios";
 
 function Post(props) {
   const {
@@ -23,9 +24,22 @@ function Post(props) {
     likes,
     comments,
     date,
+    showDelete,
+    id
   } = props;
   const [liked, setLiked] = useState(false);
   const [commentsHide, setCommentsHide] = useState(true);
+  const deletePost=async()=>{
+    if (window.confirm("Do you really want to Delete this post?")) {
+      await axios.delete('/posts/delete-post', {params:{id:id}}).then(res=>{
+        if(res.data.err) alert("delete failed");
+        else {
+          alert("successFully deleted");
+          window.location.reload();
+        }
+      })
+    }
+  }
   return (
     <div className="post-details">
       <div className={viewpost ? "post post-large" : "post"}>
@@ -45,8 +59,14 @@ function Post(props) {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
+                  {
+                  showDelete &&  
+                    <Dropdown.Item href="#" onClick={deletePost} >
+                      delete
+                    </Dropdown.Item>
+                  }
                 <Dropdown.Item href="#" >
-                  delete
+                  save
                 </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

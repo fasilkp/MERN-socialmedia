@@ -2,10 +2,12 @@ import React from "react";
 import "./NewsFeed.css";
 import Post from "../Post/Post";
 import { FiArrowRight } from "react-icons/fi";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios"
+import AuthContext from "../../context/AuthContext";
 function NewsFeed() {
     const [allPosts, setAllPosts]=useState([])
+    const {user}=useContext(AuthContext)
     const baseImageURL="http://localhost:8080/images/postImages/"
   useEffect(()=>{
     try{
@@ -38,10 +40,13 @@ function NewsFeed() {
                     userId={post.userName}
                     postImage={baseImageURL+post.postSrc}
                     viewpost={false}
+                    id={post._id}
                     likes={post.likes}
                     comments={post.comments}
                     date={new Date(post.uploadedAt)}
-                    description={post.description}>
+                    description={post.description}
+                    showDelete={user._id===post.userId}>
+                    
                     </Post>
           })
         }
