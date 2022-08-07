@@ -24,7 +24,7 @@ function ProfileComp({userName}) {
       })
     }
     fetchData();
-  },[])
+  },[userName])
 
   const followUser=async ()=>{
     await axios.post('/user/follow-user', {followerId:user._id, followingId:profileUser._id}).then(response=>{
@@ -63,15 +63,15 @@ function ProfileComp({userName}) {
           </div>
           <div className="profile-details">
             <div className="prof-det-item">
-              <h3>43</h3>
+              <h3>{allPosts?.length}</h3>
               <span>posts</span>
             </div>
             <div className="prof-det-item">
-              <h3>43</h3>
+              <h3>{profileUser?.followers?.length}</h3>
               <span>followers</span>
             </div>
             <div className="prof-det-item">
-              <h3>43</h3>
+              <h3>{profileUser?.following?.length}</h3>
               <span>following</span>
             </div>
           </div>

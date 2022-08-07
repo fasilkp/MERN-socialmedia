@@ -18,7 +18,18 @@ export const followUser=async(req, res)=>{
             },
             {
                 function(err){
-                    if(err) return res.status(500).json({err:true, error:err, message:"followed"});
+                    if(err) return res.status(500).json({err:true, error:err, message:"following failed"});
+                }
+            })
+        await UserModel.findByIdAndUpdate({_id:followerId}, 
+            {
+                $addToSet:{
+                    following:followingId
+                }
+            },
+            {
+                function(err){
+                    if(err) return res.status(500).json({err:true, error:err, message:"following failed"});
                 }
             })
         return res.status(201).json({success:true})
@@ -33,7 +44,18 @@ export const unFollowUser=async(req, res)=>{
             },
             {
                 function(err){
-                    if(err) return res.status(500).json({err:true, error:err, message:"unfollowed"});
+                    if(err) return res.status(500).json({err:true, error:err, message:"unfollow failed "});
+                }
+            })
+        await UserModel.findByIdAndUpdate({_id:followerId}, 
+            {
+                $pull:{
+                    followers:followingId
+                }
+            },
+            {
+                function(err){
+                    if(err) return res.status(500).json({err:true, error:err, message:"unfollow failed "});
                 }
             })
         return res.status(201).json({success:true})
