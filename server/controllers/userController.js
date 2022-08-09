@@ -62,33 +62,3 @@ export const unFollowUser=async(req, res)=>{
         return res.status(201).json({success:true})
 }
 
-export const likePost=async(req, res)=>{
-    const {postId, likedId} = req.body;
-    await PostModel.findByIdAndUpdate({_id:postId}, 
-        {
-            $addToSet:{
-                likes:likedId
-            }
-        },
-        {
-            function(err){
-                if(err) return res.status(500).json({err:true, error:err, message:"liking failed"});
-            }
-        })
-    return res.status(201).json({success:true})
-}
-export const unLikePost=async(req, res)=>{
-    const {postId, likedId} = req.body;
-    await PostModel.findByIdAndUpdate({_id:postId}, 
-        {
-            $pull:{
-                likes:likedId
-            }
-        },
-        {
-            function(err){
-                if(err) return res.status(500).json({err:true, error:err, message:"unliking failed"});
-            }
-        })
-    return res.status(201).json({success:true})
-}

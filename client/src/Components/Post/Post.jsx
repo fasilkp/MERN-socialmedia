@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Post.css";
+import AuthContext from "../../context/AuthContext";
 import { Dropdown } from "react-bootstrap";
 import { FaHeart } from "react-icons/fa";
 import { MdSend } from "react-icons/md";
@@ -13,6 +14,7 @@ import {
   FiMoreVertical
 } from "react-icons/fi";
 import axios from "axios";
+import removeItem from "../../actions/removeItem";
 
 function Post(props) {
   const {
@@ -27,7 +29,9 @@ function Post(props) {
     showDelete,
     id
   } = props;
-  const [liked, setLiked] = useState(false);
+  const {user}=useContext(AuthContext);
+  const [liked, setLiked] = useState(likes.indexOf(user._id)>=0);
+  const [totalLikes, setTotalLikes] = useState(likes);
   const [commentsHide, setCommentsHide] = useState(true);
   const deletePost=async()=>{
     if (window.confirm("Do you really want to Delete this post?")) {
@@ -40,6 +44,14 @@ function Post(props) {
       })
     }
   }
+  const likePost=async()=>{
+    if(!liked){
+      await axios.post('/posts/like-post', {postId:id, likedId:user._id})
+      setLiked(true)
+      setTotalLikes([...likes, user._id])
+    }
+  }
+  
   return (
     <div className="post-details">
       <div className={viewpost ? "post post-large" : "post"}>
@@ -76,18 +88,18 @@ function Post(props) {
           <img
             src={postImage}
             alt="post-body"
-            onDoubleClick={() => setLiked(!liked)}
+            onDoubleClick={likePost}
           />
           <div className="center-like-icon-body" style={{ height: "0px" }}>
             {liked && <FaHeart className="center-like-icon"></FaHeart>}
           </div>
         </div>
         <div className="reaction-section">
-          <div className="reaction-like" onClick={() => setLiked(!liked)}>
+          <div className="reaction-like" >
             {!liked ? (
-              <FiHeart className="reaction-icons" />
+              <FiHeart className="reaction-icons" onClick={likePost} />
             ) : (
-              <FaHeart className="liked-icon" />
+              <FaHeart className="liked-icon"  />
             )}
           </div>
           <div className="comment">
@@ -98,7 +110,7 @@ function Post(props) {
           </div>
         </div>
         <div className="total-likes">
-          <b>{likes?.length}</b> likes
+          <b>{totalLikes?.length}</b> likes
         </div>
         <div className="post-description">
           <b>{userId}</b>
