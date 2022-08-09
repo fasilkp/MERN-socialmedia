@@ -51,7 +51,13 @@ function Post(props) {
       setTotalLikes([...likes, user._id])
     }
   }
-  
+  const unLikePost=async()=>{
+    if(liked){
+      await axios.post('/posts/unlike-post', {postId:id, likedId:user._id})
+      setTotalLikes([...removeItem(totalLikes, user._id)]);
+      setLiked(false)
+    }
+  }
   return (
     <div className="post-details">
       <div className={viewpost ? "post post-large" : "post"}>
@@ -99,7 +105,7 @@ function Post(props) {
             {!liked ? (
               <FiHeart className="reaction-icons" onClick={likePost} />
             ) : (
-              <FaHeart className="liked-icon"  />
+              <FaHeart className="liked-icon" onClick={unLikePost} />
             )}
           </div>
           <div className="comment">
