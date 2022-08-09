@@ -8,7 +8,7 @@ router.post("/follow-user",verifyLogin, followUser);
 router.post("/unfollow-user",verifyLogin, unFollowUser);
 router.post("/get-user",verifyLogin, getUser);
 router.post("/like-post",verifyLogin, likePost);
-
+router.post("/unlike-post",verifyLogin, unLikePost);
 
 
 export default router;
