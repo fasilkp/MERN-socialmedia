@@ -1,4 +1,5 @@
 import UserModel from '../models/UserModel.js'
+import PostModel from '../models/PostModel.js'
 export const getUser=async(req, res)=>{
         const {userName} = req.body;
         const user = await UserModel.findOne({userName}, {password:0, email:0},{
@@ -59,4 +60,20 @@ export const unFollowUser=async(req, res)=>{
                 }
             })
         return res.status(201).json({success:true})
+}
+
+export const likePost=async(req, res)=>{
+    const {postId, likedId} = req.body;
+    await PostModel.findByIdAndUpdate({_id:postId}, 
+        {
+            $addToSet:{
+                likes:likedId
+            }
+        },
+        {
+            function(err){
+                if(err) return res.status(500).json({err:true, error:err, message:"liking failed"});
+            }
+        })
+    return res.status(201).json({success:true})
 }
