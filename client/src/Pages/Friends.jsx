@@ -1,5 +1,6 @@
 import React from 'react'
 import NavBar from '../Components/NavBar/NavBar'
+import FriendsComp from '../Components/friendsComp/FriendsComp'
 function Friends() {
   return (
     <div className='main'>
@@ -9,7 +10,7 @@ function Friends() {
           chat:"rgb(152, 200, 192)",
           add:"rgb(152, 200, 192)",
           }}></NavBar>
-          <h1>coming soon...</h1>
+    <FriendsComp/>
     </div>
   )
 }

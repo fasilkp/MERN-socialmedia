@@ -1,0 +1,28 @@
+.friends-comp{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.frnd-container{
+    width: 500px;
+    height: 80vh;
+    background-color: var(--friendListBg);
+}
+.frnd-sec-1{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: var(--white);
+}
+.frnd-sec-1 div{
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.frnd-btns.selected{
+    border-bottom: 1px solid var(--mainColor);
+}
