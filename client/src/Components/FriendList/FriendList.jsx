@@ -17,7 +17,7 @@ function FriendList() {
           </div>
         </div>
         <div className="frnd-btn remove">
-          <button>remove</button>
+          <button>following</button>
         </div>
       </div>
       <div className="single-frnd">
@@ -51,7 +51,7 @@ function FriendList() {
           </div>
         </div>
         <div className="frnd-btn remove">
-          <button>remove</button>
+          <button>following</button>
         </div>
       </div>
       <div className="single-frnd">
@@ -68,7 +68,7 @@ function FriendList() {
           </div>
         </div>
         <div className="frnd-btn remove">
-          <button>remove</button>
+          <button>following</button>
         </div>
       </div>
       <div className="single-frnd">
