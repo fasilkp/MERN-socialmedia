@@ -24,6 +24,7 @@
 .fr-img{
     height: 100%;
     display: flex;
+    align-items: center;
 }
 .fr-img img{
     width: 50px;
@@ -63,4 +64,23 @@
     border: 1px solid rgb(250, 91, 91);
     color: rgb(250, 91, 91);
 
+}
+@media only screen and (max-width: 600px) {
+    .fr-img img{
+        width: 40px;
+        height: 40px;
+        border-radius: 50px;
+    }
+    .frnd-details span{
+        font-size: .9rem;
+        
+    }
+    .frnd-details span:last-child{
+        font-size: .8rem;
+    }
+    .frnd-btn button{
+        width: 65px;
+        height: 25px;
+        font-size: .9rem;
+    }
 }
