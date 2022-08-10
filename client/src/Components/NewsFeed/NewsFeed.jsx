@@ -39,6 +39,7 @@ function NewsFeed() {
                     profileImg={"http://localhost:8080/images/profile-images/defaultImage.jpg"}
                     userId={post.userName}
                     postImage={baseImageURL+post.postSrc}
+                    postSrc={post.postSrc}
                     viewpost={false}
                     id={post._id}
                     likes={post.likes}

@@ -1,5 +1,8 @@
 import PostModel from "../models/PostModel.js";
 import UserModel from "../models/UserModel.js";
+import { unlink } from 'node:fs';
+
+
 
 export const postDetails = (req, res) => {
   res.send("post controller created");
@@ -49,11 +52,17 @@ export const editPost = async (req, res) => {
   }
 };
 export const deletePost = async (req, res) => {
-  const { id } = req.query;
-  PostModel.deleteOne({ _id: id }, function (err) {
+  const { id, postSrc } = req.query;
+  PostModel.deleteOne({ _id: id }, function (err, result) {
     if (err)
       return res.json({ err: true, error: err, message: "mongoose err" });
-    return res.json({ message: "post deleted successfull" });
+    else{
+        unlink('images/postImages/'+postSrc, (err) => {
+            if (err) throw err;
+            console.log('successfully deleted /tmp/hello');
+          });
+        return res.json({ message: result });
+      }
   });
 };
 
