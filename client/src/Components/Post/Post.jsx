@@ -30,13 +30,16 @@ function Post(props) {
     showDelete,
     id,
   } = props;
-  const allComments =comments.sort(function(a,b){
-    return new Date(b.date) - new Date(a.date);
-  });
   const { user } = useContext(AuthContext);
+
   const [liked, setLiked] = useState(likes.indexOf(user._id) >= 0);
   const [totalLikes, setTotalLikes] = useState(likes);
   const [commentsHide, setCommentsHide] = useState(true);
+  const [newComment, setNewComment] = useState("");
+  const [allComments, setAllComments]=useState(comments.sort(function(a,b){
+    return new Date(b.date) - new Date(a.date);
+  }))
+
   const deletePost = async () => {
     if (window.confirm("Do you really want to Delete this post?")) {
       await axios
@@ -53,15 +56,27 @@ function Post(props) {
   const likePost = async () => {
     if (!liked) {
       await axios.post("/posts/like-post", { postId: id, likedId: user._id });
+      setTotalLikes([...totalLikes, user._id]);
       setLiked(true);
-      setTotalLikes([...new Set([...likes, user._id])]);
-    }
-  };
+    };
+  }
   const unLikePost = async () => {
     if (liked) {
       await axios.post("/posts/unlike-post", { postId: id, likedId: user._id });
       setTotalLikes([...new Set(removeItem(totalLikes, user._id))]);
       setLiked(false);
+    }
+  };
+  const addComment = async () => {
+    if(newComment!==""){
+      await axios.post("/posts/add-comment", { postId: id, userId: user._id, comment:newComment }).then(res=>{
+        if(res.err){
+          alert("commment failed")
+        }
+        else{
+          setAllComments([ { comment: newComment, userId: user._id, date: new Date() }, ...allComments])
+        }
+      })
     }
   };
   return (
@@ -158,9 +173,10 @@ function Post(props) {
           &nbsp; comments
         </div>
         <div className="add-comment">
-          <input type="text" placeholder="enter a comment.." />
-          <div className="comment-send">
-            <MdSend />
+          <input type="text" placeholder="enter a comment.."
+          value={newComment} onChange={(e)=>setNewComment(e.target.value)} />
+          <div className="comment-send" onClick={addComment}>
+            <MdSend  />
           </div>
         </div>
 
