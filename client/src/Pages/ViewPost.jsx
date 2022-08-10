@@ -3,10 +3,12 @@ import NavBar from "../Components/NavBar/NavBar";
 import Post from "../Components/Post/Post";
 import CenterWrapper from "../Components/CenterWrapper/CenterWrapper";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import AuthContext from "../context/AuthContext";
 import axios from "axios";
 function ViewPost() {
   const { postId } = useParams();
+  const {user}=useContext(AuthContext);
   const [post, setPost]=useState({})
   const baseImageURL="http://localhost:8080/images/postImages/"
   useEffect(() => {
@@ -43,8 +45,12 @@ function ViewPost() {
                     likes={post.likes}
                     comments={post.comments}
                     date={new Date(post.uploadedAt)}
-                    description={post.description}>
-                    </Post>}
+                    description={post.description}
+                    id={post._id}
+                    showDelete={user._id===post.userId}
+                    >
+                    </Post>
+                    }
       </CenterWrapper>
       <div className="extra-height"></div>
     </div>

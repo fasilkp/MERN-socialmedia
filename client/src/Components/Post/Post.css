@@ -108,7 +108,7 @@
 }
 .post-comments-list{
     padding: 10px;
-    max-height: 90vh;
+    max-height: 72vh;
     overflow: hidden ;
 }
 .post-comments-list:hover{
@@ -179,7 +179,7 @@
     top: -150px;
     transform: translate(-50%, -50%);
     color: red;
-    animation: mymove .5s; 
+    animation: mymove .7s; 
 }
 .post-option-dropdown .post-toggle,
 .post-option-dropdown .post-toggle:hover, 
@@ -197,7 +197,7 @@
 @keyframes mymove {
  0%{font-size: 0px;}
 
-  50%{font-size: 8rem;}
+  50%{font-size: 10rem;}
 
   100%{font-size: 0px;}
 }

@@ -46,7 +46,6 @@ function NewsFeed() {
                     date={new Date(post.uploadedAt)}
                     description={post.description}
                     showDelete={user._id===post.userId}>
-                    
                     </Post>
           })
         }

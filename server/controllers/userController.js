@@ -61,4 +61,13 @@ export const unFollowUser=async(req, res)=>{
             })
         return res.status(201).json({success:true})
 }
+export const getUsers=async(req, res)=>{
+        const {Ids} = req.body;
+        const users= await UserModel.find({_id:{$in:Ids}},{userName:1, image:1}, {function(err){
+            return res.json({error:err})
+        }});
+        res.json(users)
+            
+}
+
 

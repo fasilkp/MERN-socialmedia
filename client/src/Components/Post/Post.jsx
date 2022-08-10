@@ -48,13 +48,13 @@ function Post(props) {
     if(!liked){
       await axios.post('/posts/like-post', {postId:id, likedId:user._id})
       setLiked(true)
-      setTotalLikes([...likes, user._id])
+      setTotalLikes([...new Set([...likes, user._id])])
     }
   }
   const unLikePost=async()=>{
     if(liked){
       await axios.post('/posts/unlike-post', {postId:id, likedId:user._id})
-      setTotalLikes([...removeItem(totalLikes, user._id)]);
+      setTotalLikes([...new Set(removeItem(totalLikes, user._id))]);
       setLiked(false)
     }
   }
@@ -109,7 +109,7 @@ function Post(props) {
             )}
           </div>
           <div className="comment">
-            <FiMessageCircle className="reaction-icons" />
+            <FiMessageCircle className="reaction-icons" onClick={()=>setCommentsHide(false)} />
           </div>
           <div className="share">
             <FiShare2 className="reaction-icons" />
