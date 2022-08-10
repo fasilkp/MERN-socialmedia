@@ -151,7 +151,8 @@ export const addComment = async (req, res) => {
         comments: {
           comment,
           userId,
-          likes: []
+          likes: [],
+          date: new Date()
         },
       },
     },
@@ -163,6 +164,6 @@ export const addComment = async (req, res) => {
             .json({ err: true, error: err, message: "commenting failed" });
       },
     }
-  );
+  )
   return res.status(201).json({ success: true });
 };

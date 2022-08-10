@@ -11,12 +11,13 @@ import {
   FiThumbsDown,
   FiThumbsUp,
   FiArrowLeft,
-  FiMoreVertical
+  FiMoreVertical,
 } from "react-icons/fi";
 import axios from "axios";
 import removeItem from "../../actions/removeItem";
 
 function Post(props) {
+  const baseProfilImgURL = "http://localhost:8080/images/profile-images/";
   const {
     profileImg,
     description,
@@ -27,37 +28,42 @@ function Post(props) {
     comments,
     date,
     showDelete,
-    id
+    id,
   } = props;
-  const {user}=useContext(AuthContext);
-  const [liked, setLiked] = useState(likes.indexOf(user._id)>=0);
+  const allComments =comments.sort(function(a,b){
+    return new Date(b.date) - new Date(a.date);
+  });
+  const { user } = useContext(AuthContext);
+  const [liked, setLiked] = useState(likes.indexOf(user._id) >= 0);
   const [totalLikes, setTotalLikes] = useState(likes);
   const [commentsHide, setCommentsHide] = useState(true);
-  const deletePost=async()=>{
+  const deletePost = async () => {
     if (window.confirm("Do you really want to Delete this post?")) {
-      await axios.delete('/posts/delete-post', {params:{id:id}}).then(res=>{
-        if(res.data.err) alert("delete failed");
-        else {
-          alert("successFully deleted");
-          window.location.reload();
-        }
-      })
+      await axios
+        .delete("/posts/delete-post", { params: { id: id } })
+        .then((res) => {
+          if (res.data.err) alert("delete failed");
+          else {
+            alert("successFully deleted");
+            window.location.reload();
+          }
+        });
     }
-  }
-  const likePost=async()=>{
-    if(!liked){
-      await axios.post('/posts/like-post', {postId:id, likedId:user._id})
-      setLiked(true)
-      setTotalLikes([...new Set([...likes, user._id])])
+  };
+  const likePost = async () => {
+    if (!liked) {
+      await axios.post("/posts/like-post", { postId: id, likedId: user._id });
+      setLiked(true);
+      setTotalLikes([...new Set([...likes, user._id])]);
     }
-  }
-  const unLikePost=async()=>{
-    if(liked){
-      await axios.post('/posts/unlike-post', {postId:id, likedId:user._id})
+  };
+  const unLikePost = async () => {
+    if (liked) {
+      await axios.post("/posts/unlike-post", { postId: id, likedId: user._id });
       setTotalLikes([...new Set(removeItem(totalLikes, user._id))]);
-      setLiked(false)
+      setLiked(false);
     }
-  }
+  };
   return (
     <div className="post-details">
       <div className={viewpost ? "post post-large" : "post"}>
@@ -67,41 +73,34 @@ function Post(props) {
             <span>{userId}</span>
           </div>
           <div className="post-option">
-          <Dropdown className="post-option-dropdown">
-            <Dropdown.Toggle
-              variant="success"
-              id="dropdown-basic"
-              className="post-toggle"
-            >
-              <FiMoreVertical/>
-            </Dropdown.Toggle>
+            <Dropdown className="post-option-dropdown">
+              <Dropdown.Toggle
+                variant="success"
+                id="dropdown-basic"
+                className="post-toggle"
+              >
+                <FiMoreVertical />
+              </Dropdown.Toggle>
 
-            <Dropdown.Menu>
-                  {
-                  showDelete &&  
-                    <Dropdown.Item href="#" onClick={deletePost} >
-                      delete
-                    </Dropdown.Item>
-                  }
-                <Dropdown.Item href="#" >
-                  save
-                </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+              <Dropdown.Menu>
+                {showDelete && (
+                  <Dropdown.Item href="#" onClick={deletePost}>
+                    delete
+                  </Dropdown.Item>
+                )}
+                <Dropdown.Item href="#">save</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </div>
         </div>
         <div className="post-body">
-          <img
-            src={postImage}
-            alt="post-body"
-            onDoubleClick={likePost}
-          />
+          <img src={postImage} alt="post-body" onDoubleClick={likePost} />
           <div className="center-like-icon-body" style={{ height: "0px" }}>
             {liked && <FaHeart className="center-like-icon"></FaHeart>}
           </div>
         </div>
         <div className="reaction-section">
-          <div className="reaction-like" >
+          <div className="reaction-like">
             {!liked ? (
               <FiHeart className="reaction-icons" onClick={likePost} />
             ) : (
@@ -109,7 +108,10 @@ function Post(props) {
             )}
           </div>
           <div className="comment">
-            <FiMessageCircle className="reaction-icons" onClick={()=>setCommentsHide(false)} />
+            <FiMessageCircle
+              className="reaction-icons"
+              onClick={() => setCommentsHide(false)}
+            />
           </div>
           <div className="share">
             <FiShare2 className="reaction-icons" />
@@ -138,7 +140,7 @@ function Post(props) {
               onClick={() => setCommentsHide(!commentsHide)}
             >
               {commentsHide
-                ? `show all ${comments.length} comments`
+                ? `show ${comments.length} comments`
                 : "Hide all Comments"}
             </button>
           )}
@@ -161,147 +163,28 @@ function Post(props) {
             <MdSend />
           </div>
         </div>
+
         <div className="post-comments-list">
-          <div className="post-single-comment">
-            <div className="post-comment-profile">
-              <img src={`/images/${profileImg}`} alt="" />
-              <b>fasil_kp</b>
-              <span>3 hours ago </span>
-            </div>
-            <div className="post-comment-description">
-              <span>jefnebf berf erk fer b,fgfgh er,gysrfhg,bhdjst vdj</span>
-            </div>
-            <div className="comment-like-section">
-              <FiThumbsUp className="like-icons" /> like
-              <FiThumbsDown className="like-icons" /> dislike
-            </div>
-          </div>
-          <div className="post-single-comment">
-            <div className="post-comment-profile">
-              <img src={`/images/${profileImg}`} alt="" />
-              <b>fasil_kp</b>
-              <span>3 hours ago </span>
-            </div>
-            <div className="post-comment-description">
-              <span>jefnebf berf erk fer b,fgfgh er,gysrfhg,bhdjst vdj</span>
-            </div>
-            <div className="comment-like-section">
-              <FiThumbsUp className="like-icons" /> like
-              <FiThumbsDown className="like-icons" /> dislike
-            </div>
-          </div>
-          <div className="post-single-comment">
-            <div className="post-comment-profile">
-              <img src={`/images/${profileImg}`} alt="" />
-              <b>fasil_kp</b>
-              <span>3 hours ago </span>
-            </div>
-            <div className="post-comment-description">
-              <span>jefnebf berf erk fer b,fgfgh er,gysrfhg,bhdjst vdj</span>
-            </div>
-            <div className="comment-like-section">
-              <FiThumbsUp className="like-icons" /> like
-              <FiThumbsDown className="like-icons" /> dislike
-            </div>
-          </div>
-          <div className="post-single-comment">
-            <div className="post-comment-profile">
-              <img src={`/images/${profileImg}`} alt="" />
-              <b>fasil_kp</b>
-              <span>3 hours ago </span>
-            </div>
-            <div className="post-comment-description">
-              <span>jefnebf berf erk fer b,fgfgh er,gysrfhg,bhdjst vdj</span>
-            </div>
-            <div className="comment-like-section">
-              <FiThumbsUp className="like-icons" /> like
-              <FiThumbsDown className="like-icons" /> dislike
-            </div>
-          </div>
-          <div className="post-single-comment">
-            <div className="post-comment-profile">
-              <img src={`/images/${profileImg}`} alt="" />
-              <b>fasil_kp</b>
-              <span>3 hours ago </span>
-            </div>
-            <div className="post-comment-description">
-              <span>jefnebf berf erk fer b,fgfgh er,gysrfhg,bhdjst vdj</span>
-            </div>
-            <div className="comment-like-section">
-              <FiThumbsUp className="like-icons" /> like
-              <FiThumbsDown className="like-icons" /> dislike
-            </div>
-          </div>
-          <div className="post-single-comment">
-            <div className="post-comment-profile">
-              <img src={`/images/${profileImg}`} alt="" />
-              <b>fasil_kp</b>
-              <span>3 hours ago </span>
-            </div>
-            <div className="post-comment-description">
-              <span>jefnebf berf erk fer b,fgfgh er,gysrfhg,bhdjst vdj</span>
-            </div>
-            <div className="comment-like-section">
-              <FiThumbsUp className="like-icons" /> like
-              <FiThumbsDown className="like-icons" /> dislike
-            </div>
-          </div>
-          <div className="post-single-comment">
-            <div className="post-comment-profile">
-              <img src={`/images/${profileImg}`} alt="" />
-              <b>fasil_kp</b>
-              <span>3 hours ago </span>
-            </div>
-            <div className="post-comment-description">
-              <span>jefnebf berf erk fer b,fgfgh er,gysrfhg,bhdjst vdj</span>
-            </div>
-            <div className="comment-like-section">
-              <FiThumbsUp className="like-icons" /> like
-              <FiThumbsDown className="like-icons" /> dislike
-            </div>
-          </div>
-          <div className="post-single-comment">
-            <div className="post-comment-profile">
-              <img src={`/images/${profileImg}`} alt="" />
-              <b>fasil_kp</b>
-              <span>3 hours ago </span>
-            </div>
-            <div className="post-comment-description">
-              <span>jefnebf berf erk fer b,fgfgh er,gysrfhg,bhdjst vdj</span>
-            </div>
-            <div className="comment-like-section">
-              <FiThumbsUp className="like-icons" /> like
-              <FiThumbsDown className="like-icons" /> dislike
-            </div>
-          </div>
-          <div className="post-single-comment">
-            <div className="post-comment-profile">
-              <img src={`/images/${profileImg}`} alt="" />
-              <b>fasil_kp</b>
-              <span>3 hours ago </span>
-            </div>
-            <div className="post-comment-description">
-              <span>jefnebf berf erk fer b,fgfgh er,gysrfhg,bhdjst vdj</span>
-            </div>
-            <div className="comment-like-section">
-              <FiThumbsUp className="like-icons" /> like
-              <FiThumbsDown className="like-icons" /> dislike
-            </div>
-          </div>
-          <div className="post-single-comment">
-            <div className="post-comment-profile">
-              <img src={`/images/${profileImg}`} alt="" />
-              <b>fasil_kp</b>
-              <span>3 hours ago </span>
-            </div>
-            <div className="post-comment-description">
-              <span>jefnebf berf erk fer b,fgfgh er,gysrfhg,bhdjst vdj</span>
-            </div>
-            <div className="comment-like-section">
-              <FiThumbsUp className="like-icons" /> like
-              <FiThumbsDown className="like-icons" /> dislike
-            </div>
-          </div>
+          {allComments.map((obj) => {
+            return (
+              <div className="post-single-comment">
+                <div className="post-comment-profile">
+                  <img src={baseProfilImgURL + "defaultImage.jpg"} alt="" />
+                  <b>{obj.userId}</b>
+                  <span>
+                    {new Date(obj.date).toLocaleDateString('pt-PT')}
+                  </span>
+                </div>
+                <div className="post-comment-description">
+                  <span>{obj.comment}</span>
+                </div>
+                <div className="comment-like-section">
+                  {/* <FiThumbsUp className="like-icons" /> like
+                  <FiThumbsDown className="like-icons" /> dislike */}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
