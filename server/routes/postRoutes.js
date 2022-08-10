@@ -1,6 +1,6 @@
 import express from 'express'
 const router=express.Router()
-import {postDetails, uploadFileResponse, uploadPost, editPost, deletePost, viewPosts, editProfilePicture, profilePosts, viewPost, likePost, unLikePost} from '../controllers/postController.js'
+import {postDetails, uploadFileResponse, uploadPost, editPost, deletePost, viewPosts, editProfilePicture, profilePosts, viewPost, likePost, unLikePost, addComment} from '../controllers/postController.js'
 import uploadFile from '../middlewares/uploadFile.js'
 import verifyLogin from '../middlewares/verifyLogin.js'
 
@@ -17,6 +17,7 @@ router.get("/profile-posts",verifyLogin, profilePosts);
 router.get("/post",verifyLogin, viewPost);
 router.post("/like-post",verifyLogin, likePost);
 router.post("/unlike-post",verifyLogin, unLikePost);
+router.post("/add-comment",verifyLogin, addComment);
 
 
 export default router;
