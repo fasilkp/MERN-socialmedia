@@ -4,8 +4,10 @@ import loginImg from '../../images/login.jpg'
 import {Link, useNavigate} from 'react-router-dom'
 import Axios from "axios";
 import AuthContext from "../../context/AuthContext";
+import BeatLoader from "react-spinners/BeatLoader";
 function LoginComp() {
   const {updateLogin}=useContext(AuthContext)
+  const [load, setLoad]=useState(false)
   const [password, setPassword]=useState("");
   const [email, setEmail]=useState("");
   const navigate=useNavigate()
@@ -14,15 +16,18 @@ function LoginComp() {
   }
   const handleSubmit=async e=>{
     e.preventDefault();
+    setLoad(true)
     const user = await Axios.post("/auth/login", {email, password});
     console.log(user.data.message);
     if(user.data.login){
       updateLogin();
       alert("login successfull");
       navigate('/')
+      setLoad(false)
     }
     else{  
       alert(user.data.message);
+      setLoad(false)
     }
   }
   return (
@@ -40,7 +45,11 @@ function LoginComp() {
              value={email} onChange={e=>handleChange(e, 'setEmail')} />
             <input type="password" placeholder="Password" className="reg-input"
              value={password} onChange={e=>handleChange(e, 'setPassword')} />
-            <button onClick={handleSubmit} className="reg-btn">Login</button>
+            <button onClick={handleSubmit} className="reg-btn" disabled={load || email==="" || password===""}>
+              {
+              load ? <BeatLoader color="white"/> : "Login"
+              }
+              </button>
         </div>
         <Link className="links" to="/register"><div className="another-link"> Don't Have an Acoount? Create One!</div></Link>
       </div>
