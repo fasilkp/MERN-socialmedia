@@ -47,7 +47,7 @@ function LoginComp() {
              value={password} onChange={e=>handleChange(e, 'setPassword')} />
             <button onClick={handleSubmit} className="reg-btn" disabled={load || email==="" || password===""}>
               {
-              load ? <BeatLoader color="white"/> : "Login"
+              load ? <BeatLoader size="15" color="white"/> : "Login"
               }
               </button>
         </div>

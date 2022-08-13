@@ -7,9 +7,11 @@ import dataURItoBlob from "../../actions/dataURItoBlob";
 import axios from "axios";
 import AuthContext from "../../context/AuthContext";
 import {useNavigate} from 'react-router-dom'
+import BeatLoader from "react-spinners/BeatLoader";
 
 function UploadPost() {
   const {user} = useContext(AuthContext);
+  const [submitLoad,setSubmitLoad]=useState(false)
   const [uploadPostBtn, setUploadPostBtn]=useState(false)
   const navigate=useNavigate()
   const [aspectRatio, setAspectRatio] = useState(1);
@@ -49,6 +51,7 @@ function UploadPost() {
   };
 
   const submitHandler = async () => {
+    setSubmitLoad(true)
     let imageURI
     if (typeof cropper !== "undefined") {
       setCropData(cropper.getCroppedCanvas().toDataURL());
@@ -73,6 +76,7 @@ function UploadPost() {
           navigate("/")
         }
         else alert("upoad failed");
+        setSubmitLoad(false)
         
       })
     }
@@ -144,7 +148,11 @@ function UploadPost() {
             <button onClick={()=>{
               setUploadPostBtn(false);
               submitHandler();
-            }} disabled={uploadPostBtn}>Post</button>
+            }} disabled={uploadPostBtn}>
+              {
+              submitLoad ? <BeatLoader size="15" color="white"/> : "Post"
+              }
+              </button>
           </div>
         </div>
       )}

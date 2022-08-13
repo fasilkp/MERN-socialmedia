@@ -2,8 +2,10 @@ import React, {useState} from "react";
 import './RegisterComp.css'
 import loginImg from '../../images/login.jpg'
 import { Link, useNavigate } from "react-router-dom";
+import BeatLoader from "react-spinners/BeatLoader";
 import Axios from 'axios'
 function RegisterComp() {
+  const [submitLoad,setSubmitLoad]=useState(false)
   const [name, setName]=useState("");
   const [userName, setUserName]=useState("");
   const [password, setPassword]=useState("");
@@ -13,9 +15,9 @@ function RegisterComp() {
     eval(setState+"(e.target.value)")
   }
   const handleSubmit=async e=>{
+    setSubmitLoad(true)
     e.preventDefault();
     const user = await Axios.post("/auth/register", {name, email, password, userName:userName.toLowerCase()});
-    console.log(user.data.message);
     if(user.data.register){
       alert("register successfull");
       navigate('/login')
@@ -23,6 +25,7 @@ function RegisterComp() {
     else{  
       alert(user.data.message);
     }
+    setSubmitLoad(false)
   }
   return (
     <div className="RegisterComp">
@@ -43,7 +46,11 @@ function RegisterComp() {
              value={email} onChange={(e)=>handleChange(e,'setEmail')} />
             <input type="password" placeholder="Password" className="reg-input" 
              value={password} onChange={(e)=>handleChange(e,'setPassword')} />
-            <button className="reg-btn" onClick={handleSubmit}>Register</button>
+            <button className="reg-btn" onClick={handleSubmit}>
+              {
+              submitLoad ? <BeatLoader size="15" color="white"/> : "Login"
+              }
+            </button>
         </div>
         <Link className="links" to="/login"><div className="another-link">Already Have an Acoount? Please Login!</div></Link>
       </div>
