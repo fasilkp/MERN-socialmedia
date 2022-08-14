@@ -31,6 +31,12 @@
     font-size: .9rem;
     color: rgb(158, 164, 164);
 }
+.validator-message{
+    font-size: .8rem;
+    color: red;
+    margin-bottom: 5px;
+    margin-top: -5px;
+}
 .reg-input, .reg-btn{
     width: 350px;
     height: 50px;
