@@ -61,13 +61,19 @@ export const unFollowUser=async(req, res)=>{
             })
         return res.status(201).json({success:true})
 }
+// export const getFriendsList=async(req, res)=>{
+//         const {Id} = req.body;
+//         const users= await UserModel.find({_id:{$in:Ids}},{userName:1, image:1}, {function(err){
+//             return res.json({error:err})
+//         }});
+//         res.json(users)        
+// }
 export const getUsers=async(req, res)=>{
         const {Ids} = req.body;
-        const users= await UserModel.find({_id:{$in:Ids}},{userName:1, image:1}, {function(err){
+        const users= await UserModel.find({_id:{$in:Ids}},{userName:1, image:1, name:1}, {function(err){
             return res.json({error:err})
         }});
-        res.json(users)
-            
+        res.json(users)        
 }
 
 

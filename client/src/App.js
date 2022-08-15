@@ -14,7 +14,6 @@ import axios from 'axios'
 import AuthContext from './context/AuthContext'
 import { useEffect } from 'react';
 import NotFound from './Components/NotFound/NotFound';
-import FriendsComp from './Components/friendsComp/FriendsComp';
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = 'http://localhost:8080/api';
 
@@ -31,7 +30,6 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/friends" element={<Friends />} />
-                <Route path="/friends-comp" element={<FriendsComp />} />
                 <Route path="/add-post" element={<AddPost />} />
                 <Route path="/chat" element={<Chat />} />
                 <Route path="/register" element={<Register />} />

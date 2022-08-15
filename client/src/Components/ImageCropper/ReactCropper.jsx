@@ -76,7 +76,7 @@ export const ReactCropper = () => {
             <select  onChange={(e)=>{
               setImage(null)
               setAspectRatio(e.target.value)
-              console.log(aspectRatio)}} value={aspectRatio} id="" placeholder="aspect ration">
+              }} value={aspectRatio} id="" placeholder="aspect ration">
               <option value={1/1}>1 : 1</option>
               <option value={4/5}>4 : 5</option>
               <option value={16/9}>16 : 9</option>

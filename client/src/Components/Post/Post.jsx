@@ -15,6 +15,7 @@ import {
 } from "react-icons/fi";
 import axios from "axios";
 import removeItem from "../../actions/removeItem";
+import { useEffect } from "react";
 
 function Post(props) {
   const baseProfilImgURL = "http://localhost:8080/images/profile-images/";
@@ -37,9 +38,21 @@ function Post(props) {
   const [totalLikes, setTotalLikes] = useState(likes);
   const [commentsHide, setCommentsHide] = useState(true);
   const [newComment, setNewComment] = useState("");
+  const [commentUserIds, setCommentUserIds] = useState([]);
   const [allComments, setAllComments]=useState(comments.sort(function(a,b){
     return new Date(b.date) - new Date(a.date);
   }))
+
+  useEffect(()=>{
+    setCommentUserIds([]);
+    allComments.forEach((item)=>{
+      setCommentUserIds(previousArray => [...previousArray, item.userId])
+    })
+    
+  },[])
+  useEffect(()=>{
+    
+  },[commentUserIds])
 
   const deletePost = async () => {
     if (window.confirm("Do you really want to Delete this post?")) {
@@ -87,6 +100,7 @@ function Post(props) {
           <div className="post-head">
             <img src={profileImg} alt="profile" />
             <span>{userId}</span>
+            <button onClick={()=>console.log(commentUserIds)}>check</button>
           </div>
           <div className="post-option">
             <Dropdown className="post-option-dropdown">

@@ -40,7 +40,7 @@ function UploadPost() {
       files = e.dataTransfer.files;
     } else if (e.target) {
       files = e.target.files;
-      console.log(e.target.files[0]);
+      
     }
     const reader = new FileReader();
     reader.onload = () => {
@@ -58,7 +58,7 @@ function UploadPost() {
           imageURI= cropper.getCroppedCanvas().toDataURL('image/jpg',1)
     }
     const blob= dataURItoBlob(imageURI);
-    console.log(blob);
+    
     const data= new FormData();
     data.append('image', blob)
     await axios.post('/posts/upload-file', data ).then(async uploadFile=>{

@@ -17,7 +17,7 @@ function ViewPost() {
         if(result.err) alert("somthing went wrong");
         else{
           setPost(result.data)
-          console.log(result.data)
+          
         }
       })
     };
