@@ -131,7 +131,7 @@ function ProfileComp({ userName }) {
             ></div></Link> */}
             {
               allPosts.map((obj, index) => {
-                return <Link to={"/post/" + obj._id} className="links">
+                return <Link to={"/post/" + obj._id} key={index} className="links">
                   <div
                     key={index}
                     className="pf-post"

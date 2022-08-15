@@ -100,7 +100,6 @@ function Post(props) {
           <div className="post-head">
             <img src={profileImg} alt="profile" />
             <span>{userId}</span>
-            <button onClick={()=>console.log(commentUserIds)}>check</button>
           </div>
           <div className="post-option">
             <Dropdown className="post-option-dropdown">

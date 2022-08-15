@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import "./FriendList.css";
 function FriendList({ friendsList }) {
+  const baseProfilImgURL = "http://localhost:8080/images/profile-images/";
   const [list, setList]=useState([])
   useEffect(()=>{
     const fetchData=async ()=>{
@@ -18,11 +19,11 @@ function FriendList({ friendsList }) {
     <div className="friend-list">
       {
         list?.map((item, index) => {
-          return <div className="single-frnd">
+          return <div className="single-frnd" key={index}>
             <div className="fr-img-details">
               <div className="fr-img">
                 <img
-                  src="http://localhost:8080/images/profile-images/defaultImage.jpg"
+                  src={baseProfilImgURL+item.image}
                   alt=""
                 />
               </div>
