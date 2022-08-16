@@ -51,7 +51,7 @@ export const unFollowUser=async(req, res)=>{
         await UserModel.findByIdAndUpdate({_id:followerId}, 
             {
                 $pull:{
-                    followers:followingId
+                    following:followingId
                 }
             },
             {

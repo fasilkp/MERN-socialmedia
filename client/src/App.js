@@ -50,6 +50,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/profile" element={<Login />} />
                 <Route path="/post/:postId" element={<Login />} />
+                <Route path="/user/:userName" element={<Login />} />
                 <Route path="*" element={ <NotFound/> } />
             </Routes>
             }

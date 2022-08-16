@@ -60,9 +60,8 @@
     height: 30px;
 }
 .frnd-btn.remove button{
-
-    border: 1px solid rgb(112, 147, 254);
-    color: rgb(112, 147, 254);
+    background-color: var(--mainColor);
+    color: white;
 
 }
 @media only screen and (max-width: 600px) {
