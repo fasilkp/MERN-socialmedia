@@ -1,6 +1,6 @@
 import multer from "multer";
 
-export default function uploadFile(req, res, next) {
+export default function uploadProfile(req, res, next) {
     const storage=multer.diskStorage({
         destination:(req,file,cb)=>{
            cb(null,"./images/profile-images");
