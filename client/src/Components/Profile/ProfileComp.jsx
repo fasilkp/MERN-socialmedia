@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import "./ProfileComp.css";
-import profileImage from "../../images/profile_user.jpg";
 import { Link } from "react-router-dom";
 import { FiArrowRight } from 'react-icons/fi'
 import AuthContext from "../../context/AuthContext";
@@ -98,7 +97,7 @@ function ProfileComp({ userName }) {
           <div className="profile-btns">
             {
               user.userName === userName ?
-                <button className="profile-btn-full">Edit Profile</button>
+                <Link to="/edit-profile"> <button className="profile-btn-full">Edit Profile</button></Link>
                 :
                 <>
                   <button className="profile-btn">Message</button>

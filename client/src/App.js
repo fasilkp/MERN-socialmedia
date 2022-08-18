@@ -14,6 +14,7 @@ import axios from 'axios'
 import AuthContext from './context/AuthContext'
 import { useEffect } from 'react';
 import NotFound from './Components/NotFound/NotFound';
+import EditProfile from './Pages/EditProfile';
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = 'http://localhost:8080/api';
 
@@ -37,6 +38,7 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/user/:userName" element={<Profile />} />
                 <Route path="/post/:postId" element={<ViewPost />} />
+                <Route path="/edit-profile" element={<EditProfile />} />
                 <Route path="*" element={<NotFound/>} />
             </Routes>
             }
@@ -51,6 +53,7 @@ function App() {
                 <Route path="/profile" element={<Login />} />
                 <Route path="/post/:postId" element={<Login />} />
                 <Route path="/user/:userName" element={<Login />} />
+                <Route path="/edit-profile" element={<Login />} />
                 <Route path="*" element={ <NotFound/> } />
             </Routes>
             }

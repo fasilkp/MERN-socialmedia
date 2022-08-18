@@ -3,8 +3,8 @@ import { followUser, getUser, getUsers, unFollowUser, updateProfilePic} from '..
 import { uploadFileResponse } from '../controllers/postController.js';
 import uploadProfile from '../middlewares/uploadProfile.js'
 import verifyLogin from '../middlewares/verifyLogin.js';
-const router=express.Router()
 
+const router=express.Router()
 const uploadProfilePic=uploadProfile();
 
 router.post("/follow-user",verifyLogin, followUser);
