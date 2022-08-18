@@ -151,6 +151,12 @@
     align-items: center;
     
 }
+.add-comment form{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 .add-comment input{
     width: 90%;
     margin-right: 5px;

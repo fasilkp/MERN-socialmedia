@@ -36,10 +36,9 @@ body{
   text-decoration: none;
   color: black;
 }
-.links:active{
-  color: white;
-  background-color: var(--mainColor);
-}
+/* .links:active{
+  color: black;
+} */
 .extra-height{
   height: 100px;
 }

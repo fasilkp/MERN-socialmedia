@@ -81,7 +81,8 @@ function Post(props) {
       setLiked(false);
     }
   };
-  const addComment = async () => {
+  const addComment = async (e) => {
+    e.preventDefault();
     if(newComment!==""){
       await axios.post("/posts/add-comment", { postId: id, userId: user._id, comment:newComment }).then(res=>{
         if(res.err){
@@ -89,6 +90,7 @@ function Post(props) {
         }
         else{
           setAllComments([ { comment: newComment, userId: user._id, date: new Date() }, ...allComments])
+          setNewComment("");
         }
       })
     }
@@ -187,11 +189,13 @@ function Post(props) {
           &nbsp; comments
         </div>
         <div className="add-comment">
+          <form onSubmit={addComment}>
           <input type="text" placeholder="enter a comment.."
           value={newComment} onChange={(e)=>setNewComment(e.target.value)} />
           <div className="comment-send" onClick={addComment}>
             <MdSend  />
           </div>
+          </form>
         </div>
 
         <div className="post-comments-list">
