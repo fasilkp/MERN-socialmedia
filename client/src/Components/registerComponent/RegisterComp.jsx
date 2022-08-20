@@ -26,7 +26,7 @@ function RegisterComp() {
     const user = await Axios.post("/auth/register", { name, email, password, userName: userName.toLowerCase() });
     if (user.data.register) {
       alert("register successfull");
-      navigate('/login')
+      navigate('/')
     }
     else {
       alert(user.data.message);
@@ -57,7 +57,7 @@ function RegisterComp() {
             value={password} onChange={(e) => {handleChange(e, 'setPassword'); }} />
           <button className="reg-btn" onClick={handleSubmit}>
             {
-              submitLoad ? <BeatLoader size="15" color="white" /> : "Login"
+              submitLoad ? <BeatLoader size="15" color="white" /> : "Register"
             }
           </button>
         </div>

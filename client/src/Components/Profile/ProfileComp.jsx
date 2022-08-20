@@ -46,8 +46,6 @@ function ProfileComp({ userName }) {
     })
   }
 
-
-
   const basePrfURL = "http://localhost:8080/images/profile-images/"
   return (
     <div className="profile">
