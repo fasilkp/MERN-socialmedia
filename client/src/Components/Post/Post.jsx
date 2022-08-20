@@ -13,6 +13,7 @@ import {
   FiArrowLeft,
   FiMoreVertical,
 } from "react-icons/fi";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import removeItem from "../../actions/removeItem";
 import { useEffect } from "react";
@@ -101,7 +102,7 @@ function Post(props) {
         <div className="post-header">
           <div className="post-head">
             <img src={profileImg} alt="profile" />
-            <span>{userId}</span>
+            <span><Link to={"/user/"+userId} className="links">{userId}</Link> </span>
           </div>
           <div className="post-option">
             <Dropdown className="post-option-dropdown">
@@ -152,7 +153,7 @@ function Post(props) {
           <b>{totalLikes?.length}</b> likes
         </div>
         <div className="post-description">
-          <b>{userId}</b>
+          <b><Link to={"/user/"+userId} className="links">{userId}</Link></b>
           <span>{" " + description}</span>
           <br />
           <span>
