@@ -6,7 +6,16 @@
     justify-content: flex-start;
     align-items: center;
     background-color: #fff;
+    position: sticky;
+    top: 0px;
+    left: 0px;
 }
 .Header label{
     padding-left: 10px;
+    padding-top: 3px;
+}
+@media only screen and (max-width: 600px) {
+    .Header{
+        padding-left: 20px;
+    }
 }
