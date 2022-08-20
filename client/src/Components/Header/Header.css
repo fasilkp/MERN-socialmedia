@@ -1,0 +1,12 @@
+.Header{
+    width: 100%;
+    height: 50px;
+    padding-left: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #fff;
+}
+.Header label{
+    padding-left: 10px;
+}

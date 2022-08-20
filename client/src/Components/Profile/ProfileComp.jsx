@@ -90,8 +90,7 @@ function ProfileComp({ userName }) {
           </div>
           <div className="profile-description">
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consequatur
+              {profileUser.bio ? profileUser.bio : "no bio"}
             </p>
           </div>
           <div className="profile-btns">

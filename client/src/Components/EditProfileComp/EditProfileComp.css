@@ -7,7 +7,7 @@
   flex-direction: column;
 }
 .edit-pf-container{
-    height: 80%;
+    height: 90%;
     background-color: #fff;
     width: 500px;
     flex-direction: column;
@@ -50,7 +50,7 @@
     width: 100%;
     flex-direction: column;
 }
-.pf-form-col input{
+.pf-form-col input,.pf-form-col textarea{
     all: unset;
     width: 97%;
     height: 60px;
@@ -59,6 +59,13 @@
     border-bottom: 1.5px solid grey;
     padding-left: 10px;
     background-color: var(--lightblue);
+}
+.pf-form-col textarea{
+    height: 150px;
+    padding-top: 10px;
+}
+.pf-form-col input:focus, .pf-form-col textarea:focus{
+    border-bottom:2px solid var(--mainColor);
 }
 .pf-form-col button{
     height: 50px;

@@ -19,6 +19,7 @@ const UserSchema = new mongoose.Schema({
     },
     image:{
         type:String,
+        default:"defaultImage.jpg"
     },
     followers: { 
         type: Array, 
@@ -28,6 +29,11 @@ const UserSchema = new mongoose.Schema({
         type: Array, 
         default: [] 
     },
+    bio:{
+        type: String,
+        default:""
+    },
+    joinedAt: { type: Date, default: Date.now },
 })
 
 const UserModel=mongoose.model("Users", UserSchema)

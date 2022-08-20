@@ -16,6 +16,8 @@ function EditProfileComp() {
           <input type="text" placeholder="name..." />
           <label htmlFor="">Email</label>
           <input type="text" placeholder="email..." />
+          <label htmlFor="">Bio</label>
+          <textarea placeholder="About You..." />
           <button>
           Save
           </button>

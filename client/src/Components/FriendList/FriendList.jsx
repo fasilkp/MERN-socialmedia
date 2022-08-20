@@ -41,8 +41,8 @@ function FriendList({ friendsList }) {
     <div className="friend-list">
       {
         list?.map((item, index) => {
-          return <Link to={"/user/"+item.userName} className="links friend">
-          <div className="single-frnd" key={index}>
+          return <Link to={"/user/"+item.userName} key={index} className="links friend">
+          <div className="single-frnd" >
             <div className="fr-img-details">
               <div className="fr-img">
                 <img
