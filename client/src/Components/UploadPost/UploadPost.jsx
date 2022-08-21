@@ -29,8 +29,8 @@ function UploadPost() {
     setImage(newImage);
   }, [aspectRatio]);
   const [image, setImage] = useState(null);
-  const [newImage, setNewImage] = useState(null);
   const [cropData, setCropData] = useState("#");
+  const [newImage, setNewImage] = useState(null);
   const [cropper, setCropper] = useState();
   const [caption, setCaption] = useState("");
   const onChange = (e) => {
