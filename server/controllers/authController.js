@@ -108,6 +108,9 @@ export const checkLoggedIn = async (req, res) => {
       { _id: verifiedJWT.id },
       { password: 0 }
     );
+    if(!user){
+      return res.json({ loggedIn: false, error: "no token" });
+    }
     return res.json({ loggedIn: true, user });
   } catch (err) {
     res.json({ loggedIn: false, error: err });

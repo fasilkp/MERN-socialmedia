@@ -59,11 +59,12 @@
     font-size: 1.3rem;
 }
 .profile-description{
-    color: grey;
+    color: rgba(0, 0, 0, 0.75);
     margin-bottom: 50px;
     width: 100%;
     display: flex;
     justify-content: center;
+    font-weight: 450;
 }
 .profile-description p{
     width: 80%;

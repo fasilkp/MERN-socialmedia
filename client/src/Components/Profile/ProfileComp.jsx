@@ -118,13 +118,6 @@ function ProfileComp({ userName }) {
             <h3>posts <FiArrowRight></FiArrowRight> </h3>
           </div>
           <div className="pf-posts-list">
-            {/* <Link to="/viewpost/profile_user.jpg/markjoe/MarkJoe/profile_user.jpg"
-            state={{ profileImage:profileImage, userId:"markjoe", userName:"Mark Joe", postImage:"/images/profile_user.jpg"  }} 
-            className="links">
-              <div
-              className="pf-post"
-              style={{ backgroundImage: `url("/images/profile_user.jpg")` }}
-            ></div></Link> */}
             {
               allPosts.map((obj, index) => {
                 return <Link to={"/post/" + obj._id} key={index} className="links">
