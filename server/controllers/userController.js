@@ -75,9 +75,20 @@ export const getUsers=async(req, res)=>{
         }});
         res.json(users)        
 }
-export const updateProfilePic = async (req, res) => {
-    const { profileSrc, id } = req.body;
-    await UserModel.findByIdAndUpdate({_id:id},{$set:{image:postSrc}},
+export const uploadProfilePicResponse = (req, res) => {
+    if (!req.file) {
+      return res.status(500).json({
+        err:true
+      });
+    }
+    return res.status(201).json({
+      err: false,
+      fileName: req.file.filename,
+    });
+  };
+export const updateProfileDetails = async (req, res) => {
+    const { profileSrc, id, name , bio } = req.body;
+    await UserModel.findByIdAndUpdate({_id:id},{$set:{image:postSrc, name, bio}},
         {
             function(err){
                 if(err) return res.status(500).json({err:true, error:err, message:"profile update failed"});
@@ -85,5 +96,4 @@ export const updateProfilePic = async (req, res) => {
         });
         return res.status(200).json({err:false,message:"profile update successfull"});
   };
-
 

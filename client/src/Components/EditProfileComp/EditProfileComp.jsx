@@ -12,7 +12,6 @@ function EditProfileComp() {
       files = e.dataTransfer.files;
     } else if (e.target) {
       files = e.target.files;
-      
     }
     const reader = new FileReader();
     reader.onload = () => {
@@ -20,6 +19,36 @@ function EditProfileComp() {
     };
     reader.readAsDataURL(files[0]);
   };
+  const submitHandler = async () => {
+    let imageURI
+    if (typeof cropper !== "undefined") {
+      setCropData(cropper.getCroppedCanvas().toDataURL());
+          imageURI= cropper.getCroppedCanvas().toDataURL('image/jpg',1)
+    }
+    const blob= dataURItoBlob(imageURI);
+    
+    const data= new FormData();
+    data.append('image', blob)
+    // await axios.post('/posts/upload-file', data ).then(async uploadFile=>{
+    // if(!uploadFile.data.success) alert("something went wrong")
+    // if(uploadFile.data.success){
+    //   await axios.post('/posts/upload-post',{
+    //     postSrc:uploadFile.data.fileName,
+    //     description:caption, 
+    //     userId:user._id,
+    //     userName:user.userName,
+    //     name:user.name
+    //   }).then((result)=>{
+    //     if(result.data.success) {
+    //       alert("successfully uploaded")
+    //       navigate("/")
+    //     }
+    //     else alert("upoad failed");
+    //     setSubmitLoad(false)   
+    //   })
+    // }
+    // })
+   }
   return (
     <div className='EditProfileComp'>
       <div className="edit-pf-container">
