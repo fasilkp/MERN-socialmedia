@@ -1,10 +1,20 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState,useEffect, useContext} from 'react'
 import { Cropper } from 'react-cropper';
+import dataURItoBlob from '../../actions/dataURItoBlob'
+import { useNavigate } from 'react-router-dom';
 import './EditProfileComp.css'
+import AuthContext from '../../context/AuthContext';
+import axios from 'axios';
 function EditProfileComp() {
   const [image, setImage] = useState(null);
+  const {user} = useContext(AuthContext)
+  const navigate =useNavigate();
+  const [newImage, setNewImage] = useState(null);
   const [cropData, setCropData] = useState("#");
   const [cropper, setCropper] = useState();
+  const [name, setName]=useState(user.name)
+  const [bio, setBio]=useState(user?.bio)
+  const [blobImage, setBlobImage]=useState(null)
   const onChange = (e) => {
     e.preventDefault();
     let files;
@@ -19,7 +29,8 @@ function EditProfileComp() {
     };
     reader.readAsDataURL(files[0]);
   };
-  const submitHandler = async () => {
+  const imageHandle = async (e) => {
+    e.preventDefault();
     let imageURI
     if (typeof cropper !== "undefined") {
       setCropData(cropper.getCroppedCanvas().toDataURL());
@@ -28,32 +39,38 @@ function EditProfileComp() {
     const blob= dataURItoBlob(imageURI);
     
     const data= new FormData();
-    data.append('image', blob)
-    // await axios.post('/posts/upload-file', data ).then(async uploadFile=>{
-    // if(!uploadFile.data.success) alert("something went wrong")
-    // if(uploadFile.data.success){
-    //   await axios.post('/posts/upload-post',{
-    //     postSrc:uploadFile.data.fileName,
-    //     description:caption, 
-    //     userId:user._id,
-    //     userName:user.userName,
-    //     name:user.name
-    //   }).then((result)=>{
-    //     if(result.data.success) {
-    //       alert("successfully uploaded")
-    //       navigate("/")
-    //     }
-    //     else alert("upoad failed");
-    //     setSubmitLoad(false)   
-    //   })
-    // }
-    // })
+    data.append('image', blob);
+    await axios.post('/user/upload-profile-pic', data ).then(async uploadFile=>{
+    if(uploadFile.data.err) alert("something went wrong")
+    else{
+      setNewImage(imageURI)
+      setBlobImage(blob)
+      setImage(null)
+    }
+    })
+   }
+   const submitHandle=async(e)=>{
+    e.preventDefault();
+      await axios.post('/user/update-profile-details',{
+        profileSrc: newImage ? user._id+".jpg" : null,
+        bio:bio, 
+        name:name,
+        id:user._id
+      }).then((result)=>{
+        if(!result.data.err) {
+          alert("successfully uploaded")
+          navigate("/user/"+user.userName)
+        }
+        else {
+          alert("upoad failed")
+        }; 
+      })
    }
   return (
     <div className='EditProfileComp'>
       <div className="edit-pf-container">
         <div className="pf-img-col">
-          <img src="http://localhost:8080/images/profile-images/defaultImage.jpg" alt=""/>
+          <img src={(newImage ? newImage : "http://localhost:8080/images/profile-images/"+ user.image)} alt=""/>
           <label htmlFor="imageInput">
             change profile picture
           </label>
@@ -61,12 +78,12 @@ function EditProfileComp() {
         </div>
         <div className="pf-form-col">
           <label htmlFor="">Name</label>
-          <input type="text" placeholder="name..." />
-          <label htmlFor="">Email</label>
-          <input type="text" placeholder="email..." />
-          <label htmlFor="">Bio</label>
-          <textarea placeholder="About You..." />
-          <button>
+          <input type="text" placeholder="name..." value={name}
+          onChange={(e)=>setName(e.target.value)}/>
+          <label htmlFor="" >Bio</label>
+          <textarea placeholder="About You..." value={bio}
+          onChange={(e)=>setBio(e.target.value)} />
+          <button onClick={submitHandle}>
           Save
           </button>
         </div>
@@ -97,7 +114,8 @@ function EditProfileComp() {
                   guides={true}
                 />
             <div className="edit-pf-btn">
-              <button>Done</button>
+              <button onClick={()=>setImage(null)}>Cancel</button>
+              <button onClick={imageHandle}>Done</button>
             </div>
             </div>
           </div>

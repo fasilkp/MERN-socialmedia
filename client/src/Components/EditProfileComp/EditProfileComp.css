@@ -113,14 +113,33 @@
     align-items: center;
 }
 .edit-pf-btn button{
-    width: 100px;
-    height: 50px;
+    width: 90px;
+    height: 40px;
     border: none;
     outline: none;
     background-color: var(--mainColor);
     color: white;
     margin-top: 10px;
     border-radius: 5px;
+    font-size: 1.2rem;
+    transition: .2s;
+}
+.edit-pf-btn button:hover{
+    background-color:rgb(51, 51, 255);
+    border: 1px solid rgb(51, 51, 255);
+    color: white;
+}
+.edit-pf-btn button:first-child{
+    margin-right: 10px;
+    background-color: #fff;
+    border: 1px solid var(--mainColor);
+    color: var(--mainColor);
+}
+.edit-pf-btn button:first-child:hover{
+    background-color: black;
+    border: 1px solid black;
+
+    color: white;
 }
 @media only screen and (max-width: 600px) {
     .edit-pf-container{

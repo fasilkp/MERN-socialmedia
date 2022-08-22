@@ -6,7 +6,7 @@ export default function uploadProfile(req, res, next) {
            cb(null,"./images/profile-images");
         },
         filename:(req,file,cb)=>{
-           cb(null,Date.now()+file.originalname+".jpg");
+           cb(null,req.user.id+".jpg");
         }
        });
       

@@ -52,7 +52,7 @@ function ProfileComp({ userName }) {
       <div className="profile-wrapper">
         <div className="profile-section">
           <div className="profile-image">
-            <img src={basePrfURL + user.image} alt="" />
+            <img src={basePrfURL + profileUser?.image} alt="" />
           </div>
           <div className="profile-name">
             <h2>{profileUser?.name}</h2>
@@ -94,7 +94,7 @@ function ProfileComp({ userName }) {
           <div className="profile-btns">
             {
               user.userName === userName ?
-                <Link to="/edit-profile"> <button className="profile-btn-full">Edit Profile</button></Link>
+                <Link to="/edit-profile" > <button className="profile-btn-full">Edit Profile</button></Link>
                 :
                 <>
                   <button className="profile-btn">Message</button>

@@ -11,7 +11,7 @@ router.post("/unfollow-user",verifyLogin, unFollowUser);
 router.post("/get-user",verifyLogin, getUser);
 router.post("/get-users",verifyLogin, getUsers);
 router.post("/upload-profile-pic",verifyLogin, uploadProfilePic.single('image'), uploadProfilePicResponse);
-router.post("/update-profile",verifyLogin, updateProfileDetails);
+router.post("/update-profile-details",verifyLogin, updateProfileDetails);
 
 
 export default router;

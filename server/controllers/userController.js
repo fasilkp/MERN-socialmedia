@@ -61,13 +61,6 @@ export const unFollowUser=async(req, res)=>{
             })
         return res.status(201).json({success:true})
 }
-// export const getFriendsList=async(req, res)=>{
-//         const {Id} = req.body;
-//         const users= await UserModel.find({_id:{$in:Ids}},{userName:1, image:1}, {function(err){
-//             return res.json({error:err})
-//         }});
-//         res.json(users)        
-// }
 export const getUsers=async(req, res)=>{
         const {Ids} = req.body;
         const users= await UserModel.find({_id:{$in:Ids}},{userName:1, image:1, name:1}, {function(err){
@@ -76,6 +69,7 @@ export const getUsers=async(req, res)=>{
         res.json(users)        
 }
 export const uploadProfilePicResponse = (req, res) => {
+    console.log(req)
     if (!req.file) {
       return res.status(500).json({
         err:true
@@ -88,12 +82,23 @@ export const uploadProfilePicResponse = (req, res) => {
   };
 export const updateProfileDetails = async (req, res) => {
     const { profileSrc, id, name , bio } = req.body;
-    await UserModel.findByIdAndUpdate({_id:id},{$set:{image:postSrc, name, bio}},
+    if(profileSrc){
+        await UserModel.findByIdAndUpdate({_id:id},{$set:{image:profileSrc, name, bio}},
         {
             function(err){
                 if(err) return res.status(500).json({err:true, error:err, message:"profile update failed"});
             }
         });
         return res.status(200).json({err:false,message:"profile update successfull"});
+    }
+    else{
+        await UserModel.findByIdAndUpdate({_id:id},{$set:{name, bio}},
+            {
+                function(err){
+                    if(err) return res.status(500).json({err:true, error:err, message:"profile update failed"});
+                }
+            });
+            return res.status(200).json({err:false,message:"profile update successfull"});
+    }
   };
 

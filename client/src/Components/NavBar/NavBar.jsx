@@ -130,7 +130,7 @@ function NavBar(props) {
                   <FontAwesomeIcon icon={faUser} /> &nbsp;&nbsp; Profile
                 </Dropdown.Item>
               </Link>
-              <Link to="/profile" className="links">
+              <Link to={"/edit-profile"} state={{profileUser:user}} className="links">
                 <Dropdown.Item href="/profile" className="nav-dropdown-item">
                   <FontAwesomeIcon icon={faEdit} /> &nbsp;&nbsp; Edit Profile
                 </Dropdown.Item>
