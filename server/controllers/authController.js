@@ -36,7 +36,7 @@ export const registerUser = async (req, res) => {
         sameSite: "none",
       })
       .json({
-        login: true,
+        register: true,
         message: "registration successfull",
         user: user._id,
       });

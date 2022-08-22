@@ -26,7 +26,8 @@ function RegisterComp() {
     const user = await Axios.post("/auth/register", { name, email, password, userName: userName.toLowerCase() });
     if (user.data.register) {
       alert("register successfull");
-      navigate('/')
+      navigate('/edit-profile')
+      window.location.reload();
     }
     else {
       alert(user.data.message);
