@@ -214,7 +214,7 @@ function Post(props) {
                 <div className="post-comment-profile">
                   <img src={baseProfilImgURL + "defaultImage.jpg"} alt="" />
                   <div className="name-section">
-                  <Link to={"/user/"+userDetails[obj.userId]} className="links+"><b>{userDetails[obj.userId]}</b></Link>
+                  <Link to={"/user/"+userDetails[obj.userId]} className="links"><b>{userDetails[obj.userId]}</b></Link>
                   <span>
                     {new Date(obj.date).toLocaleDateString('pt-PT')}
                   </span>

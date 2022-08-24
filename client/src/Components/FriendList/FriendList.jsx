@@ -5,20 +5,29 @@ import "./FriendList.css";
 import removeItem from "../../actions/removeItem";
 import {Link} from 'react-router-dom'
 
-function FriendList({ friendsList }) {
+function FriendList({ userName, followers, following }) {
   const { user } = useContext(AuthContext)
-  const userFollowings = user.following;
   const baseProfilImgURL = "http://localhost:8080/images/profile-images/";
   const [list, setList] = useState([])
   useEffect(() => {
     const fetchData = async () => {
       setList([])
-      await axios.post('/user/get-users', { Ids: friendsList }).then(response => {
-        setList(response.data)
-      })
+      console.log(userName)
+      const profileUser=await axios.post('/user/get-user', {userName:userName});
+      if(followers){
+        await axios.post('/user/get-users', { Ids: profileUser.data.user.followers }).then(response => {
+          setList(response.data)
+        })
+      }
+      if(following){
+        await axios.post('/user/get-users', { Ids: profileUser.data.user.following }).then(response => {
+          setList(response.data)
+        })
+      }
     }
     fetchData();
-  }, [friendsList])
+    console.log(list)
+  }, [followers])
   // const followUser = async (id) => {
   //   await axios.post('/user/follow-user', { followerId: user._id, followingId: id }).then(response => {
   //     if (response.data.err) alert("something went wrong ");

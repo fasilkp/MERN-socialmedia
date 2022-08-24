@@ -12,7 +12,7 @@ function Friends() {
           chat:"rgb(152, 200, 192)",
           add:"rgb(152, 200, 192)",
           }}></NavBar>
-    <FriendsComp friendsList={location.state.list} selectBtn={location.state.selectedBtn}/>
+    <FriendsComp userName={location.state.userName} selectBtn={location.state.selectedBtn}/>
     </div>
   )
 }
