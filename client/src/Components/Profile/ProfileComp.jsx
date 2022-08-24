@@ -87,9 +87,9 @@ function ProfileComp({ userName }) {
             </Link>
           </div>
           <div className="profile-description">
-            <p>
+            <pre>
               {profileUser.bio ? profileUser.bio : "no bio"}
-            </p>
+            </pre>
           </div>
           <div className="profile-btns">
             {

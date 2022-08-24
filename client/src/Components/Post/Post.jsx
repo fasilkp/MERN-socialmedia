@@ -39,21 +39,29 @@ function Post(props) {
   const [totalLikes, setTotalLikes] = useState(likes);
   const [commentsHide, setCommentsHide] = useState(true);
   const [newComment, setNewComment] = useState("");
-  const [commentUserIds, setCommentUserIds] = useState([]);
+  const [userDetails, setUserDetails]=useState({})
   const [allComments, setAllComments]=useState(comments.sort(function(a,b){
     return new Date(b.date) - new Date(a.date);
   }))
-
   useEffect(()=>{
-    setCommentUserIds([]);
+    let commentIds=[];
+    let userDet={};
     allComments.forEach((item)=>{
-      setCommentUserIds(previousArray => [...previousArray, item.userId])
+      if(commentIds.indexOf(item.userId)<0){
+        commentIds = [...commentIds, item.userId]
+      }
+    })
+    console.log(commentIds)
+    axios.post('/user/get-users', {Ids:commentIds}).then((response)=>{
+      console.log(response.data)
+      response.data.forEach(item=>{
+        userDet={...userDet, [item._id]:item.userName}
+      })
+      console.log(userDet)
+      setUserDetails(userDet)
     })
     
-  },[])
-  useEffect(()=>{
-    
-  },[commentUserIds])
+  },[allComments])
 
   const deletePost = async () => {
     if (window.confirm("Do you really want to Delete this post?")) {
@@ -205,10 +213,12 @@ function Post(props) {
               <div className="post-single-comment">
                 <div className="post-comment-profile">
                   <img src={baseProfilImgURL + "defaultImage.jpg"} alt="" />
-                  <b>{obj.userId}</b>
+                  <div className="name-section">
+                  <Link to={"/user/"+userDetails[obj.userId]} className="links+"><b>{userDetails[obj.userId]}</b></Link>
                   <span>
                     {new Date(obj.date).toLocaleDateString('pt-PT')}
                   </span>
+                  </div>
                 </div>
                 <div className="post-comment-description">
                   <span>{obj.comment}</span>

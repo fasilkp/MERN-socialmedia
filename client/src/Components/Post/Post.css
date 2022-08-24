@@ -119,6 +119,12 @@
     align-items: center;
     margin-top: 10px;
 }
+.post-comment-profile .name-section{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 5px;
+}
 .post-comment-profile img{
     width: 40px;
     height: 40px;
@@ -127,11 +133,14 @@
 }
 .post-comment-profile b{
     margin-right: 6px;
+    font-weight: 500;
+    cursor: pointer;
 }
 .post-comment-description{
     padding-left: 45px;
     margin-bottom: 10px;
     max-width: 100%;
+    margin-top: -10px;
     color: rgb(57, 57, 57);
 }
 .comment-like-section{
