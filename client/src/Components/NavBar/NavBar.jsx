@@ -55,14 +55,19 @@ function NavBar(props) {
               </Link>
             </div>
             <div className="nav-items" style={{ width: `${status.statusbar}` }}>
-            <Link to="/friends" className="links" state={{ list:{followers: user.followers, followings: user.following}, selectedBtn: {
-                followers: "frnd-btns",
-                following: "frnd-btns selected"
-              } }}>
+            <Link to="/friends"
+              className="links"
+              state={{
+                userName:user.userName,
+                selectedBtn: {
+                  followers: "frnd-btns selected",
+                  following: "frnd-btns",
+                },
+              }}>
                 <FontAwesomeIcon
                   icon={faUserFriends}
                   className="nav-icons"
-                  style={{ color: `${friends}` }}
+                  style={{ color: `${friends}` }} 
                 />
               </Link>
             </div>
