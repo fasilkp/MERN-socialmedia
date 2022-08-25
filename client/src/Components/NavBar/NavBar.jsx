@@ -32,6 +32,19 @@ function NavBar(props) {
     alert("logged Out Successfully");
     updateLogin();
   }
+  const [searchInput, setSearchInput]=useState("");
+  const [usersList, setUsersList]=useState([]);
+  const handleSearchInput=async (e)=>{
+    setSearchInput(e.target.value);
+    if(e.target.value!==""){
+      const response=await axios.post('/user/get-users-regex', {regex:searchInput})
+      setUsersList(response.data)
+      console.log(response.data)
+    }
+    else{
+      setUsersList([])
+    }
+  }
   return (
     <div className="Navbar">
       <div className="container nav-body">
@@ -96,13 +109,14 @@ function NavBar(props) {
               style={{ width: `${status.searchBar}` }}
             >
               <div className="nav-search-input">
-                <input type="text" list="browsers" placeholder="Search for friends ..." />
-                <datalist id="browsers">
-                  <option value="Edge" />
-                  <option value="Firefox" />
-                  <option value="Chrome" />
-                  <option value="Opera" />
-                  <option value="Safari" />
+                <input type="text" list="UserList" placeholder="Search for friends ..."
+                value={searchInput} onChange={handleSearchInput} />
+                <datalist id="UserList">
+                  {
+                    usersList.map((obj, index)=>{
+                      return <Link to={"/user/"+obj.userName} key={index}><option value={obj.userName} /></Link> 
+                    })
+                  }
                 </datalist>
               </div>
               <div className="search-icons">
