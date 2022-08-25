@@ -197,9 +197,9 @@
         margin-bottom: 0px;
         font-size: 0rem;
     }
-    .pf-posts-list{
+    /* .pf-posts-list{
         justify-content: center;
-    }
+    } */
     .pf-post{
         flex: 25%;
         min-width: 125px;

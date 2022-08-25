@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import AuthContext from "../../context/AuthContext";
 import axios from "axios";
+import SearchComp from "../SearchComp/SearchComp";
 
 
 function NavBar(props) {
@@ -33,18 +34,9 @@ function NavBar(props) {
     updateLogin();
   }
   const [searchInput, setSearchInput]=useState("");
-  const [usersList, setUsersList]=useState([]);
-  const handleSearchInput=async (e)=>{
-    setSearchInput(e.target.value);
-    if(e.target.value!==""){
-      const response=await axios.post('/user/get-users-regex', {regex:searchInput})
-      setUsersList(response.data)
-      console.log(response.data)
-    }
-    else{
-      setUsersList([])
-    }
-  }
+  const [showSearch, setShowSearch]=useState(false);
+
+  
   return (
     <div className="Navbar">
       <div className="container nav-body">
@@ -83,14 +75,19 @@ function NavBar(props) {
                 />
               </Link>
             </div>
-            <div className="nav-items" style={{ width: `${status.statusbar}` }}>
-              <Link to="/chat">
-                <FontAwesomeIcon
+            <div className="nav-items mobile-search" style={{ width: `${status.statusbar}` }}>
+                {/* <FontAwesomeIcon
                   icon={faMessage}
                   className="nav-icons"
                   style={{ color: `${chat}` }}
-                />
-              </Link>
+                /> */}
+                <FontAwesomeIcon
+                icon={faSearch}
+                className="nav-icons"
+                onClick={() => {
+                  setShowSearch(!showSearch)
+                }}
+              />
             </div>
             <div
               className="nav-items search"
@@ -100,6 +97,7 @@ function NavBar(props) {
                 icon={faSearch}
                 className="nav-icons"
                 onClick={() => {
+                  setShowSearch(true)
                   setStatus({ statusbar: "0px", searchBar: "500px" });
                 }}
               />
@@ -110,13 +108,8 @@ function NavBar(props) {
             >
               <div className="nav-search-input">
                 <input type="text" list="UserList" placeholder="Search for friends ..."
-                value={searchInput} onChange={handleSearchInput} />
+                value={searchInput} onChange={(e)=>setSearchInput(e.target.value)} />
                 <datalist id="UserList">
-                  {
-                    usersList.map((obj, index)=>{
-                      return <Link to={"/user/"+obj.userName} key={index}><option value={obj.userName} /></Link> 
-                    })
-                  }
                 </datalist>
               </div>
               <div className="search-icons">
@@ -127,6 +120,7 @@ function NavBar(props) {
                   icon={faXmark}
                   className="x-icon"
                   onClick={() => {
+                    setShowSearch(false)
                     setStatus({ statusbar: "500px", searchBar: "0px" });
                   }}
                 />
@@ -167,6 +161,10 @@ function NavBar(props) {
           </Dropdown>
         </div>
       </div>
+      {
+        showSearch &&
+        <SearchComp input={searchInput} setShowSearch={setShowSearch}/>
+      }
     </div>
   );
 }

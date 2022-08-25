@@ -120,7 +120,9 @@
     background-color: var(--mainColor);
     color: white;
 }
-
+.nav-items.mobile-search{
+    display: none;
+}
 @keyframes anime {
     0%{
         transform: rotate(-8deg);
@@ -168,6 +170,9 @@
     .nav-profile img{
         width: 35px;
         height: 35px;
+    }
+    .nav-items.mobile-search{
+        display: block;
     }
   
 
