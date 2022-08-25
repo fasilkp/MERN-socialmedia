@@ -13,7 +13,6 @@ import {
   faEdit,
 } from "@fortawesome/free-solid-svg-icons";
 import "./NavBar.css";
-import ProfileImage from "../../images/profile_user.jpg";
 import { Link } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import AuthContext from "../../context/AuthContext";
@@ -97,7 +96,14 @@ function NavBar(props) {
               style={{ width: `${status.searchBar}` }}
             >
               <div className="nav-search-input">
-                <input type="text" placeholder="Search for friends ..." />
+                <input type="text" list="browsers" placeholder="Search for friends ..." />
+                <datalist id="browsers">
+                  <option value="Edge" />
+                  <option value="Firefox" />
+                  <option value="Chrome" />
+                  <option value="Opera" />
+                  <option value="Safari" />
+                </datalist>
               </div>
               <div className="search-icons">
                 <div className="nav-search-icon">

@@ -101,4 +101,10 @@ export const updateProfileDetails = async (req, res) => {
             return res.status(200).json({err:false,message:"profile update successfull"});
     }
   };
-
+  export const getUsersWithRegex=async(req, res)=>{
+    const {regex} = req.body;
+    const users= await UserModel.find({userName : {$regex : regex}},{userName:1, image:1, name:1}, {function(err){
+        return res.json({err:true, error:err})
+    }});
+    res.json(users)        
+}

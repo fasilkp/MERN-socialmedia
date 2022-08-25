@@ -41,7 +41,7 @@ function RegisterComp() {
       </div>
       <div className="register-box">
         <div className="reg-header">
-          <h2>Welcome to Sociam</h2>
+          <h2>Welcome to Crowdly</h2>
           <span>Register Your Account</span>
         </div>
         <div className="reg-body">

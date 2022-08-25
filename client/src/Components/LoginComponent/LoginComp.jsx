@@ -37,7 +37,7 @@ function LoginComp() {
       </div>
       <div className="register-box">
         <div className="reg-header">
-          <h2>Welcome to Sociam</h2>
+          <h2>Welcome to Crowdly</h2>
           <span>Login into your Account</span>
         </div>
         <div className="reg-body">
