@@ -8,7 +8,7 @@ import AuthContext from "../../context/AuthContext";
 function NewsFeed() {
     const [allPosts, setAllPosts]=useState([])
     const {user}=useContext(AuthContext)
-    const baseImageURL="http://localhost:8080/images/postImages/"
+    const baseImageURL="https://crowdlybackend.herokuapp.com/images/postImages/"
   useEffect(()=>{
     try{
     const fetchData = async()=>{
@@ -36,7 +36,7 @@ function NewsFeed() {
           allPosts.map((post, index)=>{
             return  <Post
                     key={index}
-                    profileImg={"http://localhost:8080/images/profile-images/defaultImage.jpg"}
+                    profileImg={"https://crowdlybackend.herokuapp.com/images/profile-images/defaultImage.jpg"}
                     userId={post.userName}
                     postImage={baseImageURL+post.postSrc}
                     postSrc={post.postSrc}

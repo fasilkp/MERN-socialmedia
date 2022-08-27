@@ -49,7 +49,7 @@ function SearchComp({ input, setShowSearch }) {
           return <Link to={"/user/" + obj.userName} key={index} className="links" onClick={hanldeSearchBox}>
             <div className="search-list-item" >
               <img
-                src={"http://localhost:8080/images/profile-images/"+obj.image}
+                src={"https://crowdlybackend.herokuapp.com/images/profile-images/"+obj.image}
                 alt=""
               />
               <div className="search-list-details">

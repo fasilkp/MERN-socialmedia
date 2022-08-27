@@ -19,7 +19,7 @@ import removeItem from "../../actions/removeItem";
 import { useEffect } from "react";
 
 function Post(props) {
-  const baseProfilImgURL = "http://localhost:8080/images/profile-images/";
+  const baseProfilImgURL = "https://crowdlybackend.herokuapp.com/images/profile-images/";
   const {
     profileImg,
     description,

@@ -10,7 +10,7 @@ function ProfileComp({ userName }) {
   const [allPosts, setAllPosts] = useState([]);
   const [reload, setReload] = useState(true);
   const [profileUser, setProfileUser] = useState({});
-  const baseImgUrl = "http://localhost:8080/images/postImages/";
+  const baseImgUrl = "https://crowdlybackend.herokuapp.com/images/postImages/";
   useEffect(() => {
     async function fetchData() {
       await axios
@@ -57,7 +57,7 @@ function ProfileComp({ userName }) {
       });
   };
 
-  const basePrfURL = "http://localhost:8080/images/profile-images/";
+  const basePrfURL = "https://crowdlybackend.herokuapp.com/images/profile-images/";
   return (
     <div className="profile">
       <div className="profile-wrapper">

@@ -23,7 +23,9 @@ app.use(
     credentials: true,
   })
 );
-
+app.get('/', (req, res)=>{
+  res.send("app running")
+})
 // routes
 app.use("/api/posts", postRoutes);
 app.use("/api/auth", authRoutes);

@@ -16,7 +16,7 @@ import { useEffect } from 'react';
 import NotFound from './Components/NotFound/NotFound';
 import EditProfile from './Pages/EditProfile';
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = 'http://localhost:8080/api';
+axios.defaults.baseURL = 'https://crowdlybackend.herokuapp.com/api';
 
 function App() {
   const {loggedIn, updateLogin}=useContext(AuthContext);

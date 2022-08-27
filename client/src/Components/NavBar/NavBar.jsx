@@ -23,7 +23,7 @@ import SearchComp from "../SearchComp/SearchComp";
 function NavBar(props) {
   const {updateLogin, user}=useContext(AuthContext); 
   const { home, chat, friends, add } = props.clicked;
-  const basePrfURL="http://localhost:8080/images/profile-images/"
+  const basePrfURL="https://crowdlybackend.herokuapp.com/images/profile-images/"
   const [status, setStatus] = useState({
     searchBar: "0px",
     statusbar: "500px",

@@ -10,7 +10,7 @@ function ViewPost() {
   const { postId } = useParams();
   const {user}=useContext(AuthContext);
   const [post, setPost]=useState({})
-  const baseImageURL="http://localhost:8080/images/postImages/"
+  const baseImageURL="https://crowdlybackend.herokuapp.com/images/postImages/"
   useEffect(() => {
     const fetchData = async () => {
       await axios.get("/posts/post", { params: { postId: postId } }).then(result=>{
@@ -38,7 +38,7 @@ function ViewPost() {
       {
         post.userId && 
         <Post
-                    profileImg={"http://localhost:8080/images/profile-images/defaultImage.jpg"}
+                    profileImg={"https://crowdlybackend.herokuapp.com/images/profile-images/defaultImage.jpg"}
                     userId={post.userName}
                     postImage={baseImageURL+post.postSrc}
                     viewpost={false}

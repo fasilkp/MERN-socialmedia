@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom'
 
 function FriendList({ userName, followers, following }) {
   const { user } = useContext(AuthContext)
-  const baseProfilImgURL = "http://localhost:8080/images/profile-images/";
+  const baseProfilImgURL = "https://crowdlybackend.herokuapp.com/images/profile-images/";
   const [list, setList] = useState([])
   useEffect(() => {
     const fetchData = async () => {
