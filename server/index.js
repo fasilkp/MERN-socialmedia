@@ -17,14 +17,12 @@ app.use(cookieParser());
 app.use('/images', express.static('images'));
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-    ],
+    origin: ["https://crowdly.netlify.app", "http://localhost:3000"],
     credentials: true,
   })
 );
 app.get('/', (req, res)=>{
-  res.send("app running")
+  res.send("app running successfull")
 })
 // routes
 app.use("/api/posts", postRoutes);

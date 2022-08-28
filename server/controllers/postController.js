@@ -58,7 +58,7 @@ export const deletePost = async (req, res) => {
       return res.json({ err: true, error: err, message: "mongoose err" });
     else{
         unlink('images/postImages/'+postSrc, (err) => {
-            if (err) throw err;
+            // if (err) throw err;
             console.log('successfully deleted /tmp/hello');
           });
         return res.json({ message: result });

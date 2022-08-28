@@ -5,8 +5,10 @@ import { FiArrowRight } from "react-icons/fi";
 import AuthContext from "../../context/AuthContext";
 import { useEffect } from "react";
 import axios from "axios";
+import Loader from "../Loader/Loader";
 function ProfileComp({ userName }) {
   const { user } = useContext(AuthContext);
+  const [load, setLoad]=useState({initial:true})
   const [allPosts, setAllPosts] = useState([]);
   const [reload, setReload] = useState(true);
   const [profileUser, setProfileUser] = useState({});
@@ -17,6 +19,7 @@ function ProfileComp({ userName }) {
         .get("/posts/profile-posts", { params: { userName } })
         .then((response) => {
           setAllPosts(response.data);
+          setLoad({...load, initial:false})
         });
       await axios.post("/user/get-user", { userName }).then((response) => {
         if (response.data.err) alert("something went");
@@ -158,6 +161,9 @@ function ProfileComp({ userName }) {
           </div>
         </div>
       </div>
+      {
+        load.initial && <Loader type="FadeLoader"/>
+      }
     </div>
   );
 }
