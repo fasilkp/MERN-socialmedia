@@ -3,16 +3,21 @@ import "./SearchComp.css";
 import axios from "axios";
 import { BiArrowBack, BiX } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import InsideLoader from "../InsideLoader/InsideLoader";
 function SearchComp({ input, setShowSearch }) {
   const [searchInput, setSearchInput] = useState(input);
+  const [load, setLoad]=useState({change:false})
   const [usersList, setUsersList] = useState([]);
   useEffect(() => {
     const fetchData = async (e) => {
         if(input!==""){
+            setLoad({...load, change:true})
             const response = await axios.post("/user/get-users-regex", {
               regex:input,
             });
             setUsersList(response.data);
+            setLoad({...load, change:false})
+
         }
             
     };
@@ -41,10 +46,16 @@ function SearchComp({ input, setShowSearch }) {
             type="text" 
             value={searchInput}
             placeholder="Search users..."
-            onChange={(e) => setSearchInput(e.target.value)}
+            onChange={(e) => setSearchInput(e.target.value.toLowerCase())}
           />
           <BiX className="icon close" onClick={()=>setShowSearch(false)} />
         </div>
+        {
+        load.change &&
+         <div className="search-list-item" >
+          <InsideLoader type="BeatLoader" ></InsideLoader>
+         </div>
+        }
         {usersList.map((obj, index) => {
           return <Link to={"/user/" + obj.userName} key={index} className="links" onClick={hanldeSearchBox}>
             <div className="search-list-item" >
@@ -59,6 +70,7 @@ function SearchComp({ input, setShowSearch }) {
             </div>
           </Link>
         })}
+        
       </div>
     </div>
   );

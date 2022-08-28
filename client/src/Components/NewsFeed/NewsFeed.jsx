@@ -5,9 +5,11 @@ import { FiArrowRight } from "react-icons/fi";
 import { useEffect, useState, useContext } from "react";
 import axios from "axios"
 import AuthContext from "../../context/AuthContext";
+import Loader from "../Loader/Loader";
 function NewsFeed() {
     const [allPosts, setAllPosts]=useState([])
     const {user}=useContext(AuthContext)
+    const [load, setLoad]=useState({initial:true})
     const baseImageURL="https://crowdlybackend.herokuapp.com/images/postImages/"
   useEffect(()=>{
     try{
@@ -16,8 +18,9 @@ function NewsFeed() {
         if(!result.data.success) alert("something went wrong")
         else{
           setAllPosts(result.data.allPosts);
-        }
+          setLoad({...load, initial:false})
 
+        }
       };
       fetchData();
     }catch(err){
@@ -51,6 +54,10 @@ function NewsFeed() {
           })
         }
       </div>
+      {
+        load.initial &&
+        <Loader type={"HashLoader"}></Loader>
+      }
     </div>
   );
 }

@@ -64,22 +64,16 @@ function FriendList({ userName, followers, following }) {
                 <span>{item.name}</span>
               </div>
             </div>
-            {/* {
-              item._id!==user._id ? 
-              
-               ( userFollowings.includes(item._id) ?
-                  <div className="frnd-btn">
-                    <button onClick={()=>unFollowUser(item._id)}>Following</button>
-                  </div> :
-                  <div className="frnd-btn remove">
-                    <button onClick={()=>followUser(item._id)}>Follow</button>
-                  </div> )
-              : null  
-            } */}
             
           </div>
           </Link>
         })
+      }
+      {
+
+        <div className="single-frnd" >
+        
+        </div>
       }
 
     </div>
