@@ -15,18 +15,19 @@ function ProfileComp({ userName }) {
   const baseImgUrl = "https://crowdlybackend.herokuapp.com/images/postImages/";
   useEffect(() => {
     async function fetchData() {
-      await axios
-        .get("/posts/profile-posts", { params: { userName } })
-        .then((response) => {
-          setAllPosts(response.data);
-          setLoad({...load, initial:false})
-        });
       await axios.post("/user/get-user", { userName }).then((response) => {
         if (response.data.err) alert("something went");
         else {
           setProfileUser(response.data.user);
         }
       });
+      await axios
+        .get("/posts/profile-posts", { params: { userName } })
+        .then((response) => {
+          setAllPosts(response.data);
+          setLoad({...load, initial:false})
+        });
+      
     }
     fetchData();
   }, [userName, reload]);
@@ -145,7 +146,7 @@ function ProfileComp({ userName }) {
             </h3>
           </div>
           <div className="pf-posts-list">
-            {allPosts.map((obj, index) => {
+            {allPosts[0] ? allPosts.map((obj, index) => {
               return (
                 <Link to={"/post/" + obj._id} key={index} className="links">
                   <div
@@ -157,7 +158,12 @@ function ProfileComp({ userName }) {
                   ></div>
                 </Link>
               );
-            })}
+            })
+          :
+          <div className="no-posts">
+            <h3>No posts</h3>
+          </div>
+          }
           </div>
         </div>
       </div>

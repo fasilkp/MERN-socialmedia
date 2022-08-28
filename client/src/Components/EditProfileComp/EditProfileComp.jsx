@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import './EditProfileComp.css'
 import AuthContext from '../../context/AuthContext';
 import axios from 'axios';
+import Loader from '../Loader/Loader'
 function EditProfileComp() {
   const [image, setImage] = useState(null);
   const {user} = useContext(AuthContext)
@@ -13,6 +14,7 @@ function EditProfileComp() {
   const [cropData, setCropData] = useState("#");
   const [cropper, setCropper] = useState();
   const [name, setName]=useState(user.name)
+  const [load, setLoad]=useState({photoUpdate:false, detailsUpdate:false})
   const [bio, setBio]=useState(user?.bio)
   const [blobImage, setBlobImage]=useState(null)
   const onChange = (e) => {
@@ -30,6 +32,7 @@ function EditProfileComp() {
     reader.readAsDataURL(files[0]);
   };
   const imageHandle = async (e) => {
+    setLoad({...load, photoUpdate:true})
     e.preventDefault();
     let imageURI
     if (typeof cropper !== "undefined") {
@@ -46,10 +49,13 @@ function EditProfileComp() {
       setNewImage(imageURI)
       setBlobImage(blob)
       setImage(null)
+      setLoad({...load, photoUpdate:false})
     }
     })
    }
    const submitHandle=async(e)=>{
+    setLoad({...load, detailsUpdate:true})
+
     e.preventDefault();
       await axios.post('/user/update-profile-details',{
         profileSrc: newImage ? user._id+".jpg" : null,
@@ -59,7 +65,9 @@ function EditProfileComp() {
       }).then((result)=>{
         if(!result.data.err) {
           alert("successfully uploaded")
+          setLoad({...load, detailsUpdate:false})
           navigate("/user/"+user.userName)
+
         }
         else {
           alert("upoad failed")
@@ -120,6 +128,10 @@ function EditProfileComp() {
             </div>
           </div>
         
+      }
+      {
+        (load.photoUpdate || load.detailsUpdate) &&
+        <Loader type="HashLoader" />
       }
     </div>
   )

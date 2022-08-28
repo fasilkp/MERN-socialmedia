@@ -111,6 +111,8 @@
 .pf-posts-list{
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
 }
 .pf-post{
     flex: 25%;
@@ -121,6 +123,13 @@
     margin: 5px;
     background-size: cover;
     background-repeat: no-repeat ;
+}
+.no-posts{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    margin-top: 200px;
+    justify-content: center;
 }
 @media only screen and (max-width: 600px) {
     .profile-wrapper   {
