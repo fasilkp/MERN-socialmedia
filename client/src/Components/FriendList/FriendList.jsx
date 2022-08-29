@@ -4,12 +4,15 @@ import AuthContext from "../../context/AuthContext";
 import "./FriendList.css";
 import removeItem from "../../actions/removeItem";
 import {Link} from 'react-router-dom'
+import InsideLoader from "../InsideLoader/InsideLoader";
 
 function FriendList({ userName, followers, following }) {
   const { user } = useContext(AuthContext)
+  const [load, setLoad]=useState({initial:true})
   const baseProfilImgURL = "https://crowdlybackend.herokuapp.com/images/profile-images/";
   const [list, setList] = useState([])
   useEffect(() => {
+    setLoad({...load, initial:true})
     const fetchData = async () => {
       setList([])
       console.log(userName)
@@ -17,17 +20,21 @@ function FriendList({ userName, followers, following }) {
       if(followers){
         await axios.post('/user/get-users', { Ids: profileUser.data.user.followers }).then(response => {
           setList(response.data)
+          setLoad({...load, initial:false})
+
         })
       }
       if(following){
         await axios.post('/user/get-users', { Ids: profileUser.data.user.following }).then(response => {
           setList(response.data)
+          setLoad({...load, initial:false})
+
         })
       }
     }
     fetchData();
     console.log(list)
-  }, [followers])
+  }, [followers, following])
   // const followUser = async (id) => {
   //   await axios.post('/user/follow-user', { followerId: user._id, followingId: id }).then(response => {
   //     if (response.data.err) alert("something went wrong ");
@@ -70,10 +77,7 @@ function FriendList({ userName, followers, following }) {
         })
       }
       {
-
-        <div className="single-frnd" >
-        
-        </div>
+       load.initial && <InsideLoader type="FadeLoader"/>
       }
 
     </div>

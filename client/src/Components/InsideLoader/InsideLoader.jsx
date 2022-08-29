@@ -7,7 +7,7 @@ function InsideLoader({type}) {
         {
             type==="BeatLoader" ?
             <BeatLoader  size={5} margin="5"  color="#000000"></BeatLoader> :
-            <FadeLoader width={3} size={5} color="black"></FadeLoader>
+            <FadeLoader width={3} height={9} radius={1} color="black"></FadeLoader>
         }
     </div>
   )
