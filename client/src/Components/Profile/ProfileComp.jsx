@@ -168,7 +168,7 @@ function ProfileComp({ userName }) {
         </div>
       </div>
       {
-        load.initial && <Loader type="FadeLoader"/>
+        load.initial && <Loader type="HashLoader"/>
       }
     </div>
   );

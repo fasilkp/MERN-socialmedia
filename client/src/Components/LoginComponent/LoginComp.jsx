@@ -5,6 +5,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import Axios from "axios";
 import AuthContext from "../../context/AuthContext";
 import BeatLoader from "react-spinners/BeatLoader";
+import Loader from "../Loader/Loader";
 function LoginComp() {
   const {updateLogin}=useContext(AuthContext)
   const [load, setLoad]=useState(false)
@@ -21,7 +22,6 @@ function LoginComp() {
     console.log(user.data.message);
     if(user.data.login){
       updateLogin();
-      alert("login successfull");
       navigate('/')
       setLoad(false)
     }
@@ -45,14 +45,13 @@ function LoginComp() {
              value={email} onChange={e=>handleChange(e, 'setEmail')} />
             <input type="password" placeholder="Password" className="reg-input"
              value={password} onChange={e=>handleChange(e, 'setPassword')} />
-            <button onClick={handleSubmit} className="reg-btn" disabled={load || email==="" || password===""}>
-              {
-              load ? <BeatLoader size="15" color="white"/> : "Login"
-              }
-              </button>
+            <button onClick={handleSubmit} className="reg-btn" disabled={load || email==="" || password===""}>Login</button>
         </div>
         <Link className="links" to="/register"><div className="another-link"> Don't Have an Acoount? Create One!</div></Link>
       </div>
+      {
+        load && <Loader type="HashLoader"/>
+      }
     </div>
   );
 }

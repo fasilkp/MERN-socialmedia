@@ -18,20 +18,25 @@ import { Dropdown } from "react-bootstrap";
 import AuthContext from "../../context/AuthContext";
 import axios from "axios";
 import SearchComp from "../SearchComp/SearchComp";
+import { FiTrendingUp } from "react-icons/fi";
+import Loader from "../Loader/Loader";
 
 
 function NavBar(props) {
   const {updateLogin, user}=useContext(AuthContext); 
   const { home, chat, friends, add } = props.clicked;
+  const [load, setLoad]=useState({logout:false})
   const basePrfURL="https://crowdlybackend.herokuapp.com/images/profile-images/"
   const [status, setStatus] = useState({
     searchBar: "0px",
     statusbar: "500px",
   });
   const handleLogout=async ()=>{
+    setLoad({...load, logout:FiTrendingUp})
     await axios.post('/auth/logout');
-    alert("logged Out Successfully");
     updateLogin();
+    setLoad({...load, logout:false})
+
   }
   const [searchInput, setSearchInput]=useState("");
   const [showSearch, setShowSearch]=useState(false);
@@ -169,6 +174,9 @@ function NavBar(props) {
       {
         showSearch &&
         <SearchComp input={searchInput} setShowSearch={setShowSearch}/>
+      }
+      {
+        load.logout && <Loader type="HashLoader"/>
       }
     </div>
   );
