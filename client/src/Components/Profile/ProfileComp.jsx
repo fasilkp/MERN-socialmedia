@@ -6,9 +6,10 @@ import AuthContext from "../../context/AuthContext";
 import { useEffect } from "react";
 import axios from "axios";
 import Loader from "../Loader/Loader";
+import InsideLoader from "../InsideLoader/InsideLoader";
 function ProfileComp({ userName }) {
   const { user } = useContext(AuthContext);
-  const [load, setLoad]=useState({initial:true})
+  const [load, setLoad]=useState({initial:true, follow:false})
   const [allPosts, setAllPosts] = useState([]);
   const [reload, setReload] = useState(true);
   const [profileUser, setProfileUser] = useState({});
@@ -33,6 +34,7 @@ function ProfileComp({ userName }) {
   }, [userName, reload]);
 
   const followUser = async () => {
+    setLoad({...load, follow:true})
     await axios
       .post("/user/follow-user", {
         followerId: user._id,
@@ -41,12 +43,15 @@ function ProfileComp({ userName }) {
       .then((response) => {
         if (response.data.err) alert("something went wrong ");
         else {
-          alert("followed");
           setReload(!reload);
         }
       });
+      setLoad({...load, follow:false})
+    
   };
   const unFollowUser = async () => {
+    setLoad({...load, follow:true})
+
     await axios
       .post("/user/unfollow-user", {
         followerId: user._id,
@@ -55,10 +60,11 @@ function ProfileComp({ userName }) {
       .then((response) => {
         if (response.data.err) alert("something went wrong ");
         else {
-          alert("unfollowed");
           setReload(!reload);
         }
       });
+    setLoad({...load, follow:false})
+
   };
 
   const basePrfURL = "https://crowdlybackend.herokuapp.com/images/profile-images/";
@@ -126,12 +132,16 @@ function ProfileComp({ userName }) {
               <>
                 <button className="profile-btn">Message</button>
                 {profileUser?.followers?.indexOf(user._id) === -1 ? (
-                  <button className="profile-btn" onClick={followUser}>
-                    Follow
+                  <button className="profile-btn" onClick={followUser} disabled={load.follow}>
+                    {
+                      load.follow ? <InsideLoader type="BeatLoader"/> : "Follow"
+                    }
                   </button>
                 ) : (
-                  <button className="profile-btn" onClick={unFollowUser}>
-                    UnFollow
+                  <button className="profile-btn" onClick={unFollowUser} disabled={load.follow}>
+                    {
+                      load.follow ? <InsideLoader type="BeatLoader"/> : "Unfollow"
+                    }
                   </button>
                 )}
               </>

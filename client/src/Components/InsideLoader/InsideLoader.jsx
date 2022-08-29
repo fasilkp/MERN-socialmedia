@@ -6,7 +6,7 @@ function InsideLoader({type}) {
     <div className={type==="BeatLoader"? 'InsideLoader hash' : "InsideLoader"}>
         {
             type==="BeatLoader" ?
-            <BeatLoader  size={5} margin="5"  color="#000000"></BeatLoader> :
+            <BeatLoader  size={5} margin="5"  color="white"></BeatLoader> :
             <FadeLoader width={3} height={9} radius={1} color="black"></FadeLoader>
         }
     </div>
