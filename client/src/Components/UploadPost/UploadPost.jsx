@@ -8,6 +8,7 @@ import axios from "axios";
 import AuthContext from "../../context/AuthContext";
 import {useNavigate} from 'react-router-dom'
 import BeatLoader from "react-spinners/BeatLoader";
+import Loader from '../Loader/Loader'
 
 function UploadPost() {
   const {user} = useContext(AuthContext);
@@ -72,8 +73,8 @@ function UploadPost() {
         name:user.name
       }).then((result)=>{
         if(result.data.success) {
-          alert("successfully uploaded")
           navigate("/")
+          alert("successfully uploaded")
         }
         else alert("upoad failed");
         setSubmitLoad(false)
@@ -148,14 +149,14 @@ function UploadPost() {
             <button onClick={()=>{
               setUploadPostBtn(false);
               submitHandler();
-            }} disabled={uploadPostBtn}>
-              {
-              submitLoad ? <BeatLoader size="15" color="white"/> : "Post"
-              }
-              </button>
+            }} disabled={uploadPostBtn}>Post</button>
           </div>
         </div>
+        
       )}
+      {
+          submitLoad && <Loader type="HashLoader"/>
+      }
     </div>
   );
 }
