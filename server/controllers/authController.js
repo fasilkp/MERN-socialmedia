@@ -1,12 +1,14 @@
 import UserModel from "../models/UserModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { replaceSpecialCharecters } from "../actions/replaceSpecialCharecters.js";
 
 var salt = bcrypt.genSaltSync(10);
 
 export const registerUser = async (req, res) => {
   try {
-    const { userName, name, email, password } = req.body;
+    const { name, email, password } = req.body;
+    const userName=replaceSpecialCharecters(req.body.userName);
     const hashPassword = bcrypt.hashSync(password, salt);
     const userExist = await UserModel.findOne({ userName });
     if (userExist)
@@ -50,9 +52,9 @@ export const registerUser = async (req, res) => {
   }
 };
 export const loginUser = async (req, res) => {
-  const { email, password } = req.body;
+  const { userName, password } = req.body;
   const user = await UserModel.findOne({
-    email,
+    userName,
   });
   if (!user) {
     return res.json({

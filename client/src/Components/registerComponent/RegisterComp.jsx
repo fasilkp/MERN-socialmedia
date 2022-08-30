@@ -6,6 +6,7 @@ import { useNameValidator } from "../../hooks/useNameValidator";
 import BeatLoader from "react-spinners/BeatLoader";
 import Axios from 'axios'
 import Loader from "../Loader/Loader";
+import {replaceSpecialCharecters} from '../../actions/replaceSpecialCharecters'
 function RegisterComp() {
   const [submitLoad, setSubmitLoad] = useState(false)
   const [name, setName] = useState("");
@@ -47,7 +48,7 @@ function RegisterComp() {
           <input type="text" placeholder="Name" className="reg-input"
             value={name} onChange={(e) => handleChange(e, 'setName')} />
           <input type="text" placeholder="Username (note: should be unique)" className="reg-input"
-            value={userName.toLowerCase()} onChange={(e) => {handleChange(e, 'setUserName'); ValidateUserName(e)}} />
+            value={replaceSpecialCharecters(userName)} onChange={(e) => {handleChange(e, 'setUserName'); ValidateUserName(e)}} />
           <span className="validator-message">
             {userNameValidMessage?.message}
           </span>
@@ -55,7 +56,9 @@ function RegisterComp() {
             value={email} onChange={(e) => handleChange(e, 'setEmail')} />
           <input type="password" placeholder="Password" className="reg-input"
             value={password} onChange={(e) => {handleChange(e, 'setPassword'); }} />
-          <button className="reg-btn" onClick={handleSubmit}>Register</button>
+          <button className="reg-btn" onClick={handleSubmit}
+          disabled={userName==="" || email==="" || name==="" || password===""}
+          >Register</button>
         </div>
         <Link className="links" to="/login"><div className="another-link">Already Have an Acoount? Please Login!</div></Link>
       </div>

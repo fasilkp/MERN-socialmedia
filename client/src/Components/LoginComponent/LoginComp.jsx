@@ -10,7 +10,7 @@ function LoginComp() {
   const {updateLogin}=useContext(AuthContext)
   const [load, setLoad]=useState(false)
   const [password, setPassword]=useState("");
-  const [email, setEmail]=useState("");
+  const [userName, setUserName]=useState("");
   const navigate=useNavigate()
   const handleChange=(e, setState)=>{
     eval(setState+"(e.target.value)")
@@ -18,7 +18,7 @@ function LoginComp() {
   const handleSubmit=async e=>{
     e.preventDefault();
     setLoad(true)
-    const user = await Axios.post("/auth/login", {email, password});
+    const user = await Axios.post("/auth/login", {userName, password});
     console.log(user.data.message);
     if(user.data.login){
       updateLogin();
@@ -41,11 +41,11 @@ function LoginComp() {
           <span>Login into your Account</span>
         </div>
         <div className="reg-body">
-            <input type="email" placeholder="Email" className="reg-input"
-             value={email} onChange={e=>handleChange(e, 'setEmail')} />
+            <input type="text" placeholder="User Name" className="reg-input"
+             value={userName} onChange={e=>handleChange(e, 'setUserName')} />
             <input type="password" placeholder="Password" className="reg-input"
              value={password} onChange={e=>handleChange(e, 'setPassword')} />
-            <button onClick={handleSubmit} className="reg-btn" disabled={load || email==="" || password===""}>Login</button>
+            <button onClick={handleSubmit} className="reg-btn" disabled={load || userName==="" || password===""}>Login</button>
         </div>
         <Link className="links" to="/register"><div className="another-link"> Don't Have an Acoount? Create One!</div></Link>
       </div>
