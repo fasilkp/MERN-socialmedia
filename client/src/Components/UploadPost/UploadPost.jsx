@@ -74,7 +74,6 @@ function UploadPost() {
       }).then((result)=>{
         if(result.data.success) {
           navigate("/")
-          alert("successfully uploaded")
         }
         else alert("upoad failed");
         setSubmitLoad(false)

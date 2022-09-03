@@ -39,7 +39,6 @@ function NewsFeed() {
           allPosts.map((post, index)=>{
             return  <Post
                     key={index}
-                    profileImg={"https://crowdlybackend.herokuapp.com/images/profile-images/defaultImage.jpg"}
                     userId={post.userName}
                     postImage={baseImageURL+post.postSrc}
                     postSrc={post.postSrc}

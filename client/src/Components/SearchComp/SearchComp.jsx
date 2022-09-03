@@ -53,7 +53,7 @@ function SearchComp({ input, setShowSearch }) {
         {
         load.change &&
          <div className="search-list-item" >
-          <InsideLoader type="BeatLoader" ></InsideLoader>
+          <InsideLoader type="BeatLoader" color="black" ></InsideLoader>
          </div>
         }
         {usersList.map((obj, index) => {

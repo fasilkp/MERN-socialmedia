@@ -21,7 +21,6 @@ import { useEffect } from "react";
 function Post(props) {
   const baseProfilImgURL = "https://crowdlybackend.herokuapp.com/images/profile-images/";
   const {
-    profileImg,
     description,
     postImage,
     userId,
@@ -61,8 +60,9 @@ function Post(props) {
       setUserDetails(userDet)
     })
     
+    
   },[allComments])
-
+  
   const deletePost = async () => {
     if (window.confirm("Do you really want to Delete this post?")) {
       await axios
@@ -109,7 +109,7 @@ function Post(props) {
       <div className={viewpost ? "post post-large" : "post"}>
         <div className="post-header">
           <div className="post-head">
-            <img src={profileImg} alt="profile" />
+            <img src={baseProfilImgURL+"defaultImage"} alt="profile" />
             <span><Link to={"/user/"+userId} className="links">{userId}</Link> </span>
           </div>
           <div className="post-option">
@@ -168,7 +168,7 @@ function Post(props) {
             {/* {date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear()+"  ("+date.getHours()+ ":" +date.getMinutes()+")"} */}
             {date.toLocaleString("en-IN", {
               hour12: true,
-            })}
+            }) }
           </span>
         </div>
         <div className="show-all-comments">

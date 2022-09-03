@@ -134,13 +134,13 @@ function ProfileComp({ userName }) {
                 {profileUser?.followers?.indexOf(user._id) === -1 ? (
                   <button className="profile-btn" onClick={followUser} disabled={load.follow}>
                     {
-                      load.follow ? <InsideLoader type="BeatLoader"/> : "Follow"
+                      load.follow ? <InsideLoader color="white" type="BeatLoader"/> : "Follow"
                     }
                   </button>
                 ) : (
                   <button className="profile-btn" onClick={unFollowUser} disabled={load.follow}>
                     {
-                      load.follow ? <InsideLoader type="BeatLoader"/> : "Unfollow"
+                      load.follow ? <InsideLoader color="white" type="BeatLoader"/> : "Unfollow"
                     }
                   </button>
                 )}

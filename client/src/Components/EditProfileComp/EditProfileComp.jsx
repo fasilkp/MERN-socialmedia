@@ -64,7 +64,6 @@ function EditProfileComp() {
         id:user._id
       }).then((result)=>{
         if(!result.data.err) {
-          alert("successfully uploaded")
           setLoad({...load, detailsUpdate:false})
           navigate("/user/"+user.userName)
 

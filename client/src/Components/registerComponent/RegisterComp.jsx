@@ -13,7 +13,9 @@ function RegisterComp() {
   const [userName, setUserName] = useState("");
   const [userNameValidMessage, setUserNameValidMessage] = useState(null);
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [email,  setEmail] = useState("");
+  const [showOTPScreen,  setShowOTPScreen] = useState(false);
+  const [showUserNameScreen,  setShowUserNameScreen] = useState(false);
   const navigate = useNavigate()
   const handleChange = (e, setState) => {
     eval(setState + "(e.target.value)")
@@ -47,8 +49,7 @@ function RegisterComp() {
         <div className="reg-body">
           <input type="text" placeholder="Name" className="reg-input"
             value={name} onChange={(e) => handleChange(e, 'setName')} />
-          <input type="text" placeholder="Username (note: should be unique)" className="reg-input"
-            value={replaceSpecialCharecters(userName)} onChange={(e) => {handleChange(e, 'setUserName'); ValidateUserName(e)}} />
+          
           <span className="validator-message">
             {userNameValidMessage?.message}
           </span>
@@ -56,14 +57,46 @@ function RegisterComp() {
             value={email} onChange={(e) => handleChange(e, 'setEmail')} />
           <input type="password" placeholder="Password" className="reg-input"
             value={password} onChange={(e) => {handleChange(e, 'setPassword'); }} />
-          <button className="reg-btn" onClick={handleSubmit}
-          disabled={userName==="" || email==="" || name==="" || password===""}
+          <button className="reg-btn" onClick={()=>setShowOTPScreen(true)}
+          disabled={email==="" || name==="" || password===""}
           >Register</button>
         </div>
         <Link className="links" to="/login"><div className="another-link">Already Have an Acoount? Please Login!</div></Link>
       </div>
       {
         submitLoad && <Loader type="HashLoader"/>
+      }
+      {
+        showOTPScreen &&
+      <div className="otp-sec">
+        <div className="otp-container">
+          <h2>Enter OTP</h2>
+          <p>Enter OTP sent to the mail  <b>fasilkp314@gmail.com</b> </p>
+          <input type="text" placeholder="Enter OTP" />
+          <div className="otp-btns">
+          <button onClick={()=>setShowOTPScreen(false)}>back</button>
+          <button onClick={()=>setShowUserNameScreen(true)}>Verify</button>
+          </div>
+        </div>
+      </div>
+      }
+      {
+        showUserNameScreen &&
+      <div className="otp-sec">
+        <div className="otp-container">
+          <h2>Enter Username</h2>
+          <p>Enter a unique username</p>
+          <input type="text" placeholder="Username " className="reg-input"
+            value={replaceSpecialCharecters(userName)} onChange={(e) => {handleChange(e, 'setUserName'); ValidateUserName(e)}} />
+          <div className="otp-btns">
+          <button onClick={()=>{
+            setShowUserNameScreen(false)
+            setShowOTPScreen(false)
+            }}>back</button>
+          <button>Next</button>
+          </div>
+        </div>
+      </div>
       }
     </div>
   );

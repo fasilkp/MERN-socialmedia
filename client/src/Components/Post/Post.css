@@ -250,4 +250,8 @@
     .post-details{
         width: 100%;
     }
+    .show-all-comments button{
+        height: 35px;
+        font-size: .8rem;
+    }
 }

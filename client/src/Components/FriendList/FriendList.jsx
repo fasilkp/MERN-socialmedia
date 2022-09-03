@@ -77,7 +77,7 @@ function FriendList({ userName, followers, following }) {
         })
       }
       {
-       load.initial && <InsideLoader type="FadeLoader"/>
+       load.initial && <InsideLoader type="FadeLoader" color="black"/>
       }
 
     </div>

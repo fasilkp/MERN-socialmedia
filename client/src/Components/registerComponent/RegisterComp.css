@@ -96,6 +96,73 @@
     width: 260px;
     left: 46px;
 }
+
+.otp-sec{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+}
+.otp-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    margin-top: 200px;
+}
+.otp-container h1{
+    font-weight: 700;
+}
+.otp-container p{
+    font-size: .9rem;
+    color: grey;
+    margin-top: 10px;
+}
+.otp-container input{
+    width: 100%;
+    margin-top: 20px;
+    height: 60px;
+    border: none;
+    outline: none;
+    background-color: #E4F4F0;
+    color: black;
+    padding-left: 10px;
+    font-size: 1.5rem;
+    border-radius: 5px;
+}
+.otp-container input::placeholder{
+    font-size: 1rem;
+}
+.otp-btns{
+    display: flex;
+    width: 100%;
+}
+.otp-container button{
+    width: 100%;
+    height: 45px;
+    margin: 3px;
+    margin-top: 20px;
+    background-color: white ;
+    color: #00dfc0;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-weight: 500;
+}
+.otp-container button:last-child{
+    background-color: #00dfc0;
+    color: white;
+}
+.otp-container button:first-child:hover{
+    background-color: #E4F4F0;
+    color: #00dfc0;
+}
+
+
 @media only screen and (max-width: 600px) {
     .RegisterComp{
         flex-direction: column;
@@ -127,5 +194,9 @@
     }
     .reg-btn{
         margin-top: 50px;
+    }
+    .otp-container{
+        width: 90%;
+        margin-top: 300px;
     }
   }
