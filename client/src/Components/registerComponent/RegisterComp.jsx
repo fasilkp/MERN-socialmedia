@@ -7,6 +7,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 import Axios from 'axios'
 import Loader from "../Loader/Loader";
 import {replaceSpecialCharecters} from '../../actions/replaceSpecialCharecters'
+import { useEffect } from "react";
 function RegisterComp() {
   const [submitLoad, setSubmitLoad] = useState(false)
   const [name, setName] = useState("");
@@ -17,6 +18,7 @@ function RegisterComp() {
   const [showOTPScreen,  setShowOTPScreen] = useState(false);
   const [showUserNameScreen,  setShowUserNameScreen] = useState(false);
   const [otp, setOTP] = useState("");
+  const [randomOtp, setRandomOtp] = useState("");
   const navigate = useNavigate()
   const handleChange = (e, setState) => {
     eval(setState + "(e.target.value)")
@@ -24,6 +26,32 @@ function RegisterComp() {
   const ValidateUserName = (e) => {
     const validatorMessage=useNameValidator(e.target.value);
     setUserNameValidMessage(validatorMessage)
+  }
+  const handleEmailOtp = async e => {
+    e.preventDefault();
+    setSubmitLoad(true)
+    const randomNum=Math.floor(Math.random()*900000) + 100000;
+    setRandomOtp(randomNum);
+    const user = await Axios.post("/auth/send-otp", {
+      emailTo:email,
+      OTP:randomNum
+    });
+    if (user.data.err) {
+      alert(user.data.message)
+    }
+    else {
+      setShowOTPScreen(true)
+    }
+    setSubmitLoad(false)
+  }
+  const verifyOTP = (e) => {
+    console.log(otp+" , "+randomOtp)
+    if(otp==randomOtp){
+      setShowUserNameScreen(true);
+    }
+    else{
+      alert("invalid OTP")
+    }
   }
   const handleSubmit = async e => {
     e.preventDefault();
@@ -50,15 +78,12 @@ function RegisterComp() {
         <div className="reg-body">
           <input type="text" placeholder="Name" className="reg-input"
             value={name} onChange={(e) => handleChange(e, 'setName')} />
-          
-          {/* <span className="validator-message">
-            {userNameValidMessage?.message}
-          </span> */}
+
           <input type="email" placeholder="Email" className="reg-input"
             value={email} onChange={(e) => handleChange(e, 'setEmail')} />
           <input type="password" placeholder="Password" className="reg-input"
             value={password} onChange={(e) => {handleChange(e, 'setPassword'); }} />
-          <button className="reg-btn" onClick={()=>setShowOTPScreen(true)}
+          <button className="reg-btn" onClick={handleEmailOtp}
           disabled={email==="" || name==="" || password===""}
           >Register</button>
         </div>
@@ -76,7 +101,7 @@ function RegisterComp() {
           <input type="text" placeholder="Enter OTP" value={otp} onChange={(e)=>setOTP(e.target.value)}/>
           <div className="otp-btns">
           <button onClick={()=>setShowOTPScreen(false)}>back</button>
-          <button onClick={()=>setShowUserNameScreen(true)} disabled={otp===""}>Verify</button>
+          <button onClick={verifyOTP} disabled={otp===""}>Verify</button>
           </div>
           <p className="disabled">Didn't get ? Resend OTP</p>
 
@@ -96,7 +121,7 @@ function RegisterComp() {
             setShowUserNameScreen(false)
             setShowOTPScreen(false)
             }}>back</button>
-          <button disabled={userName===""}>Next</button>
+          <button disabled={userName===""} onClick={handleSubmit}>Next</button>
           </div>
         </div>
       </div>

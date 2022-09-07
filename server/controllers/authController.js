@@ -133,7 +133,7 @@ export const sendOTP = async (req, res) => {
       var mailOptions = {
         from: process.env.EMAIL,
         to: emailTo,
-        subject: "Verify Email Address",
+        subject: "Email Verification Code :"+OTP,
         html: `
           <h1>Verify Your Email For Crowdly</h1>
           <h3>use this code to verify your email</h3>
