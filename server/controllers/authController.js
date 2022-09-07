@@ -2,6 +2,7 @@ import UserModel from "../models/UserModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { replaceSpecialCharecters } from "../actions/replaceSpecialCharecters.js";
+import nodemailer from 'nodemailer'
 
 var salt = bcrypt.genSaltSync(10);
 
@@ -117,4 +118,35 @@ export const checkLoggedIn = async (req, res) => {
   } catch (err) {
     res.json({ loggedIn: false, error: err });
   }
+};
+export const sendOTP = async (req, res) => {
+    const {emailTo, OTP}=req.body;
+    if (true) {
+      var transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: process.env.EMAIL,
+          pass: process.env.PASSWORD,
+        },
+      });
+  
+      var mailOptions = {
+        from: process.env.EMAIL,
+        to: emailTo,
+        subject: "Verify Email Address",
+        html: `
+          <h1>Verify Your Email For Crowdly</h1>
+          <h3>use this code to verify your email</h3>
+          <h2>${OTP}</h2>
+          `,
+      };
+  
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          return res.json({err:true, message:"OTP send failed"})
+        } else {
+          return res.json({OTP})
+        }
+      });
+    }
 };

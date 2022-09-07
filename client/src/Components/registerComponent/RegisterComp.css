@@ -146,7 +146,7 @@
     height: 45px;
     margin: 3px;
     margin-top: 20px;
-    background-color: white ;
+    background-color: rgb(241, 255, 250) ;
     color: #00dfc0;
     border: none;
     outline: none;
@@ -160,6 +160,20 @@
 .otp-container button:first-child:hover{
     background-color: #E4F4F0;
     color: #00dfc0;
+}
+.otp-container p:last-child{
+    color: rgba(0, 0, 0, 0.75);
+    margin-top: 100px;
+    cursor: pointer;
+}
+.otp-container p:last-child:hover{
+    color: black;
+}
+.otp-container p.disabled{
+    color: rgba(0, 0, 0, 0.35);
+}
+.otp-container p.disabled:hover{
+    color: rgba(0, 0, 0, 0.35);
 }
 
 

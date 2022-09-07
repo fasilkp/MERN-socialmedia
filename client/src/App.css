@@ -42,6 +42,9 @@ body{
 .extra-height{
   height: 100px;
 }
+button:disabled{
+  opacity: 75%;
+}
 @media only screen and (max-width: 600px) {
   .main{
     margin-top:55px;

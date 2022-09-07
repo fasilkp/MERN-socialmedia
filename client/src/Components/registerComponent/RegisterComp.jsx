@@ -16,6 +16,7 @@ function RegisterComp() {
   const [email,  setEmail] = useState("");
   const [showOTPScreen,  setShowOTPScreen] = useState(false);
   const [showUserNameScreen,  setShowUserNameScreen] = useState(false);
+  const [otp, setOTP] = useState("");
   const navigate = useNavigate()
   const handleChange = (e, setState) => {
     eval(setState + "(e.target.value)")
@@ -50,9 +51,9 @@ function RegisterComp() {
           <input type="text" placeholder="Name" className="reg-input"
             value={name} onChange={(e) => handleChange(e, 'setName')} />
           
-          <span className="validator-message">
+          {/* <span className="validator-message">
             {userNameValidMessage?.message}
-          </span>
+          </span> */}
           <input type="email" placeholder="Email" className="reg-input"
             value={email} onChange={(e) => handleChange(e, 'setEmail')} />
           <input type="password" placeholder="Password" className="reg-input"
@@ -72,11 +73,13 @@ function RegisterComp() {
         <div className="otp-container">
           <h2>Enter OTP</h2>
           <p>Enter OTP sent to the mail  <b>fasilkp314@gmail.com</b> </p>
-          <input type="text" placeholder="Enter OTP" />
+          <input type="text" placeholder="Enter OTP" value={otp} onChange={(e)=>setOTP(e.target.value)}/>
           <div className="otp-btns">
           <button onClick={()=>setShowOTPScreen(false)}>back</button>
-          <button onClick={()=>setShowUserNameScreen(true)}>Verify</button>
+          <button onClick={()=>setShowUserNameScreen(true)} disabled={otp===""}>Verify</button>
           </div>
+          <p className="disabled">Didn't get ? Resend OTP</p>
+
         </div>
       </div>
       }
@@ -93,7 +96,7 @@ function RegisterComp() {
             setShowUserNameScreen(false)
             setShowOTPScreen(false)
             }}>back</button>
-          <button>Next</button>
+          <button disabled={userName===""}>Next</button>
           </div>
         </div>
       </div>
