@@ -164,4 +164,17 @@
     .EditProfileComp {
         justify-content: flex-start;
       }
+      .edit-pf-crop-box{
+        width: 100%;
+    }
+    .edit-pf-cropper-box{
+        width: 95%;
+        padding: 5px;
+    }
+    .edit-pf-btn button{
+        font-size: .9rem;
+    }
+    .pf-form-col button{
+        font-size: .9rem;
+    }
 }

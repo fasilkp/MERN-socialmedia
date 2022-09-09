@@ -31,6 +31,13 @@
 .profile-section div{
     display: flex;
 }
+.profile-image-div{
+    width: 250px;
+    height: 250px;
+    border-radius: 120px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
 .profile-image img{
     width: 250px;
     height: 250px;

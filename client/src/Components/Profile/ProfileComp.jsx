@@ -73,7 +73,9 @@ function ProfileComp({ userName }) {
       <div className="profile-wrapper">
         <div className="profile-section">
           <div className="profile-image">
+            <div className="profile-image-div">
             <img src={basePrfURL + profileUser?.image} alt="" />
+            </div>
           </div>
           <div className="profile-name">
             <h2>{profileUser?.name}</h2>
