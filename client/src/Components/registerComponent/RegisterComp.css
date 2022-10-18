@@ -64,6 +64,15 @@
     border-radius: 30px;
     transition: .25s;
 }
+.reg-btn:last-child{
+    background-color: #00dfc0;
+    color: white;
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin-top: 5px;
+    border-radius: 30px;
+    transition: .25s;
+}
 .reg-btn:hover{
     background-color: #fff;
     color: #00dfc0;

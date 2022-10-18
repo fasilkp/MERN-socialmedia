@@ -15,6 +15,7 @@ import AuthContext from './context/AuthContext'
 import { useEffect } from 'react';
 import NotFound from './Components/NotFound/NotFound';
 import EditProfile from './Pages/EditProfile';
+import DemoLoginPage from './Pages/DemoLoginPage';
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = 'https://crowdlybackend.herokuapp.com/api';
 
@@ -39,6 +40,7 @@ function App() {
                 <Route path="/user/:userName" element={<Profile />} />
                 <Route path="/post/:postId" element={<ViewPost />} />
                 <Route path="/edit-profile" element={<EditProfile />} />
+                <Route path="/demo-login" element={<DemoLoginPage />} />
                 <Route path="*" element={<NotFound/>} />
             </Routes>
             }
@@ -54,6 +56,7 @@ function App() {
                 <Route path="/post/:postId" element={<Login />} />
                 <Route path="/user/:userName" element={<Login />} />
                 <Route path="/edit-profile" element={<Login />} />
+                <Route path="/demo-login" element={<DemoLoginPage />} />
                 <Route path="*" element={ <NotFound/> } />
             </Routes>
             }
