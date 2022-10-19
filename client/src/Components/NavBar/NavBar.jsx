@@ -145,7 +145,12 @@ function NavBar(props) {
               id="dropdown-basic"
               className="profile-toggle"
             >
-              <img src={basePrfURL+user.image} alt="image" />
+              <img src={basePrfURL+user.image} alt="image"
+              onError={(event)=>{
+                event.target.src = basePrfURL+"defaultImage.jpg"
+                event.onerror = null;
+              }}
+              />
             </Dropdown.Toggle>
 
             <Dropdown.Menu>

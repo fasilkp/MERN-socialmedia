@@ -21,6 +21,10 @@
     justify-content: space-between;
     padding: 10px;
 }
+.post-head{
+    display: flex;
+    align-items: center;
+}
 .post-header img{
     width: 30px;
     height: 30px;

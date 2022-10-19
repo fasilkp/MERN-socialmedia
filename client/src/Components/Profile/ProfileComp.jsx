@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import Loader from "../Loader/Loader";
 import InsideLoader from "../InsideLoader/InsideLoader";
+import { Skeleton } from "@mui/material";
 function ProfileComp({ userName }) {
   const { user } = useContext(AuthContext);
   const [load, setLoad]=useState({initial:true, follow:false})
@@ -74,7 +75,12 @@ function ProfileComp({ userName }) {
         <div className="profile-section">
           <div className="profile-image">
             <div className="profile-image-div">
-            <img src={basePrfURL + profileUser?.image} alt="" />
+            <img 
+            onError={(event)=>{
+              event.target.src = basePrfURL+"defaultImage.jpg"
+              event.onerror = null;
+            }}
+            src={basePrfURL + profileUser?.image} alt="" />
             </div>
           </div>
           <div className="profile-name">
@@ -161,6 +167,7 @@ function ProfileComp({ userName }) {
             {allPosts[0] ? allPosts.map((obj, index) => {
               return (
                 <Link to={"/post/" + obj._id} key={index} className="links">
+                  <Skeleton variant="rectangular" height={150} />
                   <div
                     key={index}
                     className="pf-post"

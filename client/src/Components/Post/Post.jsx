@@ -4,6 +4,7 @@ import AuthContext from "../../context/AuthContext";
 import { Dropdown } from "react-bootstrap";
 import { FaHeart } from "react-icons/fa";
 import { MdSend } from "react-icons/md";
+import Skeleton from "@mui/material/Skeleton";
 import {
   FiHeart,
   FiMessageCircle,
@@ -17,9 +18,11 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import removeItem from "../../actions/removeItem";
 import { useEffect } from "react";
+import Profile from "../../Pages/Profile";
 
 function Post(props) {
-  const baseProfilImgURL = "https://crowdlybackend.herokuapp.com/images/profile-images/";
+  const baseProfilImgURL =
+    "https://crowdlybackend.herokuapp.com/images/profile-images/";
   const {
     description,
     postImage,
@@ -31,7 +34,7 @@ function Post(props) {
     date,
     showDelete,
     id,
-    postSrc
+    postSrc,
   } = props;
   const { user } = useContext(AuthContext);
 
@@ -39,28 +42,30 @@ function Post(props) {
   const [totalLikes, setTotalLikes] = useState(likes);
   const [commentsHide, setCommentsHide] = useState(true);
   const [newComment, setNewComment] = useState("");
-  const [userDetails, setUserDetails]=useState({})
-  const [allComments, setAllComments]=useState(comments.sort(function(a,b){
-    return new Date(b.date) - new Date(a.date);
-  }))
-  useEffect(()=>{
-    let commentIds=[];
-    let userDet={};
-    allComments.forEach((item)=>{
-      if(commentIds.indexOf(item.userId)<0){
-        commentIds = [...commentIds, item.userId]
+  const [userDetails, setUserDetails] = useState({});
+  const [imageLoad, setImageLoad] = useState(false);
+  const [profileLoad, setProfileLoad] = useState(false);
+  const [allComments, setAllComments] = useState(
+    comments.sort(function (a, b) {
+      return new Date(b.date) - new Date(a.date);
+    })
+  );
+  useEffect(() => {
+    let commentIds = [];
+    let userDet = {};
+    allComments.forEach((item) => {
+      if (commentIds.indexOf(item.userId) < 0) {
+        commentIds = [...commentIds, item.userId];
       }
-    })
-    axios.post('/user/get-users', {Ids:commentIds}).then((response)=>{
-      response.data.forEach(item=>{
-        userDet={...userDet, [item._id]:item.userName}
-      })
-      setUserDetails(userDet)
-    })
-    
-    
-  },[allComments])
-  
+    });
+    axios.post("/user/get-users", { Ids: commentIds }).then((response) => {
+      response.data.forEach((item) => {
+        userDet = { ...userDet, [item._id]: item.userName };
+      });
+      setUserDetails(userDet);
+    });
+  }, [allComments]);
+
   const deletePost = async () => {
     if (window.confirm("Do you really want to Delete this post?")) {
       await axios
@@ -79,8 +84,8 @@ function Post(props) {
       await axios.post("/posts/like-post", { postId: id, likedId: user._id });
       setTotalLikes([...totalLikes, user._id]);
       setLiked(true);
-    };
-  }
+    }
+  };
   const unLikePost = async () => {
     if (liked) {
       await axios.post("/posts/unlike-post", { postId: id, likedId: user._id });
@@ -90,16 +95,24 @@ function Post(props) {
   };
   const addComment = async (e) => {
     e.preventDefault();
-    if(newComment!==""){
-      await axios.post("/posts/add-comment", { postId: id, userId: user._id, comment:newComment }).then(res=>{
-        if(res.err){
-          alert("commment failed")
-        }
-        else{
-          setAllComments([ { comment: newComment, userId: user._id, date: new Date() }, ...allComments])
-          setNewComment("");
-        }
-      })
+    if (newComment !== "") {
+      await axios
+        .post("/posts/add-comment", {
+          postId: id,
+          userId: user._id,
+          comment: newComment,
+        })
+        .then((res) => {
+          if (res.err) {
+            alert("commment failed");
+          } else {
+            setAllComments([
+              { comment: newComment, userId: user._id, date: new Date() },
+              ...allComments,
+            ]);
+            setNewComment("");
+          }
+        });
     }
   };
   return (
@@ -107,13 +120,31 @@ function Post(props) {
       <div className={viewpost ? "post post-large" : "post"}>
         <div className="post-header">
           <div className="post-head">
-            <img src={baseProfilImgURL+userId+".jpg"} alt="profile"
-            onError={(event)=>{
-              event.target.src = baseProfilImgURL+"defaultImage.jpg"
-              event.onerror = null;
-            }}
-            />
-            <span><Link to={"/user/"+userName} className="links">{userName}</Link> </span>
+            {!profileLoad ? <Skeleton variant="circular" height={30} width={30}> 
+            <img
+              src={baseProfilImgURL + userId + ".jpg"}
+              alt="profile"
+              onLoad={() => setProfileLoad(true)}
+              onError={(event) => {
+                event.target.src = baseProfilImgURL + "defaultImage.jpg";
+                event.onerror = null;
+              }}/>
+              </Skeleton>
+             : <img
+              onLoad={() => setProfileLoad(true)}
+              src={baseProfilImgURL + userId + ".jpg"}
+              alt="profile"
+              onError={(event) => {
+                event.target.src = baseProfilImgURL + "defaultImage.jpg";
+                event.onerror = null;
+              }}/>}
+              
+              
+            <span>
+              <Link to={"/user/" + userName} className="links">
+                {userName}
+              </Link>
+            </span>
           </div>
           <div className="post-option">
             <Dropdown className="post-option-dropdown">
@@ -137,11 +168,17 @@ function Post(props) {
           </div>
         </div>
         <div className="post-body">
-          <img src={postImage} alt="post-body" onDoubleClick={likePost}
-          onError={(event)=>{
-            event.target.src = "https://bitsofco.de/content/images/2018/12/Screenshot-2018-12-16-at-21.06.29.png"
-            event.onerror = null;
-          }}
+          {!imageLoad && <Skeleton variant="rectangular" height={260} />}
+          <img
+            src={postImage}
+            alt="post-body"
+            onDoubleClick={likePost}
+            onLoad={() => setImageLoad(true)}
+            onError={(event) => {
+              event.target.src =
+                "https://bitsofco.de/content/images/2018/12/Screenshot-2018-12-16-at-21.06.29.png";
+              event.onerror = null;
+            }}
           />
           <div className="center-like-icon-body" style={{ height: "0px" }}>
             {liked && <FaHeart className="center-like-icon"></FaHeart>}
@@ -169,14 +206,18 @@ function Post(props) {
           <b>{totalLikes?.length}</b> likes
         </div>
         <div className="post-description">
-          <b><Link to={"/user/"+userId} className="links">{userName}</Link></b>
+          <b>
+            <Link to={"/user/" + userId} className="links">
+              {userName}
+            </Link>
+          </b>
           <span>{" " + description}</span>
           <br />
           <span>
             {/* {date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear()+"  ("+date.getHours()+ ":" +date.getMinutes()+")"} */}
             {date.toLocaleString("en-IN", {
               hour12: true,
-            }) }
+            })}
           </span>
         </div>
         <div className="show-all-comments">
@@ -207,11 +248,15 @@ function Post(props) {
         </div>
         <div className="add-comment">
           <form onSubmit={addComment}>
-          <input type="text" placeholder="enter a comment.."
-          value={newComment} onChange={(e)=>setNewComment(e.target.value)} />
-          <div className="comment-send" onClick={addComment}>
-            <MdSend  />
-          </div>
+            <input
+              type="text"
+              placeholder="enter a comment.."
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+            />
+            <div className="comment-send" onClick={addComment}>
+              <MdSend />
+            </div>
           </form>
         </div>
 
@@ -222,10 +267,15 @@ function Post(props) {
                 <div className="post-comment-profile">
                   <img src={baseProfilImgURL + "defaultImage.jpg"} alt="" />
                   <div className="name-section">
-                  <Link to={"/user/"+userDetails[obj.userId]} className="links"><b>{userDetails[obj.userId]}</b></Link>
-                  <span>
-                    {new Date(obj.date).toLocaleDateString('pt-PT')}
-                  </span>
+                    <Link
+                      to={"/user/" + userDetails[obj.userId]}
+                      className="links"
+                    >
+                      <b>{userDetails[obj.userId]}</b>
+                    </Link>
+                    <span>
+                      {new Date(obj.date).toLocaleDateString("pt-PT")}
+                    </span>
                   </div>
                 </div>
                 <div className="post-comment-description">

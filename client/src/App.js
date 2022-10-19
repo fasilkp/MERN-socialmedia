@@ -16,6 +16,11 @@ import { useEffect } from 'react';
 import NotFound from './Components/NotFound/NotFound';
 import EditProfile from './Pages/EditProfile';
 import DemoLoginPage from './Pages/DemoLoginPage';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = 'https://crowdlybackend.herokuapp.com/api';
 
