@@ -24,6 +24,7 @@ function Post(props) {
     description,
     postImage,
     userId,
+    userName,
     viewpost,
     likes,
     comments,
@@ -50,13 +51,10 @@ function Post(props) {
         commentIds = [...commentIds, item.userId]
       }
     })
-    console.log(commentIds)
     axios.post('/user/get-users', {Ids:commentIds}).then((response)=>{
-      console.log(response.data)
       response.data.forEach(item=>{
         userDet={...userDet, [item._id]:item.userName}
       })
-      console.log(userDet)
       setUserDetails(userDet)
     })
     
@@ -109,8 +107,13 @@ function Post(props) {
       <div className={viewpost ? "post post-large" : "post"}>
         <div className="post-header">
           <div className="post-head">
-            <img src={baseProfilImgURL+"defaultImage"} alt="profile" />
-            <span><Link to={"/user/"+userId} className="links">{userId}</Link> </span>
+            <img src={baseProfilImgURL+userId+".jpg"} alt="profile"
+            onError={(event)=>{
+              event.target.src = baseProfilImgURL+"defaultImage.jpg"
+              event.onerror = null;
+            }}
+            />
+            <span><Link to={"/user/"+userName} className="links">{userName}</Link> </span>
           </div>
           <div className="post-option">
             <Dropdown className="post-option-dropdown">
@@ -134,7 +137,12 @@ function Post(props) {
           </div>
         </div>
         <div className="post-body">
-          <img src={postImage} alt="post-body" onDoubleClick={likePost} />
+          <img src={postImage} alt="post-body" onDoubleClick={likePost}
+          onError={(event)=>{
+            event.target.src = "https://bitsofco.de/content/images/2018/12/Screenshot-2018-12-16-at-21.06.29.png"
+            event.onerror = null;
+          }}
+          />
           <div className="center-like-icon-body" style={{ height: "0px" }}>
             {liked && <FaHeart className="center-like-icon"></FaHeart>}
           </div>
@@ -161,7 +169,7 @@ function Post(props) {
           <b>{totalLikes?.length}</b> likes
         </div>
         <div className="post-description">
-          <b><Link to={"/user/"+userId} className="links">{userId}</Link></b>
+          <b><Link to={"/user/"+userId} className="links">{userName}</Link></b>
           <span>{" " + description}</span>
           <br />
           <span>

@@ -39,7 +39,8 @@ function NewsFeed() {
           allPosts.map((post, index)=>{
             return  <Post
                     key={index}
-                    userId={post.userName}
+                    userName={post.userName}
+                    userId={post.userId}
                     postImage={baseImageURL+post.postSrc}
                     postSrc={post.postSrc}
                     viewpost={false}

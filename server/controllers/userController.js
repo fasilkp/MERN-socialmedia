@@ -69,7 +69,6 @@ export const getUsers=async(req, res)=>{
         res.json(users)        
 }
 export const uploadProfilePicResponse = (req, res) => {
-    console.log(req)
     if (!req.file) {
       return res.status(500).json({
         err:true

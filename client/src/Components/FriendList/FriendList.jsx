@@ -15,7 +15,6 @@ function FriendList({ userName, followers, following }) {
     setLoad({...load, initial:true})
     const fetchData = async () => {
       setList([])
-      console.log(userName)
       const profileUser=await axios.post('/user/get-user', {userName:userName});
       if(followers){
         await axios.post('/user/get-users', { Ids: profileUser.data.user.followers }).then(response => {
@@ -33,7 +32,7 @@ function FriendList({ userName, followers, following }) {
       }
     }
     fetchData();
-    console.log(list)
+
   }, [followers, following])
   // const followUser = async (id) => {
   //   await axios.post('/user/follow-user', { followerId: user._id, followingId: id }).then(response => {

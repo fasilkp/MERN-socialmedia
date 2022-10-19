@@ -45,7 +45,6 @@ function RegisterComp() {
     setSubmitLoad(false)
   }
   const verifyOTP = (e) => {
-    console.log(otp+" , "+randomOtp)
     if(otp==randomOtp){
       setShowUserNameScreen(true);
     }

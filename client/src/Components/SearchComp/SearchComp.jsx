@@ -4,7 +4,7 @@ import axios from "axios";
 import { BiArrowBack, BiX } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import InsideLoader from "../InsideLoader/InsideLoader";
-function SearchComp({ input, setShowSearch }) {
+function SearchComp({ input, setShowSearch}) {
   const [searchInput, setSearchInput] = useState(input);
   const [load, setLoad]=useState({change:false})
   const [usersList, setUsersList] = useState([]);

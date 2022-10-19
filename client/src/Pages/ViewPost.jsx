@@ -39,7 +39,8 @@ function ViewPost() {
         post.userId && 
         <Post
                     profileImg={"https://crowdlybackend.herokuapp.com/images/profile-images/defaultImage.jpg"}
-                    userId={post.userName}
+                    userName={post.userName}
+                    userId={post.userId}
                     postImage={baseImageURL+post.postSrc}
                     viewpost={false}
                     likes={post.likes}

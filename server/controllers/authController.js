@@ -35,7 +35,7 @@ export const registerUser = async (req, res) => {
       .cookie("token", token, {
         httpOnly: true,
         secure: true,
-        maxAge: 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7 * 30,
         sameSite: "none",
       })
       .json({
@@ -84,7 +84,7 @@ export const loginUser = async (req, res) => {
     .cookie("token", token, {
       httpOnly: true,
       secure: true,
-      maxAge: 1000 * 60 * 60 * 24 * 7,
+      maxAge: 1000 * 60 * 60 * 24 * 7 * 60,
       sameSite: "none",
     })
     .json({ login: true, message: "logged in successfully", user: user._id });
