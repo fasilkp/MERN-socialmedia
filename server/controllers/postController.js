@@ -1,5 +1,6 @@
 import PostModel from "../models/PostModel.js";
 import UserModel from "../models/UserModel.js";
+import cloudinary from 'cloudinary'
 import { unlink } from 'node:fs';
 
 
@@ -24,6 +25,28 @@ export const uploadPost = async (req, res) => {
   const newPost = new PostModel({
     name,
     postSrc,
+    description,
+    userId,
+    userName,
+  });
+  newPost.save((err) => {
+    if (err)
+      return res
+        .status(500)
+        .json({ success: false, message: "post upload failed", error: err });
+  });
+  return res
+    .status(201)
+    .json({ success: true, message: "post upload successfull", post: newPost });
+};
+export const uploadToCloudinary = async (req, res) => {
+  const { description, userId, userName, name, image } = req.body;
+  const result=await cloudinary.uploader.upload(image,{
+    folder:'crowdly/post'
+  })
+  const newPost = new PostModel({
+    name,
+    postSrc:result.url,
     description,
     userId,
     userName,

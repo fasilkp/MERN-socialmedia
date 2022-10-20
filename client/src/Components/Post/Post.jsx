@@ -168,7 +168,10 @@ function Post(props) {
           </div>
         </div>
         <div className="post-body">
-          {!imageLoad && <Skeleton variant="rectangular" height={260} />}
+          {!imageLoad && 
+          <Skeleton variant="rectangular" height={300}>
+          </Skeleton>
+          }
           <img
             src={postImage}
             alt="post-body"

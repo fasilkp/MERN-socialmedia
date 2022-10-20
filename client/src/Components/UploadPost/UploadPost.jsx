@@ -58,6 +58,7 @@ function UploadPost() {
       setCropData(cropper.getCroppedCanvas().toDataURL());
           imageURI= cropper.getCroppedCanvas().toDataURL('image/jpg',1)
     }
+    console.log(imageURI)
     const blob= dataURItoBlob(imageURI);
     
     const data= new FormData();
