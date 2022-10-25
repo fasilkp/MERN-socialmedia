@@ -58,30 +58,43 @@ function UploadPost() {
       setCropData(cropper.getCroppedCanvas().toDataURL());
           imageURI= cropper.getCroppedCanvas().toDataURL('image/jpg',1)
     }
-    console.log(imageURI)
-    const blob= dataURItoBlob(imageURI);
+        await axios.post('/posts/upload-to-cloudinary',{
+          image:imageURI,
+          description:caption, 
+          userId:user._id,
+          userName:user.userName,
+          name:user.name
+        }).then((result)=>{
+          if(result.data.success) {
+            navigate("/")
+          }
+          else alert("upoad failed");
+          setSubmitLoad(false)
+          
+        })
+    // const blob= dataURItoBlob(imageURI);
     
-    const data= new FormData();
-    data.append('image', blob)
-    await axios.post('/posts/upload-file', data ).then(async uploadFile=>{
-    if(!uploadFile.data.success) alert("something went wrong")
-    if(uploadFile.data.success){
-      await axios.post('/posts/upload-post',{
-        postSrc:uploadFile.data.fileName,
-        description:caption, 
-        userId:user._id,
-        userName:user.userName,
-        name:user.name
-      }).then((result)=>{
-        if(result.data.success) {
-          navigate("/")
-        }
-        else alert("upoad failed");
-        setSubmitLoad(false)
+    // const data= new FormData();
+    // data.append('image', blob)
+    // await axios.post('/posts/upload-file', data ).then(async uploadFile=>{
+    // if(!uploadFile.data.success) alert("something went wrong")
+    // if(uploadFile.data.success){
+    //   await axios.post('/posts/upload-post',{
+    //     postSrc:uploadFile.data.fileName,
+    //     description:caption, 
+    //     userId:user._id,
+    //     userName:user.userName,
+    //     name:user.name
+    //   }).then((result)=>{
+    //     if(result.data.success) {
+    //       navigate("/")
+    //     }
+    //     else alert("upoad failed");
+    //     setSubmitLoad(false)
         
-      })
-    }
-    })
+    //   })
+    // }
+    // })
    }
   return (
     <div className="upload-post ">

@@ -19,7 +19,6 @@ function LoginComp() {
     e.preventDefault();
     setLoad(true)
     const user = await Axios.post("/auth/login", {userName, password});
-    console.log(user.data.message);
     if(user.data.login){
       updateLogin();
       navigate('/')

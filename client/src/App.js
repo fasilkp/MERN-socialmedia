@@ -22,7 +22,8 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = 'https://crowdlybackend.herokuapp.com/api';
+// axios.defaults.baseURL = 'https://crowdlybackend.herokuapp.com/api';
+axios.defaults.baseURL = 'http://localhost:8080/api';
 
 function App() {
   const {loggedIn, updateLogin}=useContext(AuthContext);

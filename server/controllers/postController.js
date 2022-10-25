@@ -40,26 +40,30 @@ export const uploadPost = async (req, res) => {
     .json({ success: true, message: "post upload successfull", post: newPost });
 };
 export const uploadToCloudinary = async (req, res) => {
-  const { description, userId, userName, name, image } = req.body;
-  const result=await cloudinary.uploader.upload(image,{
-    folder:'crowdly/post'
-  })
-  const newPost = new PostModel({
-    name,
-    postSrc:result.url,
-    description,
-    userId,
-    userName,
-  });
-  newPost.save((err) => {
-    if (err)
-      return res
-        .status(500)
-        .json({ success: false, message: "post upload failed", error: err });
-  });
-  return res
-    .status(201)
-    .json({ success: true, message: "post upload successfull", post: newPost });
+  try{
+    const { description, userId, userName, name, image } = req.body;
+    const result=await cloudinary.uploader.upload(image,{
+      folder:'crowdly'
+    })
+    const newPost = new PostModel({
+      name,
+      postSrc:result.url,
+      description,
+      userId,
+      userName,
+    });
+    newPost.save((err) => {
+      if (err)
+        return res
+          .status(500)
+          .json({ success: false, message: "post upload failed", error: err });
+    });
+    return res
+      .status(201)
+      .json({ success: true, message: "post upload successfull", post: newPost });
+  }catch(err){
+    return res.json({ success: false, err });
+  }
 };
 export const editPost = async (req, res) => {
   const { id, description } = req.body;
