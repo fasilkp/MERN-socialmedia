@@ -173,7 +173,7 @@ function Post(props) {
           </Skeleton>
           }
           <img
-            src={postImage}
+            src={postSrc}
             alt="post-body"
             onDoubleClick={likePost}
             onLoad={() => setImageLoad(true)}

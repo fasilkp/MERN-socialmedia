@@ -43,12 +43,12 @@ export const uploadToCloudinary = async (req, res) => {
   try{
     const { description, userId, userName, name, image } = req.body;
     const result=await cloudinary.uploader.upload(image,{
-      folder:'crowdly'
+      folder:'crowdly/posts'
     })
     const newPost = new PostModel({
       name,
       postSrc:result.url,
-      description,
+      description, 
       userId,
       userName,
     });
