@@ -65,11 +65,14 @@ function UploadPost() {
           userName:user.userName,
           name:user.name
         }).then((result)=>{
-          if(result.data.success) {
+          if(result.data.err){
+            alert("upload failed");
+            setSubmitLoad(false)
+          }
+          else{
+            alert("upload successfull")
             navigate("/")
           }
-          else alert("upoad failed");
-          setSubmitLoad(false)
           
         })
     // const blob= dataURItoBlob(imageURI);

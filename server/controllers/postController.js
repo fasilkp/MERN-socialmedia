@@ -1,6 +1,6 @@
 import PostModel from "../models/PostModel.js";
 import UserModel from "../models/UserModel.js";
-import cloudinary from 'cloudinary'
+import cloudinary from '../cloudinary/cloudinary.js'
 import { unlink } from 'node:fs';
 
 
@@ -56,13 +56,13 @@ export const uploadToCloudinary = async (req, res) => {
       if (err)
         return res
           .status(500)
-          .json({ success: false, message: "post upload failed", error: err });
+          .json({ message: "post upload failed", err });
     });
     return res
       .status(201)
-      .json({ success: true, message: "post upload successfull", post: newPost });
+      .json({ message: "post upload successfull", post: newPost });
   }catch(err){
-    return res.json({ success: false, err });
+    return res.json({ err });
   }
 };
 export const editPost = async (req, res) => {
