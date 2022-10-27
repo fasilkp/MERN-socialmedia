@@ -71,7 +71,8 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    font-weight: 450;
+    font-weight: 400;
+    font-size: 1.5rem;
 }
 .profile-description pre{
     width: 80%;
@@ -149,12 +150,10 @@
     .profile-section{
         min-height: 10vh;
         max-height: 55vh;
-        margin-top: 50px;
         width: 100%;
         flex: 50%;
         overflow: scroll;    
         padding: 20px;
-        margin-top: 60px;
     }
 
     .profile-image img{
@@ -192,6 +191,7 @@
     .profile-description{
         margin-bottom: 0px;
         width: 100%;
+        font-size: 1.3rem;
     }
     .profile-description p{
         width: 88%;
