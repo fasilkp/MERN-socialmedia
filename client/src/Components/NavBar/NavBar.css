@@ -157,6 +157,9 @@
     .nav-body{
         justify-content: space-between;
     }
+    .nav-items svg{
+        width: 1.2rem;
+    }
     .container.nav-body{
         padding: 0px 20px;
     }

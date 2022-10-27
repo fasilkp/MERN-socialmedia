@@ -31,9 +31,9 @@ function NewsFeed() {
   return (
     <div className="news-feed main">
       <div className="posts">
-        <div className="feed-header">
+        {/* <div className="feed-header">
           <h2>Discover <FiArrowRight className="feed-header-icon" /> </h2>
-        </div>
+        </div> */}
         {
           allPosts[0] &&
           allPosts.map((post, index)=>{
@@ -47,6 +47,7 @@ function NewsFeed() {
                     id={post._id}
                     likes={post.likes}
                     comments={post.comments}
+                    publicId={post.publicId}
                     date={new Date(post.uploadedAt)}
                     description={post.description}
                     showDelete={user._id===post.userId}>

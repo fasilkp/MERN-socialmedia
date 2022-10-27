@@ -35,6 +35,7 @@ function Post(props) {
     showDelete,
     id,
     postSrc,
+    publicId
   } = props;
   const { user } = useContext(AuthContext);
 
@@ -69,7 +70,7 @@ function Post(props) {
   const deletePost = async () => {
     if (window.confirm("Do you really want to Delete this post?")) {
       await axios
-        .delete("/posts/delete-post", { params: { id: id, postSrc } })
+        .delete("/posts/delete-post", { params: { id: id, postSrc, publicId } })
         .then((res) => {
           if (res.data.err) alert("delete failed");
           else {

@@ -50,6 +50,7 @@ function ViewPost() {
                     id={post._id}
                     showDelete={user._id===post.userId}
                     postSrc={post.postSrc}
+                    publicId={post.publicId}
                     >
                     </Post>
                     }

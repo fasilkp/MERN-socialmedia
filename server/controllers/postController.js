@@ -45,12 +45,14 @@ export const uploadToCloudinary = async (req, res) => {
     const result=await cloudinary.uploader.upload(image,{
       folder:'crowdly/posts'
     })
+    console.log(result)
     const newPost = new PostModel({
       name,
       postSrc:result.url,
       description, 
       userId,
       userName,
+      publicId:result.public_id
     });
     newPost.save((err) => {
       if (err)
@@ -79,15 +81,12 @@ export const editPost = async (req, res) => {
   }
 };
 export const deletePost = async (req, res) => {
-  const { id, postSrc } = req.query;
+  const { id, postSrc, publicId } = req.query;
   PostModel.deleteOne({ _id: id }, function (err, result) {
     if (err)
       return res.json({ err: true, error: err, message: "mongoose err" });
     else{
-        unlink('images/postImages/'+postSrc, (err) => {
-            // if (err) throw err;
-            console.log('successfully deleted /tmp/hello');
-          });
+        cloudinary.uploader.destroy(publicId, function(result) { console.log(result) });
         return res.json({ message: result });
       }
   });
