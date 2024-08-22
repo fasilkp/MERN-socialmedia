@@ -1,5 +1,6 @@
 import UserModel from '../models/UserModel.js'
 import PostModel from '../models/PostModel.js'
+import cloudinary from '../cloudinary/cloudinary.js';
 export const getUser=async(req, res)=>{
         const {userName} = req.body;
         const user = await UserModel.findOne({userName}, {password:0, email:0},{
@@ -68,16 +69,24 @@ export const getUsers=async(req, res)=>{
         }});
         res.json(users)        
 }
-export const uploadProfilePicResponse = (req, res) => {
-    if (!req.file) {
-      return res.status(500).json({
-        err:true
-      });
+export const uploadProfilePicResponse = async (req, res) => {
+    try{
+        if (!req.file) {
+          return res.status(500).json({
+            err:true
+          });
+        }
+        const result=await cloudinary.uploader.upload(req.file.path,{
+            folder:'crowdly/profile'
+        })
+        await UserModel.findByIdAndUpdate({_id:req.user.id},{$set:{image:result.secure_url}})
+        return res.status(201).json({
+          err: false,
+          fileName: result.secure_url,
+        });
+    }catch(err){
+        return res.json({err:true, message:"upload failed", error:err})
     }
-    return res.status(201).json({
-      err: false,
-      fileName: req.file.filename,
-    });
   };
 export const updateProfileDetails = async (req, res) => {
     const { profileSrc, id, name , bio } = req.body;

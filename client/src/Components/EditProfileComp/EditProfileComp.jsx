@@ -77,7 +77,7 @@ function EditProfileComp() {
     <div className='EditProfileComp'>
       <div className="edit-pf-container">
         <div className="pf-img-col">
-          <img src={(newImage ? newImage : "https://crowdlybackend.herokuapp.com/images/profile-images/"+ user.image)} alt=""/>
+          <img src={(newImage ? newImage : user.image)} alt=""/>
           <label htmlFor="imageInput">
             change profile picture
           </label>

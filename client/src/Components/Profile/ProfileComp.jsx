@@ -80,7 +80,7 @@ function ProfileComp({ userName }) {
               event.target.src = basePrfURL+"defaultImage.jpg"
               event.onerror = null;
             }}
-            src={basePrfURL + profileUser?.image} alt="" />
+            src={profileUser?.image} alt="" />
             </div>
           </div>
           <div className="profile-name">
